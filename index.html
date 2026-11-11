@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sint-planner · FC Berghuizen</title>
+<style>
+:root{--bg:#fafaf7;--card:#fff;--tx:#1d1d1b;--mu:#6b6b66;--ln:#e2e0d8;--ac:#c1121f;--ok:#1f7a45;--wa:#b45309}
+@media(prefers-color-scheme:dark){:root{--bg:#161614;--card:#21211e;--tx:#f1efe8;--mu:#a3a198;--ln:#3a3935;--ac:#ef476f;--ok:#4cc38a;--wa:#f59e0b}}
+*{box-sizing:border-box}body{margin:0;font:15px/1.4 system-ui,sans-serif;background:var(--bg);color:var(--tx)}
+header{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--ln);padding:10px 14px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+header h1{font-size:17px;margin:0 auto 0 0}
+main{max-width:900px;margin:0 auto;padding:12px}
+button,select,input,textarea{font:inherit;color:inherit;background:var(--card);border:1px solid var(--ln);border-radius:8px;padding:6px 9px}
+button{cursor:pointer}button.p{background:var(--ac);border-color:var(--ac);color:#fff}button.on{border-color:var(--ac);color:var(--ac)}
+button.x{border:0;color:var(--mu);padding:2px 6px}
+h2{font-size:15px;margin:20px 0 8px;color:var(--mu);text-transform:capitalize}
+.card{background:var(--card);border:1px solid var(--ln);border-radius:12px;padding:11px;margin-bottom:9px}
+.top{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}.top b{font-size:16px}
+.mu{color:var(--mu);font-size:13px}.bd{font-size:12px;border-radius:99px;padding:1px 8px;border:1px solid var(--ln)}
+.bd.r{color:var(--ac);border-color:var(--ac)}.bd.g{color:var(--ok);border-color:var(--ok)}.bd.w{color:var(--wa);border-color:var(--wa)}
+.pl{display:flex;align-items:center;gap:6px;margin-top:6px}.pl label{width:30px;font-weight:600}.pl select{flex:1;min-width:0}
+select.open{border-color:var(--ac);color:var(--ac)}.clash{border-color:var(--wa)!important}
+.row{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+details{margin-top:8px}summary{cursor:pointer;color:var(--mu);font-size:13px}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:6px;margin-top:6px}.g label{font-size:12px;color:var(--mu);display:block}.g input,.g textarea{width:100%}
+#toast{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:8px 14px;border-radius:99px;display:none;z-index:9}
+.login{max-width:340px;margin:12vh auto;display:grid;gap:8px;padding:12px}.login h1{margin:0 0 4px}
+</style>
+</head>
+<body>
+<div id="app"></div><div id="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.4/dist/umd/supabase.js"></script>
+<script>
+const sb=supabase.createClient('https://ovqjojgztbbyrkgrfzxc.supabase.co','sb_publishable_RnRgJJAyxebE1nYhDUsIRQ_sG9FgtzT');
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const t5=t=>t?String(t).slice(0,5):'';
+const mins=t=>{if(!t)return null;const a=t.split(':');return +a[0]*60+ +a[1]};
+const RN={S:'sint',C:'chauffeur',P:'piet'},RO={S:0,C:1,P:2};
+const ST={open:'— open —',eigen:'eigen',niet_nodig:'n.v.t.'};
+let D={routes:[],plekken:[],personen:[]},S={view:'routes',open:false,det:new Set(),user:null};
+
+function toast(m){const t=$('#toast');t.textContent=m;t.style.display='block';clearTimeout(toast.h);toast.h=setTimeout(()=>t.style.display='none',3500)}
+async function load(){
+  const [r,p,q]=await Promise.all([sb.from('routes').select('*').order('datum').order('volgorde'),sb.from('plekken').select('*'),sb.from('personen').select('*').order('naam')]);
+  const e=r.error||p.error||q.error; if(e){toast('Laden mislukt: '+e.message);return}
+  D.routes=r.data;D.plekken=p.data;D.personen=q.data;render();
+}
+async function upd(tbl,id,pl){const r=await sb.from(tbl).update(pl).eq('id',id).select();
+  if(r.error||!r.data.length){toast('Opslaan mislukt (geen planner-rechten?)');return null}return r.data[0]}
+async function ins(tbl,pl){const r=await sb.from(tbl).insert(pl).select();
+  if(r.error||!r.data.length){toast('Toevoegen mislukt'+(r.error?': '+r.error.message:' (geen planner-rechten?)'));return null}return r.data[0]}
+async function del(tbl,id){const r=await sb.from(tbl).delete().eq('id',id).select();
+  if(r.error||!r.data.length){toast('Verwijderen mislukt (geen planner-rechten?)');return false}return true}
+
+function win(r){const a=[r.aanwezig_p,r.aanwezig_s,r.aanwezig_c,r.vertrek].map(mins).filter(x=>x!=null);
+  if(!a.length)return null;const s=Math.min(...a);let e=mins(r.terugkomst)||mins(r.terug)||s+90;if(e<=s)e=s+90;return[s,e]}
+function clashes(){const k=new Set(),by={};
+  D.plekken.forEach(p=>{if(!p.persoon_id)return;const r=D.routes.find(x=>x.id===p.route_id);if(!r)return;
+    const key=p.persoon_id+'|'+r.datum;(by[key]=by[key]||new Map()).set(r.id,r)});
+  Object.keys(by).forEach(key=>{const rs=[...by[key].values()],pid=key.split('|')[0];
+    for(let i=0;i<rs.length;i++)for(let j=i+1;j<rs.length;j++){const a=win(rs[i]),b=win(rs[j]);
+      if(a&&b&&a[0]<b[1]&&b[0]<a[1]){k.add(pid+'|'+rs[i].id);k.add(pid+'|'+rs[j].id)}}});return k}
+
+function selPlek(p,cl){
+  const cur=p.status==='ingevuld'?(p.persoon_id||'tekst'):p.status;
+  const act=D.personen.filter(x=>x.actief||x.id===p.persoon_id);
+  const m=act.filter(x=>x.rollen.includes(RN[p.rol])),o=act.filter(x=>!x.rollen.includes(RN[p.rol]));
+  const op=x=>`<option value="${x.id}"${cur===x.id?' selected':''}>${esc(x.naam)}</option>`;
+  return `<select class="${p.status==='open'?'open':''} ${cl?'clash':''}" onchange="setPlek('${p.id}',this.value)">`+
+    Object.keys(ST).map(k=>`<option value="${k}"${cur===k?' selected':''}>${ST[k]}</option>`).join('')+
+    (cur==='tekst'?`<option value="tekst" selected>${esc(p.vrije_tekst)}</option>`:'')+
+    m.map(op).join('')+(o.length?`<optgroup label="Andere personen">${o.map(op).join('')}</optgroup>`:'')+`</select>`;
+}
+async function setPlek(id,v){if(v==='tekst')return;
+  const pl=ST[v]?{status:v,persoon_id:null,vrije_tekst:null}:{status:'ingevuld',persoon_id:v,vrije_tekst:null};
+  const r=await upd('plekken',id,pl);if(r){D.plekken=D.plekken.map(p=>p.id===id?r:p)}render()}
+async function addPlek(rid,rol){const n=Math.max(0,...D.plekken.filter(p=>p.route_id===rid&&p.rol===rol).map(p=>p.nummer))+1;
+  const r=await ins('plekken',{route_id:rid,rol,nummer:n});if(r){D.plekken.push(r);render()}}
+async function delPlek(id){if(await del('plekken',id)){D.plekken=D.plekken.filter(p=>p.id!==id);render()}}
+
+function card(r,cl){
+  const ps=D.plekken.filter(p=>p.route_id===r.id).sort((a,b)=>RO[a.rol]-RO[b.rol]||a.nummer-b.nummer);
+  const no=ps.filter(p=>p.status==='open').length;
+  const tijd=[t5(r.vertrek),t5(r.terugkomst||r.terug)].filter(Boolean).join('–');
+  const aw=[['P',r.aanwezig_p],['S',r.aanwezig_s],['C',r.aanwezig_c]].filter(x=>x[1]).map(x=>x[0]+' '+t5(x[1])).join(' · ');
+  const f=(k,l,t)=>`<div><label>${l}</label><input type="${t||'text'}" id="e_${r.id}_${k}" value="${esc(t==='time'?t5(r[k]):r[k])}"></div>`;
+  return `<div class="card"><div class="top"><b>${esc(r.locatie||'(nieuwe route)')}</b><span class="mu">${esc(r.plaats||'')}</span>
+    ${tijd?`<span class="mu">vertrek–terug ${tijd}</span>`:''}
+    ${r.soort==='gezinnen'?'<span class="bd w">gezinnen'+(r.aantal_gezinnen!=null?' · '+r.aantal_gezinnen:'')+'</span>':(r.aantal_gezinnen?`<span class="bd w">+${r.aantal_gezinnen} gezinnen</span>`:'')}
+    <span class="bd ${no?'r':'g'}">${no?no+' open':'compleet'}</span></div>
+    ${aw?`<div class="mu">Aanwezig: ${aw}</div>`:''}${r.opmerking?`<div class="mu">${esc(r.opmerking)}</div>`:''}
+    ${ps.map(p=>`<div class="pl"><label>${p.rol}${p.rol==='S'&&p.nummer===1?'':p.nummer}</label>${selPlek(p,cl.has(p.persoon_id+'|'+r.id))}<button class="x" title="Plek verwijderen" onclick="delPlek('${p.id}')">×</button></div>`).join('')}
+    <div class="row"><button onclick="addPlek('${r.id}','S')">+ S</button><button onclick="addPlek('${r.id}','C')">+ C</button><button onclick="addPlek('${r.id}','P')">+ P</button></div>
+    <details ${S.det.has(r.id)?'open':''} ontoggle="this.open?S.det.add('${r.id}'):S.det.delete('${r.id}')"><summary>Route bewerken</summary>
+    <div class="g">${f('datum','Datum','date')}${f('locatie','Locatie')}${f('plaats','Plaats')}${f('aanwezig_p','Aanwezig P','time')}${f('aanwezig_s','Aanwezig S','time')}${f('aanwezig_c','Aanwezig C','time')}${f('vertrek','Vertrek','time')}${f('terug','Terug','time')}${f('terugkomst','Terugkomst','time')}${f('aantal_gezinnen','Aantal gezinnen','number')}</div>
+    <div class="g"><div style="grid-column:1/-1"><label>Opmerking</label><textarea id="e_${r.id}_opmerking" rows="2">${esc(r.opmerking)}</textarea></div></div>
+    <div class="row"><button class="p" onclick="saveRoute('${r.id}')">Opslaan</button><button onclick="delRoute('${r.id}')">Route verwijderen</button></div></details></div>`;
+}
+async function saveRoute(id){const pl={};
+  ['datum','locatie','plaats','aanwezig_p','aanwezig_s','aanwezig_c','vertrek','terug','terugkomst','aantal_gezinnen','opmerking'].forEach(k=>{
+    let v=$('#e_'+id+'_'+k).value.trim();pl[k]=v===''?null:(k==='aantal_gezinnen'?+v:v)});
+  if(!pl.datum){toast('Datum is verplicht');return}
+  const r=await upd('routes',id,pl);if(r){D.routes=D.routes.map(x=>x.id===id?r:x);D.routes.sort((a,b)=>a.datum<b.datum?-1:a.datum>b.datum?1:a.volgorde-b.volgorde);toast('Opgeslagen');render()}}
+async function delRoute(id){if(!confirm('Route en alle plekken verwijderen?'))return;
+  if(await del('routes',id)){D.routes=D.routes.filter(r=>r.id!==id);D.plekken=D.plekken.filter(p=>p.route_id!==id);render()}}
+async function addRoute(){const d=prompt('Datum van de nieuwe route (jjjj-mm-dd):','2026-12-');if(!d)return;
+  const g=confirm('Is dit een gezinnenroute? (OK = ja, Annuleren = nee)');
+  const vol=Math.max(0,...D.routes.filter(r=>r.datum===d).map(r=>r.volgorde))+1;
+  const r=await ins('routes',{actie_id:D.routes[0]?D.routes[0].actie_id:null,datum:d,soort:g?'gezinnen':'regulier',volgorde:vol});
+  if(!r)return;D.routes.push(r);D.routes.sort((a,b)=>a.datum<b.datum?-1:a.datum>b.datum?1:a.volgorde-b.volgorde);
+  for(const x of [['S',1],['C',1],['P',1],['P',2]]){const p=await ins('plekken',{route_id:r.id,rol:x[0],nummer:x[1]});if(p)D.plekken.push(p)}
+  S.det.add(r.id);render()}
+
+function dayName(d){return new Date(d+'T12:00:00').toLocaleDateString('nl-NL',{weekday:'long',day:'numeric',month:'long'})}
+function routesView(){const cl=clashes();let h='';const days=[...new Set(D.routes.map(r=>r.datum))];
+  days.forEach(d=>{const cs=D.routes.filter(r=>r.datum===d).filter(r=>!S.open||D.plekken.some(p=>p.route_id===r.id&&p.status==='open'));
+    if(cs.length)h+=`<h2>${dayName(d)}</h2>`+cs.map(r=>card(r,cl)).join('')});
+  return `<div class="row" style="margin:0 0 6px"><button class="${S.open?'on':''}" onclick="S.open=!S.open;render()">Alleen routes met open plekken</button><button onclick="addRoute()">+ Route</button></div>`+(h||'<p class="mu">Geen routes.</p>')}
+
+function tekst(pid){const per=D.personen.find(x=>x.id===pid);const out=[];
+  D.plekken.filter(p=>p.persoon_id===pid).forEach(p=>{const r=D.routes.find(x=>x.id===p.route_id);if(r)out.push({r,p})});
+  out.sort((a,b)=>a.r.datum<b.r.datum?-1:a.r.datum>b.r.datum?1:(a.r.vertrek||'')<(b.r.vertrek||'')?-1:1);
+  const rn={S:'Sint',C:'chauffeur',P:'Piet'};
+  return `Hoi ${per.naam.split(' ')[0]}, dit is je planning voor de Nicolaasactie:\n\n`+(out.map(({r,p})=>{
+    const a=r['aanwezig_'+p.rol.toLowerCase()];return `${dayName(r.datum)}: ${r.locatie||'?'}${r.plaats?' ('+r.plaats+')':''} als ${rn[p.rol]}`+(a?`, aanwezig ${t5(a)}`:'')+(r.vertrek?`, vertrek ${t5(r.vertrek)}`:'')+(r.terug||r.terugkomst?`, terug ${t5(r.terugkomst||r.terug)}`:'')}).join('\n')||'(nog geen ritten)')}
+async function kopieer(pid){const t=tekst(pid);try{await navigator.clipboard.writeText(t);toast('Planning gekopieerd')}catch(e){prompt('Kopieer de tekst:',t)}}
+function personenView(){
+  const ritten=id=>D.plekken.filter(p=>p.persoon_id===id).length;
+  return `<div class="card"><b>Persoon toevoegen</b><div class="row"><input id="n_naam" placeholder="Naam"><input id="n_tel" placeholder="Telefoon">
+    ${Object.keys(RN).map(k=>`<label><input type="checkbox" id="n_${k}"> ${RN[k]}</label>`).join(' ')}<button class="p" onclick="addPersoon()">Toevoegen</button></div></div>`+
+  D.personen.map(x=>`<div class="card"><div class="top"><b>${esc(x.naam)}</b><span class="bd ${ritten(x.id)?'g':''}">${ritten(x.id)} ritten</span>
+    <a class="mu" href="#" onclick="editTel('${x.id}');return false">${esc(x.telefoon)||'telefoon toevoegen'}</a></div>
+    <div class="row">${Object.keys(RN).map(k=>`<label><input type="checkbox" ${x.rollen.includes(RN[k])?'checked':''} onchange="toggleRol('${x.id}','${RN[k]}')"> ${RN[k]}</label>`).join(' ')}
+    <button onclick="kopieer('${x.id}')">Planning kopiëren</button><button onclick="delPersoon('${x.id}')">Verwijderen</button></div></div>`).join('')}
+async function addPersoon(){const naam=$('#n_naam').value.trim();if(!naam){toast('Vul een naam in');return}
+  const rollen=Object.keys(RN).filter(k=>$('#n_'+k).checked).map(k=>RN[k]);
+  const r=await ins('personen',{naam,telefoon:$('#n_tel').value.trim()||null,rollen});if(r){D.personen.push(r);D.personen.sort((a,b)=>a.naam.localeCompare(b.naam));render()}}
+async function toggleRol(id,rol){const x=D.personen.find(p=>p.id===id);const rollen=x.rollen.includes(rol)?x.rollen.filter(r=>r!==rol):[...x.rollen,rol];
+  const r=await upd('personen',id,{rollen});if(r)D.personen=D.personen.map(p=>p.id===id?r:p);render()}
+async function editTel(id){const x=D.personen.find(p=>p.id===id);const v=prompt('Telefoonnummer van '+x.naam+':',x.telefoon||'');if(v===null)return;
+  const r=await upd('personen',id,{telefoon:v.trim()||null});if(r)D.personen=D.personen.map(p=>p.id===id?r:p);render()}
+async function delPersoon(id){const x=D.personen.find(p=>p.id===id);if(!confirm(x.naam+' verwijderen? Eventuele plekken worden weer open gezet.'))return;
+  const mine=D.plekken.filter(p=>p.persoon_id===id);
+  for(const p of mine){await upd('plekken',p.id,{status:'open',persoon_id:null})}
+  if(await del('personen',id)){D.personen=D.personen.filter(p=>p.id!==id);await load()}}
+
+function render(){const y=scrollY;
+  $('#app').innerHTML=!S.user?`<form class="login" onsubmit="login(event)"><h1>Sint-planner</h1><span class="mu">FC Berghuizen</span><input id="l_e" type="email" placeholder="E-mailadres" autocomplete="username" required><input id="l_p" type="password" placeholder="Wachtwoord" autocomplete="current-password" required><button class="p">Inloggen</button></form>`:
+  `<header><h1>Sint-planner</h1><button class="${S.view==='routes'?'on':''}" onclick="S.view='routes';render()">Routes</button><button class="${S.view==='personen'?'on':''}" onclick="S.view='personen';render()">Personen</button><button onclick="sb.auth.signOut()">Uitloggen</button></header><main>${S.view==='routes'?routesView():personenView()}</main>`;
+  scrollTo(0,y)}
+async function login(e){e.preventDefault();const r=await sb.auth.signInWithPassword({email:$('#l_e').value,password:$('#l_p').value});if(r.error)toast('Inloggen mislukt: '+r.error.message)}
+sb.auth.onAuthStateChange((ev,s)=>{const was=!!S.user;S.user=s?s.user:null;if(S.user&&!was)load();else render()});
+sb.auth.getSession().then(r=>{S.user=r.data.session?r.data.session.user:null;S.user?load():render()});
+</script>
+</body>
+</html>
