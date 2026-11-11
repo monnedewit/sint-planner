@@ -374,6 +374,53 @@
   </div>
 </div>
 
+<!-- MODAL: INLOGGEN & WACHTWOORD HERSTELLEN -->
+<div class="modal-overlay" id="authModal">
+  <div class="modal-box" style="max-width:380px;">
+    <!-- INLOG VIEW -->
+    <div id="authViewLogin">
+      <h3 style="color:var(--fc-green-dark); margin-bottom:6px; font-size:1.1rem;">Inloggen Sint-planner</h3>
+      <p style="font-size:0.78rem; color:#64748b; margin-bottom:12px;">Log in met je coördinator- of beheerdersaccount.</p>
+      
+      <div class="form-col" style="margin-bottom:10px;">
+        <label style="font-weight:bold; font-size:0.75rem;">E-mailadres:</label>
+        <input type="email" id="loginEmailInput" placeholder="naam@fcberghuizen.nl" style="width:100%; padding:6px; font-size:0.82rem; border:1px solid var(--border); border-radius:4px;">
+      </div>
+      <div class="form-col" style="margin-bottom:12px;">
+        <label style="font-weight:bold; font-size:0.75rem;">Wachtwoord:</label>
+        <input type="password" id="loginPasswordInput" placeholder="••••••••" style="width:100%; padding:6px; font-size:0.82rem; border:1px solid var(--border); border-radius:4px;" onkeydown="if(event.key==='Enter') submitLogin()">
+      </div>
+      
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+        <button class="edit-link" style="border:none; background:none; padding:0;" onclick="switchAuthModalView('reset')">Wachtwoord vergeten?</button>
+        <div style="display:flex; gap:6px;">
+          <button class="btn btn-sm" onclick="closeAuthModal()">Annuleren</button>
+          <button class="btn btn-fc btn-sm" onclick="submitLogin()">Inloggen</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESET VIEW -->
+    <div id="authViewReset" style="display:none;">
+      <h3 style="color:var(--fc-green-dark); margin-bottom:6px; font-size:1.1rem;">Wachtwoord (opnieuw) instellen</h3>
+      <p style="font-size:0.78rem; color:#64748b; margin-bottom:12px;">Vul je e-mailadres in. Je ontvangt direct een beveiligde herstellink per mail om een eigen wachtwoord te kiezen.</p>
+      
+      <div class="form-col" style="margin-bottom:12px;">
+        <label style="font-weight:bold; font-size:0.75rem;">E-mailadres:</label>
+        <input type="email" id="resetEmailInput" placeholder="naam@fcberghuizen.nl" style="width:100%; padding:6px; font-size:0.82rem; border:1px solid var(--border); border-radius:4px;" onkeydown="if(event.key==='Enter') submitPasswordReset()">
+      </div>
+      
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+        <button class="edit-link" style="border:none; background:none; padding:0;" onclick="switchAuthModalView('login')">« Terug naar inloggen</button>
+        <div style="display:flex; gap:6px;">
+          <button class="btn btn-sm" onclick="closeAuthModal()">Annuleren</button>
+          <button class="btn btn-fc btn-sm" onclick="submitPasswordReset()">Stuur e-mail</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 const SUPABASE_URL = "https://ovqjojgztbbyrkgrfzxc.supabase.co";
 const SUPABASE_KEY = "sb_publishable_RnRgJJAyxebE1nYhDUsIRQ_sG9FgtzT";
@@ -417,9 +464,13 @@ function canAddPersonsFor(role) {
 
 function cleanTime(t) {
   if (!t) return '';
-  let s = String(t);
-  s = s.replace(/(\\b\\d{1,2}[:.]\\d{2}):\\d{2}\\b/g, '$1');
-  s = s.replace(/(\\b\\d{1,2})\\.(\\d{2}\\b)/g, '$1:$2');
+  let s = String(t).trim();
+  const m = s.match(/^(\d{1,2})[:.](\d{2})(:00)?$/);
+  if (m) {
+    return `${m[1].padStart(2, '0')}:${m[2]}`;
+  }
+  s = s.replace(/(\b\d{1,2}[:.]\d{2}):\d{2}\b/g, '$1');
+  s = s.replace(/(\b\d{1,2})\.(\d{2}\b)/g, '$1:$2');
   return s.trim();
 }
 
@@ -452,7 +503,7 @@ function extractTimeForRole(r, roleType) {
   if (roleType === 'P' && r.aanwezig_p) return cleanTime(r.aanwezig_p);
 
   const str = r.aanwezig || "";
-  const m = str.match(new RegExp('\\\\b' + roleType + '[:;\\\\s]*([0-2]?\\\\d[:.][0-5]\\\\d)\\\\b', 'i'));
+  const m = str.match(new RegExp('\\b' + roleType + '[:;\\s]*([0-2]?\\d[:.][0-5]\\d)\\b', 'i'));
   return m ? cleanTime(m[1]) : '';
 }
 
@@ -500,6 +551,15 @@ async function initApp() {
   await loadDatabaseData();
 
   supabaseClient.auth.onAuthStateChange(async (event, session) => {
+    if (event === 'PASSWORD_RECOVERY') {
+      const newPwd = prompt("Voer je nieuwe wachtwoord in:");
+      if (newPwd) {
+        const { error } = await supabaseClient.auth.updateUser({ password: newPwd });
+        if (error) alert("Fout bij opslaan nieuw wachtwoord: " + error.message);
+        else alert("Wachtwoord succesvol gewijzigd! Je bent nu ingelogd.");
+      }
+    }
+
     if (session && session.user) {
       state.user = session.user;
       await resolveUserRole();
@@ -616,6 +676,73 @@ async function checkAuthSession() {
   updateRoleUI();
 }
 
+function openAuthModal() {
+  switchAuthModalView('login');
+  document.getElementById("loginEmailInput").value = "";
+  document.getElementById("loginPasswordInput").value = "";
+  document.getElementById("authModal").style.display = "flex";
+  setTimeout(() => document.getElementById("loginEmailInput").focus(), 100);
+}
+
+function closeAuthModal() {
+  document.getElementById("authModal").style.display = "none";
+}
+
+function switchAuthModalView(view) {
+  document.getElementById("authViewLogin").style.display = (view === 'login') ? 'block' : 'none';
+  document.getElementById("authViewReset").style.display = (view === 'reset') ? 'block' : 'none';
+  if (view === 'reset') {
+    const curEmail = document.getElementById("loginEmailInput").value.trim();
+    if (curEmail) document.getElementById("resetEmailInput").value = curEmail;
+    setTimeout(() => document.getElementById("resetEmailInput").focus(), 100);
+  }
+}
+
+async function submitLogin() {
+  const email = document.getElementById("loginEmailInput").value.trim();
+  const password = document.getElementById("loginPasswordInput").value;
+
+  if (!email || !password) {
+    alert("Vul e-mailadres en wachtwoord in.");
+    return;
+  }
+
+  const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+  if (error) {
+    alert("Inloggen mislukt: " + error.message);
+  } else {
+    closeAuthModal();
+    state.user = data.user;
+    await resolveUserRole();
+    updateRoleUI();
+    if (state.userRole === 'coordinator_chauffeurs') switchMainTab('chauffeurs');
+    else if (state.userRole === 'coordinator_sinten') switchMainTab('sinten');
+    else if (state.userRole === 'coordinator_pieten') switchMainTab('pieten');
+    else switchMainTab('routes');
+    await loadDatabaseData();
+  }
+}
+
+async function submitPasswordReset() {
+  const email = document.getElementById("resetEmailInput").value.trim();
+  if (!email) {
+    alert("Vul je e-mailadres in.");
+    return;
+  }
+
+  const redirectUrl = window.location.origin + window.location.pathname;
+  const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+    redirectTo: redirectUrl
+  });
+
+  if (error) {
+    alert("Kon herstelmail niet versturen: " + error.message);
+  } else {
+    alert("Er is een herstel-e-mail gestuurd naar " + email + ". Klik op de link in die mail om je wachtwoord in te stellen!");
+    closeAuthModal();
+  }
+}
+
 async function handleAuthClick() {
   if (state.user) {
     await supabaseClient.auth.signOut();
@@ -624,24 +751,7 @@ async function handleAuthClick() {
     updateRoleUI();
     await loadDatabaseData();
   } else {
-    const email = prompt("Voer je e-mailadres in om in te loggen:");
-    if (!email) return;
-    const password = prompt("Voer je wachtwoord in:");
-    if (!password) return;
-    const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
-    if (error) {
-      alert("Inloggen mislukt: " + error.message);
-    } else {
-      state.user = data.user;
-      await resolveUserRole();
-      updateRoleUI();
-      // Automatisch naar het juiste tabblad navigeren bij inloggen
-      if (state.userRole === 'coordinator_chauffeurs') switchMainTab('chauffeurs');
-      else if (state.userRole === 'coordinator_sinten') switchMainTab('sinten');
-      else if (state.userRole === 'coordinator_pieten') switchMainTab('pieten');
-      else switchMainTab('routes');
-      await loadDatabaseData();
-    }
+    openAuthModal();
   }
 }
 
@@ -964,7 +1074,7 @@ function renderSlotsHTML(r) {
         </select>
 
         <select class="slot-time-select" 
-                ${!isEditable ? 'disabled' : ''}
+                ${!isEditable ? 'disabled' : ''} 
                 title="Aanwezigheidstijd voor ${label}" 
                 onchange="updateRoleTime('${r.id}', '${roleChar}', this.value)">
           ${buildTimeOptions(roleTime)}
@@ -989,6 +1099,8 @@ async function updateRoleTime(routeId, roleChar, newTime) {
   if (!r) return;
 
   const clean = cleanTime(newTime);
+  const dbTime = clean ? clean : null; // In Postgres time columns vereisen NULL i.p.v. lege string
+
   if (roleChar === 'S') r.aanwezig_s = clean;
   if (roleChar === 'C') r.aanwezig_c = clean;
   if (roleChar === 'P') r.aanwezig_p = clean;
@@ -999,17 +1111,20 @@ async function updateRoleTime(routeId, roleChar, newTime) {
   if (r.aanwezig_p) arr.push(`P ${r.aanwezig_p}`);
   r.aanwezig = arr.join(' · ');
 
-  try {
-    const payload = { aanwezig: r.aanwezig };
-    if (roleChar === 'S') payload.aanwezig_s = clean;
-    if (roleChar === 'C') payload.aanwezig_c = clean;
-    if (roleChar === 'P') payload.aanwezig_p = clean;
+  const payload = { aanwezig: r.aanwezig || null };
+  if (roleChar === 'S') payload.aanwezig_s = dbTime;
+  if (roleChar === 'C') payload.aanwezig_c = dbTime;
+  if (roleChar === 'P') payload.aanwezig_p = dbTime;
 
+  try {
     const { error } = await supabaseClient.from('routes').update(payload).eq('id', routeId);
     if (error) {
-      await supabaseClient.from('routes').update({ aanwezig: r.aanwezig }).eq('id', routeId);
+      console.error("Fout bij opslaan tijd in database:", error);
+      alert("Fout bij opslaan tijd: " + error.message);
     }
-  } catch(e) { console.log(e); }
+  } catch(e) {
+    console.error("Netwerkfout bij opslaan tijd:", e);
+  }
 }
 
 function toggleEditPanel(rId) {
@@ -1036,8 +1151,8 @@ async function saveRouteEdits(rId) {
       volgorde: r.nr,
       locatie: r.naam,
       plaats: r.plaats,
-      vertrek: r.vertrek,
-      terug: r.terug,
+      vertrek: r.vertrek || null,
+      terug: r.terug || null,
       opmerking: r.opmerking
     }).eq('id', rId);
     if (error) alert("Fout bij bewerken route: " + error.message);
@@ -1231,15 +1346,15 @@ function sendDriverWhatsApp(rId, dName) {
   const sintName = sintSlot && sintSlot.naam ? sintSlot.naam : 'nog niet bekend';
   const cAanw = extractTimeForRole(r, 'C') || r.aanwezig || 'volgens afspraak';
 
-  let msg = `Beste ${dName},\\n\\nHierbij je ritplanning voor FC Berghuizen Sintactie:\\n\\n`;
-  msg += `🚗 *Route:* #${r.nr} ${r.naam}\\n`;
-  msg += `📅 *Dag:* ${r.datum}\\n`;
-  msg += `📍 *Bestemming:* ${r.plaats} - ${r.naam}\\n`;
-  msg += `⏰ *Aanwezig:* ${cAanw}\\n`;
-  msg += `🚗 *Vertrek:* ${r.vertrek || 'n.t.b.'} (Terugkomst: ${r.terug || 'onbekend'})\\n`;
-  msg += `🎅 *Sinterklaas:* ${sintName}\\n`;
-  if (r.opmerking) msg += `ℹ️ *Notitie:* ${r.opmerking}\\n`;
-  msg += `\\nAlvast enorm bedankt voor het rijden namens FC Berghuizen! 🎅⚽`;
+  let msg = `Beste ${dName},\n\nHierbij je ritplanning voor FC Berghuizen Sintactie:\n\n`;
+  msg += `🚗 *Route:* #${r.nr} ${r.naam}\n`;
+  msg += `📅 *Dag:* ${r.datum}\n`;
+  msg += `📍 *Bestemming:* ${r.plaats} - ${r.naam}\n`;
+  msg += `⏰ *Aanwezig:* ${cAanw}\n`;
+  msg += `🚗 *Vertrek:* ${r.vertrek || 'n.t.b.'} (Terugkomst: ${r.terug || 'onbekend'})\n`;
+  msg += `🎅 *Sinterklaas:* ${sintName}\n`;
+  if (r.opmerking) msg += `ℹ️ *Notitie:* ${r.opmerking}\n`;
+  msg += `\nAlvast enorm bedankt voor het rijden namens FC Berghuizen! 🎅⚽`;
 
   let cleanPhone = phone.replace(/[^0-9]/g, "");
   if (cleanPhone.startsWith("06")) cleanPhone = "316" + cleanPhone.substring(2);
@@ -1261,7 +1376,7 @@ function copyAllDriverNumbers() {
     }
   });
   if (list.length === 0) return alert("Geen chauffeurs met telefoonnummer gevonden.");
-  navigator.clipboard.writeText(list.join("\\n")).then(() => alert("Gekopieerd naar klembord!"));
+  navigator.clipboard.writeText(list.join("\n")).then(() => alert("Gekopieerd naar klembord!"));
 }
 
 function renderSinten() {
