@@ -421,6 +421,7 @@
   </div>
 </div>
 
+
 <script>
 const SUPABASE_URL = "https://ovqjojgztbbyrkgrfzxc.supabase.co";
 const SUPABASE_KEY = "sb_publishable_RnRgJJAyxebE1nYhDUsIRQ_sG9FgtzT";
@@ -446,6 +447,33 @@ function canEditRoleSlot(roleType) {
   if (state.userRole === 'coordinator_sinten' && roleType === 'S') return true;
   if (state.userRole === 'coordinator_pieten' && roleType === 'P') return true;
   return false;
+}
+
+function canManageRoutes() {
+  if (!state.user || !state.userRole) return false;
+  return state.userRole === 'admin' || state.userRole === 'planner_routes';
+}
+
+function canAddPersonsFor(role) {
+  if (!state.user || !state.userRole) return false;
+  if (state.userRole === 'admin') return true;
+  if (state.userRole === 'coordinator_chauffeurs' && role === 'Chauffeur') return true;
+  if (state.userRole === 'coordinator_sinten' && role === 'Sint') return true;
+  if (state.userRole === 'coordinator_pieten' && role === 'Piet') return true;
+  return false;
+}
+
+function canEditPerson(p) {
+  if (!state.user || !state.userRole) return false;
+  if (state.userRole === 'admin') return true;
+  if (state.userRole === 'coordinator_chauffeurs' && personHasRole(p, 'chauffeur')) return true;
+  if (state.userRole === 'coordinator_sinten' && personHasRole(p, 'sint')) return true;
+  if (state.userRole === 'coordinator_pieten' && personHasRole(p, 'piet')) return true;
+  return false;
+}
+
+function canDeletePerson(p) {
+  return canEditPerson(p);
 }
 
 function canManageRoutes() {
@@ -607,6 +635,11 @@ function updateRoleUI() {
   const btnAddSint = document.getElementById("btnAddSintBtn");
   const btnAddPiet = document.getElementById("btnAddPietBtn");
 
+  const persHeaderTitle = document.querySelector("#section-vrijwilligers h3");
+  const persHeaderDesc = document.querySelector("#section-vrijwilligers p");
+  const persFilterPills = document.querySelectorAll("#section-vrijwilligers .filter-pill");
+  const btnAddAnyPerson = document.getElementById("btnAddAnyPersonBtn");
+
   if (state.user) {
     authBtn.innerText = "Uitloggen";
     const roleLabels = {
@@ -622,26 +655,51 @@ function updateRoleUI() {
     banner.style.display = 'flex';
     bannerText.innerHTML = `Welkom <strong>${state.user.email}</strong>. Ingelogd als: <strong>${friendlyRole}</strong>.`;
 
+    // Toon tab Personenbeheer voor iedereen die is ingelogd
+    if (tabVrijwilligers) {
+      tabVrijwilligers.style.display = 'inline-flex';
+      if (state.userRole === 'coordinator_chauffeurs') tabVrijwilligers.innerHTML = '🚗 5. Chauffeursbeheer';
+      else if (state.userRole === 'coordinator_sinten') tabVrijwilligers.innerHTML = '🎅 5. Sintenbeheer';
+      else if (state.userRole === 'coordinator_pieten') tabVrijwilligers.innerHTML = '🎁 5. Pietenbeheer';
+      else tabVrijwilligers.innerHTML = '👥 5. Personenbeheer';
+    }
+
     if (state.userRole === 'admin') {
       hintText.innerText = "Je hebt volledige beheerrechten.";
       if (btnNewRouteTop) btnNewRouteTop.style.display = 'inline-flex';
-      if (tabVrijwilligers) tabVrijwilligers.style.display = 'inline-flex';
+      if (persHeaderTitle) persHeaderTitle.innerText = "👥 Personenbeheer";
+      if (persHeaderDesc) persHeaderDesc.innerText = "Volledig beheer van alle vrijwilligers, mobiele nummers en combinatierollen.";
+      persFilterPills.forEach(p => p.style.display = 'inline-block');
+      if (btnAddAnyPerson) { btnAddAnyPerson.innerText = "+ Nieuwe Persoon"; btnAddAnyPerson.style.display = 'inline-flex'; }
     } else if (state.userRole === 'coordinator_chauffeurs') {
-      hintText.innerText = "Je kunt chauffeurs indelen en nieuwe chauffeurs toevoegen.";
+      hintText.innerText = "Je kunt chauffeurs indelen, toevoegen en bewerken.";
       if (btnNewRouteTop) btnNewRouteTop.style.display = 'none';
-      if (tabVrijwilligers) tabVrijwilligers.style.display = 'none';
+      if (persHeaderTitle) persHeaderTitle.innerText = "🚗 Chauffeursbeheer";
+      if (persHeaderDesc) persHeaderDesc.innerText = "Beheer hier alle chauffeurs, telefoonnummers en notities.";
+      persFilterPills.forEach(p => p.style.display = 'none');
+      state.personRoleFilter = 'chauffeur';
+      if (btnAddAnyPerson) { btnAddAnyPerson.innerText = "+ Nieuwe Chauffeur"; btnAddAnyPerson.style.display = 'inline-flex'; }
     } else if (state.userRole === 'coordinator_sinten') {
-      hintText.innerText = "Je kunt Sinterklazen indelen en nieuwe Sinten toevoegen.";
+      hintText.innerText = "Je kunt Sinterklazen indelen, toevoegen en bewerken.";
       if (btnNewRouteTop) btnNewRouteTop.style.display = 'none';
-      if (tabVrijwilligers) tabVrijwilligers.style.display = 'none';
+      if (persHeaderTitle) persHeaderTitle.innerText = "🎅 Sintenbeheer";
+      if (persHeaderDesc) persHeaderDesc.innerText = "Beheer hier alle Sinterklazen, telefoonnummers en notities.";
+      persFilterPills.forEach(p => p.style.display = 'none');
+      state.personRoleFilter = 'sint';
+      if (btnAddAnyPerson) { btnAddAnyPerson.innerText = "+ Nieuwe Sint"; btnAddAnyPerson.style.display = 'inline-flex'; }
     } else if (state.userRole === 'coordinator_pieten') {
-      hintText.innerText = "Je kunt Pieten indelen en nieuwe Pieten toevoegen.";
+      hintText.innerText = "Je kunt Pieten indelen, toevoegen en bewerken.";
       if (btnNewRouteTop) btnNewRouteTop.style.display = 'none';
-      if (tabVrijwilligers) tabVrijwilligers.style.display = 'none';
+      if (persHeaderTitle) persHeaderTitle.innerText = "🎁 Pietenbeheer";
+      if (persHeaderDesc) persHeaderDesc.innerText = "Beheer hier alle Pieten, telefoonnummers en notities.";
+      persFilterPills.forEach(p => p.style.display = 'none');
+      state.personRoleFilter = 'piet';
+      if (btnAddAnyPerson) { btnAddAnyPerson.innerText = "+ Nieuwe Piet"; btnAddAnyPerson.style.display = 'inline-flex'; }
     } else if (state.userRole === 'planner_routes') {
       hintText.innerText = "Je kunt routes toevoegen, volgorde en tijden bewerken.";
       if (btnNewRouteTop) btnNewRouteTop.style.display = 'inline-flex';
-      if (tabVrijwilligers) tabVrijwilligers.style.display = 'none';
+      persFilterPills.forEach(p => p.style.display = 'inline-block');
+      if (btnAddAnyPerson) btnAddAnyPerson.style.display = 'none';
     }
 
     if (btnAddDriver) btnAddDriver.style.display = canAddPersonsFor('Chauffeur') ? 'inline-flex' : 'none';
@@ -1074,7 +1132,7 @@ function renderSlotsHTML(r) {
         </select>
 
         <select class="slot-time-select" 
-                ${!isEditable ? 'disabled' : ''} 
+                ${!isEditable ? 'disabled' : ''}
                 title="Aanwezigheidstijd voor ${label}" 
                 onchange="updateRoleTime('${r.id}', '${roleChar}', this.value)">
           ${buildTimeOptions(roleTime)}
@@ -1500,15 +1558,21 @@ function renderPersonsList() {
   const container = document.getElementById("personsListGrid");
   let filtered = state.personen;
 
-  if (state.personRoleFilter !== 'all') {
+  if (state.userRole === 'coordinator_chauffeurs') {
+    filtered = filtered.filter(p => personHasRole(p, 'chauffeur'));
+  } else if (state.userRole === 'coordinator_sinten') {
+    filtered = filtered.filter(p => personHasRole(p, 'sint'));
+  } else if (state.userRole === 'coordinator_pieten') {
+    filtered = filtered.filter(p => personHasRole(p, 'piet'));
+  } else if (state.personRoleFilter !== 'all') {
     filtered = filtered.filter(p => personHasRole(p, state.personRoleFilter));
   }
-
-  const canEditPersons = state.userRole === 'admin';
 
   let html = "";
   filtered.forEach(p => {
     const roles = getPersonRolesString(p);
+    const canEdit = canEditPerson(p);
+    const canDel = canDeletePerson(p);
 
     html += `
       <div style="background:white; border:1px solid var(--border); border-radius:6px; padding:10px 12px; display:flex; justify-content:space-between; align-items:center;">
@@ -1521,11 +1585,11 @@ function renderPersonsList() {
           ${p.notitie ? `<div style="font-size:0.72rem; color:#94a3b8; margin-top:2px;">${p.notitie}</div>` : ''}
         </div>
         <div style="display:flex; gap:4px; align-items:center;">
-          ${canEditPersons ? `<button class="btn btn-sm" onclick="editPerson('${p.id}')" title="Rollen of gegevens wijzigen">✏️</button>` : ''}
+          ${canEdit ? `<button class="btn btn-sm" onclick="editPerson('${p.id}')" title="Gegevens wijzigen">✏️</button>` : ''}
           ${p.telefoon ? `
             <a class="btn btn-whatsapp btn-sm" href="https://wa.me/${p.telefoon.replace(/[^0-9]/g,'')}?text=Hallo%20${encodeURIComponent(p.naam)},%20vanuit%20FC%20Berghuizen%20Sintactie:" target="_blank">💬</a>
           ` : ''}
-          ${canEditPersons ? `<button class="btn btn-sm" style="color:var(--sint-red);" onclick="deletePerson('${p.id}')">🗑️</button>` : ''}
+          ${canDel ? `<button class="btn btn-sm" style="color:var(--sint-red);" onclick="deletePerson('${p.id}')" title="Verwijderen">🗑️</button>` : ''}
         </div>
       </div>
     `;
@@ -1542,12 +1606,34 @@ function openAddPersonModal() {
   document.getElementById("addPersonModalTitle").innerText = "+ Nieuwe Persoon Toevoegen";
   document.getElementById("editPersonId").value = "";
   document.getElementById("newPersName").value = "";
-  document.getElementById("roleChauf").checked = true;
-  document.getElementById("roleSint").checked = false;
-  document.getElementById("rolePiet").checked = false;
+  
+  if (state.userRole === 'coordinator_chauffeurs') {
+    document.getElementById("roleChauf").checked = true;
+    document.getElementById("roleSint").checked = false;
+    document.getElementById("rolePiet").checked = false;
+    document.getElementById("roleCheckboxesGroup").style.display = 'none';
+    document.getElementById("addPersonModalTitle").innerText = "+ Nieuwe Chauffeur Toevoegen";
+  } else if (state.userRole === 'coordinator_sinten') {
+    document.getElementById("roleChauf").checked = false;
+    document.getElementById("roleSint").checked = true;
+    document.getElementById("rolePiet").checked = false;
+    document.getElementById("roleCheckboxesGroup").style.display = 'none';
+    document.getElementById("addPersonModalTitle").innerText = "+ Nieuwe Sint Toevoegen";
+  } else if (state.userRole === 'coordinator_pieten') {
+    document.getElementById("roleChauf").checked = false;
+    document.getElementById("roleSint").checked = false;
+    document.getElementById("rolePiet").checked = true;
+    document.getElementById("roleCheckboxesGroup").style.display = 'none';
+    document.getElementById("addPersonModalTitle").innerText = "+ Nieuwe Piet Toevoegen";
+  } else {
+    document.getElementById("roleChauf").checked = true;
+    document.getElementById("roleSint").checked = false;
+    document.getElementById("rolePiet").checked = false;
+    document.getElementById("roleCheckboxesGroup").style.display = 'block';
+  }
+
   document.getElementById("newPersPhone").value = "";
   document.getElementById("newPersNote").value = "";
-  document.getElementById("roleCheckboxesGroup").style.display = (state.userRole === 'admin') ? 'block' : 'none';
   document.getElementById("addPersonModal").style.display = "flex";
 }
 
@@ -1561,10 +1647,10 @@ function openAddPersonModalWithRole(role) {
 }
 
 function editPerson(pId) {
-  if (state.userRole !== 'admin') return;
-
   const p = state.personen.find(item => String(item.id) === String(pId));
   if (!p) return;
+
+  if (!canEditPerson(p)) return alert("Geen rechten om deze persoon te bewerken.");
 
   document.getElementById("addPersonModalTitle").innerText = `✏️ ${p.naam} Bewerken`;
   document.getElementById("editPersonId").value = p.id;
@@ -1576,7 +1662,7 @@ function editPerson(pId) {
   
   document.getElementById("newPersPhone").value = p.telefoon || '';
   document.getElementById("newPersNote").value = p.notitie || '';
-  document.getElementById("roleCheckboxesGroup").style.display = 'block';
+  document.getElementById("roleCheckboxesGroup").style.display = (state.userRole === 'admin') ? 'block' : 'none';
   document.getElementById("addPersonModal").style.display = "flex";
 }
 
@@ -1588,24 +1674,36 @@ async function saveNewPerson() {
   const telefoon = document.getElementById("newPersPhone").value.trim();
   const notitie = document.getElementById("newPersNote").value.trim();
 
-  const selectedRoles = [];
-  if (document.getElementById("roleChauf").checked) selectedRoles.push("Chauffeur");
-  if (document.getElementById("roleSint").checked) selectedRoles.push("Sint");
-  if (document.getElementById("rolePiet").checked) selectedRoles.push("Piet");
-  if (selectedRoles.length === 0) selectedRoles.push("Vrijwilliger");
+  let selectedRoles = [];
+  if (state.userRole === 'coordinator_chauffeurs') {
+    selectedRoles = ["Chauffeur"];
+  } else if (state.userRole === 'coordinator_sinten') {
+    selectedRoles = ["Sint"];
+  } else if (state.userRole === 'coordinator_pieten') {
+    selectedRoles = ["Piet"];
+  } else {
+    if (document.getElementById("roleChauf").checked) selectedRoles.push("Chauffeur");
+    if (document.getElementById("roleSint").checked) selectedRoles.push("Sint");
+    if (document.getElementById("rolePiet").checked) selectedRoles.push("Piet");
+    if (selectedRoles.length === 0) selectedRoles.push("Vrijwilliger");
+  }
 
   if (!naam) return alert("Vul een naam in.");
 
   if (pId) {
-    if (state.userRole !== 'admin') return alert("Alleen de beheerder kan bestaande personen bewerken.");
-
     const p = state.personen.find(item => String(item.id) === String(pId));
-    if (p) {
-      p.naam = naam;
-      p.rollen = selectedRoles;
-      p.telefoon = telefoon;
-      p.notitie = notitie;
+    if (!p || !canEditPerson(p)) return alert("Geen rechten om deze persoon te bewerken.");
+
+    // Behoud eventuele andere rollen als een specifieke coördinator bewerkt
+    if (state.userRole !== 'admin' && Array.isArray(p.rollen)) {
+      selectedRoles = p.rollen;
     }
+
+    p.naam = naam;
+    p.rollen = selectedRoles;
+    p.telefoon = telefoon;
+    p.notitie = notitie;
+
     try {
       await supabaseClient.from('personen').update({
         naam: naam,
@@ -1636,10 +1734,11 @@ async function saveNewPerson() {
 }
 
 async function deletePerson(pId) {
-  if (state.userRole !== 'admin') return alert("Alleen de beheerder kan personen verwijderen.");
+  const p = state.personen.find(item => String(item.id) === String(pId));
+  if (!p || !canDeletePerson(p)) return alert("Geen rechten om deze persoon te verwijderen.");
 
-  if (confirm("Weet je zeker dat je deze persoon wilt verwijderen?")) {
-    state.personen = state.personen.filter(p => String(p.id) !== String(pId));
+  if (confirm(`Weet je zeker dat je ${p.naam} wilt verwijderen?`)) {
+    state.personen = state.personen.filter(item => String(item.id) !== String(pId));
     try {
       await supabaseClient.from('personen').delete().eq('id', pId);
     } catch(e) { console.log(e); }
