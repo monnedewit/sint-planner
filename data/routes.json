@@ -1,0 +1,3388 @@
+[
+ {
+  "datum": "2026-11-14",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 1,
+  "locatie": "Intocht",
+  "plaats": "Oldenzaal",
+  "aanwezig": {},
+  "vertrek": null,
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": "Oldenzaal / P2 t/m P30",
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "ingevuld",
+    "persoon": "Jeroen Hulsmeijers",
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "niet_nodig",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "ingevuld",
+    "persoon": "Floris van Dijk",
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-11-15",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 2,
+  "locatie": "Spanvöggel",
+  "plaats": "Oldenzaal",
+  "aanwezig": {
+   "P": "14:15",
+   "S": "14:15",
+   "C": "14:15"
+  },
+  "vertrek": "15:00",
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": "GEEN schminkers nodig",
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-11-19",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 3,
+  "locatie": "Wilmersberg",
+  "plaats": "De Lutte",
+  "aanwezig": {
+   "P": "18:00",
+   "S": "18:15",
+   "C": "18:30"
+  },
+  "vertrek": "18:45",
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": "Kleding wordt vrijdag teruggebracht",
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "ingevuld",
+    "persoon": "Jeroen Hulsmeijers",
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "ingevuld",
+    "persoon": "Rob Egberink",
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-11-20",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 4,
+  "locatie": "SKO B.V",
+  "plaats": "Oldenzaal",
+  "aanwezig": {
+   "P": "14:30",
+   "S": "14:45",
+   "C": "15:00"
+  },
+  "vertrek": "15:15",
+  "terug": "16:45",
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-11-21",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 5,
+  "locatie": "Judo Losser",
+  "plaats": "Losser",
+  "aanwezig": {
+   "P": "08:25",
+   "S": "08:40",
+   "C": "08:55"
+  },
+  "vertrek": "09:10",
+  "terug": "11:20",
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-11-21",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 6,
+  "locatie": "Selo",
+  "plaats": "Hengelo",
+  "aanwezig": {
+   "P": "09:05",
+   "S": "09:20",
+   "C": "09:35"
+  },
+  "vertrek": "09:50",
+  "terug": "12:10",
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-11-21",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 7,
+  "locatie": "SFC Energy BV",
+  "plaats": "Almelo",
+  "aanwezig": {
+   "P": "10:05",
+   "S": "10:20",
+   "C": "10:35"
+  },
+  "vertrek": "10:50",
+  "terug": "13:10",
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 3,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-11-21",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 8,
+  "locatie": "Power-Packer",
+  "plaats": "Oldenzaal",
+  "aanwezig": {
+   "P": "13:55",
+   "S": "14:10",
+   "C": "14:25"
+  },
+  "vertrek": "14:40",
+  "terug": "16:15",
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-11-21",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 9,
+  "locatie": "Brandweer",
+  "plaats": "Oldenzaal",
+  "aanwezig": {
+   "P": "14:30",
+   "S": "14:45"
+  },
+  "vertrek": "15:15",
+  "terug": "16:45",
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "niet_nodig",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-11-25",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 10,
+  "locatie": "AGVL Turnvereni-",
+  "plaats": "Overdinkel",
+  "aanwezig": {
+   "P": "14:10",
+   "S": "14:25",
+   "C": "14:40"
+  },
+  "vertrek": "14:55",
+  "terug": "16:20",
+  "terugkomst": null,
+  "opmerking": "ging",
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-11-25",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 11,
+  "locatie": "Cannondale",
+  "plaats": "Almelo",
+  "aanwezig": {
+   "P": "15:05",
+   "S": "15:20",
+   "C": "15:35"
+  },
+  "vertrek": "15:50",
+  "terug": "18:00",
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-11-26",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 12,
+  "locatie": "Kosmo",
+  "plaats": "Oldenzaal",
+  "aanwezig": {
+   "P": "09:10",
+   "S": "09:25",
+   "C": "09:40"
+  },
+  "vertrek": "09:55",
+  "terug": "11:05",
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-11-26",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 13,
+  "locatie": "Verhuur 2 Pietenpakken",
+  "plaats": null,
+  "aanwezig": {},
+  "vertrek": "16:30",
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "niet_nodig",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "niet_nodig",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "niet_nodig",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "niet_nodig",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-11-26",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 14,
+  "locatie": "Hacol",
+  "plaats": "Oldenzaal",
+  "aanwezig": {
+   "P": "15:55",
+   "S": "16:10",
+   "C": "16:25"
+  },
+  "vertrek": "16:40",
+  "terug": "17:50",
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-11-26",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 15,
+  "locatie": "WBO Wonen",
+  "plaats": "Oldenzaal",
+  "aanwezig": {
+   "P": "18:30",
+   "S": "18:45",
+   "C": "19:00"
+  },
+  "vertrek": "19:15",
+  "terug": "20:45",
+  "terugkomst": null,
+  "opmerking": "(alleen volwassenen)",
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "ingevuld",
+    "persoon": "Sjef Olde Scholtenhuis",
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-11-27",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 16,
+  "locatie": "Basisschool Martinus",
+  "plaats": "Losser",
+  "aanwezig": {
+   "P": "07:30",
+   "C": "08:00"
+  },
+  "vertrek": "08:15",
+  "terug": "13:15",
+  "terugkomst": null,
+  "opmerking": "Alleen strooi- pieten",
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "niet_nodig",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-11-27",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 17,
+  "locatie": "ClimaRad BV",
+  "plaats": "Oldenzaal",
+  "aanwezig": {
+   "P": "14:30",
+   "S": "14:45",
+   "C": "15:00"
+  },
+  "vertrek": "15:15",
+  "terug": "16:45",
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "ingevuld",
+    "persoon": "Koen Groenewold",
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-11-27",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 18,
+  "locatie": "Ropeblock BV",
+  "plaats": "Oldenzaal",
+  "aanwezig": {
+   "P": "15:15",
+   "S": "15:30",
+   "C": "15:45"
+  },
+  "vertrek": "16:00",
+  "terug": "17:30",
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-11-27",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 19,
+  "locatie": "Gemeente",
+  "plaats": "Oldenzaal",
+  "aanwezig": {
+   "S": "15:30",
+   "C": "15:45"
+  },
+  "vertrek": "16:00",
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": "Oldenzaal",
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "niet_nodig",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "niet_nodig",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-11-27",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 20,
+  "locatie": "Contict BV",
+  "plaats": "Oldenzaal",
+  "aanwezig": {
+   "P": "16:30",
+   "S": "16:45",
+   "C": "17:00"
+  },
+  "vertrek": "17:15",
+  "terug": "18:45",
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-11-27",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 21,
+  "locatie": "SV Losser",
+  "plaats": "Losser",
+  "aanwezig": {
+   "P": "16:55",
+   "S": "17:10",
+   "C": "17:25"
+  },
+  "vertrek": "17:40",
+  "terug": "20:05",
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-11-28",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 22,
+  "locatie": "Koopmans",
+  "plaats": null,
+  "aanwezig": {
+   "P": "07:45",
+   "S": "08:15",
+   "C": "08:30"
+  },
+  "vertrek": "08:45",
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": "Verhuur incl. schminken",
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 3,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 4,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-11-28",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 23,
+  "locatie": "Kamphuis Sloopwerken",
+  "plaats": "Reutum",
+  "aanwezig": {
+   "P": "08:45",
+   "S": "09:00",
+   "C": "09:15"
+  },
+  "vertrek": "09:30",
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": "Verhuur Incl. schminken",
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "ingevuld",
+    "persoon": "Marcel Mekelenkamp",
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-11-28",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 24,
+  "locatie": "RTV Oost",
+  "plaats": "Hengelo",
+  "aanwezig": {
+   "S": "09:30",
+   "C": "09:45"
+  },
+  "vertrek": "10:00",
+  "terug": "12:00",
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "niet_nodig",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "niet_nodig",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-11-28",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 25,
+  "locatie": "VIRO",
+  "plaats": "Hengelo",
+  "aanwezig": {
+   "P": "14:45",
+   "S": "15:00",
+   "C": "15:15"
+  },
+  "vertrek": "15:30",
+  "terug": "17:30",
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-11-28",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 26,
+  "locatie": "Novicon B.V",
+  "plaats": "Oldenzaal",
+  "aanwezig": {
+   "P": "14:45",
+   "S": "15:00",
+   "C": "15:15"
+  },
+  "vertrek": "15:30",
+  "terug": "16:30",
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-11-29",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 27,
+  "locatie": "‘t Sybrook",
+  "plaats": "Lonneker",
+  "aanwezig": {
+   "P": "09:30"
+  },
+  "vertrek": "10:15",
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": "Verhuur incl. schminken",
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "niet_nodig",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-11-29",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 28,
+  "locatie": "Jeugd",
+  "plaats": "Oldenzaal",
+  "aanwezig": {
+   "P": "10:10",
+   "S": "10:25"
+  },
+  "vertrek": "10:55",
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": "FC Berghuizen",
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "ingevuld",
+    "persoon": "Barry Kwast",
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "niet_nodig",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-11-29",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 29,
+  "locatie": "Peterman",
+  "plaats": "Oldenzaal",
+  "aanwezig": {
+   "P": "10:10",
+   "S": "10:55",
+   "C": "10:40"
+  },
+  "vertrek": "10:55",
+  "terug": "12:30",
+  "terugkomst": null,
+  "opmerking": "Pieten half uur eerder",
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-11-29",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 30,
+  "locatie": "NTP",
+  "plaats": "Oldenzaal",
+  "aanwezig": {
+   "P": "10:25",
+   "S": "10:40",
+   "C": "10:55"
+  },
+  "vertrek": "11:10",
+  "terug": "12:45",
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-11-29",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 31,
+  "locatie": "Prépain",
+  "plaats": "Oldenzaal",
+  "aanwezig": {
+   "P": "10:30",
+   "S": "10:45",
+   "C": "11:00"
+  },
+  "vertrek": "11:15",
+  "terug": "13:15",
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-11-29",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 32,
+  "locatie": "Vernay",
+  "plaats": "Oldenzaal",
+  "aanwezig": {
+   "P": "14:30",
+   "S": "14:45",
+   "C": "15:00"
+  },
+  "vertrek": "15:15",
+  "terug": "16:45",
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-02",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 33,
+  "locatie": "Basisschool",
+  "plaats": "Oldenzaal",
+  "aanwezig": {
+   "P": "07:25",
+   "S": "07:40",
+   "C": "07:55"
+  },
+  "vertrek": "08:10",
+  "terug": "12:45",
+  "terugkomst": null,
+  "opmerking": "De Linde Loc. De Essen",
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-02",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 34,
+  "locatie": "Basisschool",
+  "plaats": "Oldenzaal",
+  "aanwezig": {
+   "P": "07:25",
+   "S": "07:40",
+   "C": "07:55"
+  },
+  "vertrek": "08:10",
+  "terug": "12:20",
+  "terugkomst": null,
+  "opmerking": "De Linde Loc. De Thij",
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "ingevuld",
+    "persoon": "Gerrit Siekmans",
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-02",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 35,
+  "locatie": "Sparta",
+  "plaats": "Enschede",
+  "aanwezig": {
+   "P": "14:00",
+   "S": "14:15",
+   "C": "14:30"
+  },
+  "vertrek": "14:45",
+  "terug": "16:45",
+  "terugkomst": null,
+  "opmerking": "Enschede",
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 3,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 4,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-02",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 36,
+  "locatie": "EQIB",
+  "plaats": "Hengelo",
+  "aanwezig": {
+   "P": "14:10",
+   "S": "14:25",
+   "C": "14:40"
+  },
+  "vertrek": "14:55",
+  "terug": "17:05",
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "ingevuld",
+    "persoon": "Joost Olde Weghuis",
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-03",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 37,
+  "locatie": "Juniorkamer Twente",
+  "plaats": "Enschede",
+  "aanwezig": {
+   "P": "16:45",
+   "S": "16:45",
+   "C": "16:45"
+  },
+  "vertrek": "16:00",
+  "terug": "20:40",
+  "terugkomst": null,
+  "opmerking": "Verhuur incl. schminken / S  8x eigen / P 16 x eigen",
+  "plekken": [
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-03",
+  "soort": "regulier",
+  "aantal_gezinnen": 2,
+  "volgorde": 38,
+  "locatie": "Bouwhuis",
+  "plaats": null,
+  "aanwezig": {},
+  "vertrek": null,
+  "terug": "20:30",
+  "terugkomst": null,
+  "opmerking": "Eikenlaan 3 + 2 gezinnen",
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-04",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 39,
+  "locatie": "Basisschool",
+  "plaats": "Overdinkel",
+  "aanwezig": {
+   "P": "06:30",
+   "S": "06:45",
+   "C": "06:55"
+  },
+  "vertrek": "07:10",
+  "terug": "12:20",
+  "terugkomst": null,
+  "opmerking": "Pax Christi",
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-04",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 40,
+  "locatie": "Kentalis",
+  "plaats": "Enschede",
+  "aanwezig": {
+   "P": "06:35",
+   "S": "06:50",
+   "C": "07:05"
+  },
+  "vertrek": "07:20",
+  "terug": "14:30",
+  "terugkomst": null,
+  "opmerking": "Prof. Huizing school",
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-04",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 41,
+  "locatie": "Basisschool",
+  "plaats": "Losser",
+  "aanwezig": {
+   "P": "06:45",
+   "S": "07:00",
+   "C": "07:55"
+  },
+  "vertrek": "08:10",
+  "terug": "13:20",
+  "terugkomst": null,
+  "opmerking": "Martinus",
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "ingevuld",
+    "persoon": "Hans Nijland",
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-04",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 42,
+  "locatie": "Franciscus",
+  "plaats": "Oldenzaal",
+  "aanwezig": {
+   "P": "07:00",
+   "S": "07:15",
+   "C": "07:30"
+  },
+  "vertrek": "07:45",
+  "terug": "12:15",
+  "terugkomst": null,
+  "opmerking": "school",
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-04",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 43,
+  "locatie": "Nutsschool",
+  "plaats": "Oldenzaal",
+  "aanwezig": {
+   "P": "07:00",
+   "S": "07:15",
+   "C": "07:30"
+  },
+  "vertrek": "07:45",
+  "terug": "12:15",
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-04",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 44,
+  "locatie": "Basisschool",
+  "plaats": "Losser",
+  "aanwezig": {
+   "P": "07:10",
+   "S": "07:25",
+   "C": "07:55"
+  },
+  "vertrek": "08:10",
+  "terug": "12:20",
+  "terugkomst": null,
+  "opmerking": "De Veldzijde",
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "ingevuld",
+    "persoon": "Hans Dijkstra",
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "ingevuld",
+    "persoon": null,
+    "vrije_tekst": "vader"
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "ingevuld",
+    "persoon": null,
+    "vrije_tekst": "zoon"
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-04",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 45,
+  "locatie": "Basisschool",
+  "plaats": "Oldenzaal",
+  "aanwezig": {
+   "P": "07:05",
+   "S": "07:20",
+   "C": "07:35"
+  },
+  "vertrek": "07:50",
+  "terug": "12:10",
+  "terugkomst": null,
+  "opmerking": "De Leemstee",
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "ingevuld",
+    "persoon": "Barry Kwast",
+    "vrije_tekst": "?"
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-04",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 46,
+  "locatie": "Basisschool",
+  "plaats": "Oldenzaal",
+  "aanwezig": {
+   "P": "07:15",
+   "S": "07:30",
+   "C": "07:55"
+  },
+  "vertrek": "08:10",
+  "terug": "13:45",
+  "terugkomst": null,
+  "opmerking": "De Esch",
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "ingevuld",
+    "persoon": "Tonnie Huisman",
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-04",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 47,
+  "locatie": "Basisschool",
+  "plaats": "Lonneker",
+  "aanwezig": {
+   "P": "07:20",
+   "S": "07:35",
+   "C": "07:55"
+  },
+  "vertrek": "08:10",
+  "terug": "12:45",
+  "terugkomst": null,
+  "opmerking": "Liduina",
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "ingevuld",
+    "persoon": "Herman Vredegoor",
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 2,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 3,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 4,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-04",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 48,
+  "locatie": "Basisschool",
+  "plaats": "Oldenzaal",
+  "aanwezig": {
+   "P": "07:25",
+   "S": "07:40",
+   "C": "07:55"
+  },
+  "vertrek": "08:10",
+  "terug": "12:20",
+  "terugkomst": null,
+  "opmerking": "De Bongerd",
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 3,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 4,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 5,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-04",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 49,
+  "locatie": "Basisschool",
+  "plaats": "Enschede",
+  "aanwezig": {
+   "P": "07:30",
+   "S": "07:45",
+   "C": "07:55"
+  },
+  "vertrek": "08:10",
+  "terug": "11:15",
+  "terugkomst": null,
+  "opmerking": "De Kubus",
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "ingevuld",
+    "persoon": "Jeroen Hulsmeijers",
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-04",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 50,
+  "locatie": "Carmelcollege",
+  "plaats": "Oldenzaal",
+  "aanwezig": {
+   "P": "08:30",
+   "S": "08:45",
+   "C": "09:00"
+  },
+  "vertrek": "09:15",
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": "Oldenzaal",
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-04",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 51,
+  "locatie": "Plexat",
+  "plaats": "De Lutte",
+  "aanwezig": {
+   "S": "21:00",
+   "C": "21:00"
+  },
+  "vertrek": null,
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "ingevuld",
+    "persoon": "Henk Hulsmeijers",
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "eigen",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "niet_nodig",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "niet_nodig",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-04",
+  "soort": "gezinnen",
+  "aantal_gezinnen": null,
+  "volgorde": 52,
+  "locatie": null,
+  "plaats": null,
+  "aanwezig": {},
+  "vertrek": null,
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-05",
+  "soort": "regulier",
+  "aantal_gezinnen": null,
+  "volgorde": 53,
+  "locatie": "Twentse Zorgcentra",
+  "plaats": "Lonneker",
+  "aanwezig": {},
+  "vertrek": "18:15",
+  "terug": "19:45",
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-05",
+  "soort": "gezinnen",
+  "aantal_gezinnen": null,
+  "volgorde": 54,
+  "locatie": null,
+  "plaats": null,
+  "aanwezig": {},
+  "vertrek": null,
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-05",
+  "soort": "gezinnen",
+  "aantal_gezinnen": null,
+  "volgorde": 55,
+  "locatie": null,
+  "plaats": null,
+  "aanwezig": {},
+  "vertrek": null,
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-05",
+  "soort": "gezinnen",
+  "aantal_gezinnen": null,
+  "volgorde": 56,
+  "locatie": null,
+  "plaats": null,
+  "aanwezig": {},
+  "vertrek": null,
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-05",
+  "soort": "gezinnen",
+  "aantal_gezinnen": null,
+  "volgorde": 57,
+  "locatie": null,
+  "plaats": null,
+  "aanwezig": {},
+  "vertrek": null,
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-05",
+  "soort": "gezinnen",
+  "aantal_gezinnen": null,
+  "volgorde": 58,
+  "locatie": null,
+  "plaats": null,
+  "aanwezig": {},
+  "vertrek": null,
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-05",
+  "soort": "gezinnen",
+  "aantal_gezinnen": null,
+  "volgorde": 59,
+  "locatie": null,
+  "plaats": null,
+  "aanwezig": {},
+  "vertrek": null,
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-05",
+  "soort": "gezinnen",
+  "aantal_gezinnen": null,
+  "volgorde": 60,
+  "locatie": null,
+  "plaats": null,
+  "aanwezig": {},
+  "vertrek": null,
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-05",
+  "soort": "gezinnen",
+  "aantal_gezinnen": null,
+  "volgorde": 61,
+  "locatie": null,
+  "plaats": null,
+  "aanwezig": {},
+  "vertrek": null,
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-05",
+  "soort": "gezinnen",
+  "aantal_gezinnen": null,
+  "volgorde": 62,
+  "locatie": null,
+  "plaats": null,
+  "aanwezig": {},
+  "vertrek": null,
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-05",
+  "soort": "gezinnen",
+  "aantal_gezinnen": null,
+  "volgorde": 63,
+  "locatie": null,
+  "plaats": null,
+  "aanwezig": {},
+  "vertrek": null,
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-05",
+  "soort": "gezinnen",
+  "aantal_gezinnen": null,
+  "volgorde": 64,
+  "locatie": null,
+  "plaats": null,
+  "aanwezig": {},
+  "vertrek": null,
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-05",
+  "soort": "gezinnen",
+  "aantal_gezinnen": null,
+  "volgorde": 65,
+  "locatie": null,
+  "plaats": null,
+  "aanwezig": {},
+  "vertrek": null,
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-05",
+  "soort": "gezinnen",
+  "aantal_gezinnen": null,
+  "volgorde": 66,
+  "locatie": null,
+  "plaats": null,
+  "aanwezig": {},
+  "vertrek": null,
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-05",
+  "soort": "gezinnen",
+  "aantal_gezinnen": null,
+  "volgorde": 67,
+  "locatie": null,
+  "plaats": null,
+  "aanwezig": {},
+  "vertrek": null,
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-06",
+  "soort": "gezinnen",
+  "aantal_gezinnen": null,
+  "volgorde": 68,
+  "locatie": null,
+  "plaats": null,
+  "aanwezig": {},
+  "vertrek": null,
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-06",
+  "soort": "gezinnen",
+  "aantal_gezinnen": null,
+  "volgorde": 69,
+  "locatie": null,
+  "plaats": null,
+  "aanwezig": {},
+  "vertrek": null,
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-06",
+  "soort": "gezinnen",
+  "aantal_gezinnen": null,
+  "volgorde": 70,
+  "locatie": null,
+  "plaats": null,
+  "aanwezig": {},
+  "vertrek": null,
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-06",
+  "soort": "gezinnen",
+  "aantal_gezinnen": null,
+  "volgorde": 71,
+  "locatie": null,
+  "plaats": null,
+  "aanwezig": {},
+  "vertrek": null,
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-06",
+  "soort": "gezinnen",
+  "aantal_gezinnen": null,
+  "volgorde": 72,
+  "locatie": null,
+  "plaats": null,
+  "aanwezig": {},
+  "vertrek": null,
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ },
+ {
+  "datum": "2026-12-06",
+  "soort": "gezinnen",
+  "aantal_gezinnen": null,
+  "volgorde": 73,
+  "locatie": null,
+  "plaats": null,
+  "aanwezig": {},
+  "vertrek": null,
+  "terug": null,
+  "terugkomst": null,
+  "opmerking": null,
+  "plekken": [
+   {
+    "rol": "S",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "C",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 1,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   },
+   {
+    "rol": "P",
+    "nummer": 2,
+    "status": "open",
+    "persoon": null,
+    "vrije_tekst": null
+   }
+  ]
+ }
+]
