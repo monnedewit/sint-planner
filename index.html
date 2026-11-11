@@ -231,7 +231,7 @@
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
         <div>
           <h3 style="color:var(--fc-green-dark); font-size:1.15rem;">👥 Personenbeheer</h3>
-          <p style="font-size:0.8rem; color:var(--text-muted);">Klik op <strong>✏️ Wijzigen</strong> om iemands rol aan te passen (bijv. van Chauffeur naar Sint, of meerdere rollen tegelijk).</p>
+          <p style="font-size:0.8rem; color:var(--text-muted);">Klik op <strong>✏️</strong> om iemands rollen aan te passen (bijv. Chauffeur én Piet tegelijk).</p>
         </div>
         <div style="display:flex; gap:6px; align-items:center;">
           <button class="filter-pill active" id="btnFilterPersAll" onclick="filterPersonsRole('all')">Alle Personen</button>
@@ -247,7 +247,7 @@
 
 </div>
 
-<!-- MODAL: PERSOON TOEVOEGEN / BEWERKEN (MET MEERVOUDIGE ROLLEN) -->
+<!-- MODAL: PERSOON TOEVOEGEN / BEWERKEN -->
 <div class="modal-overlay" id="addPersonModal">
   <div class="modal-box" style="max-width:420px;">
     <h3 id="addPersonModalTitle" style="color:var(--fc-green-dark); margin-bottom:10px; font-size:1.05rem;">Persoon Toevoegen / Bewerken</h3>
@@ -257,9 +257,8 @@
       <input type="text" id="newPersName" placeholder="bijv. Rob Egberink" style="width:100%; padding:6px; font-size:0.82rem; border:1px solid var(--border); border-radius:4px;">
     </div>
     
-    <!-- Meerdere rollen selecteren met handige checkboxen -->
     <div class="form-col" style="margin-bottom:10px;">
-      <label style="font-weight:bold; font-size:0.75rem;">Rollen van deze persoon (vink aan wat van toepassing is):</label>
+      <label style="font-weight:bold; font-size:0.75rem;">Rollen van deze persoon:</label>
       <div style="display:flex; gap:12px; margin-top:5px; background:#f1f5f9; padding:8px 10px; border-radius:5px;">
         <label style="font-size:0.8rem; cursor:pointer;"><input type="checkbox" id="roleChauf" value="Chauffeur"> 🚗 Chauffeur</label>
         <label style="font-size:0.8rem; cursor:pointer;"><input type="checkbox" id="roleSint" value="Sint"> 🎅 Sint</label>
@@ -348,6 +347,18 @@ let state = {
 };
 
 const SPECIAL_OPTIONS = ["eigen", "zelf", "n.v.t."];
+
+// SCHOONMAAKFUNCTIE VOOR TIJDEN: VERWIJDERT SECONDEN (:00)
+// Maakt van '14:15:00' -> '14:15' en 'P 14:15:00 · S 14:30:00' -> 'P 14:15 · S 14:30'
+function cleanTime(t) {
+  if (!t) return '';
+  let s = String(t);
+  // Verwijder seconden ':00' of ':SS' uit tijdsaanduidingen (HH:MM:SS -> HH:MM)
+  s = s.replace(/(\b\d{1,2}[:.]\d{2}):\d{2}\b/g, '$1');
+  // Vervang eventuele punten door dubbele punten bij tijden (bijv 14.15 -> 14:15)
+  s = s.replace(/(\b\d{1,2})\.(\d{2}\b)/g, '$1:$2');
+  return s.trim();
+}
 
 async function initApp() {
   checkAuthSession();
@@ -445,10 +456,12 @@ async function loadDatabaseData() {
         let aanwStr = r.aanwezig || "";
         if (!aanwStr && (r.aanwezig_p || r.aanwezig_s || r.aanwezig_c)) {
           const arr = [];
-          if (r.aanwezig_p) arr.push(`P ${r.aanwezig_p}`);
-          if (r.aanwezig_s) arr.push(`S ${r.aanwezig_s}`);
-          if (r.aanwezig_c) arr.push(`C ${r.aanwezig_c}`);
+          if (r.aanwezig_p) arr.push(`P ${cleanTime(r.aanwezig_p)}`);
+          if (r.aanwezig_s) arr.push(`S ${cleanTime(r.aanwezig_s)}`);
+          if (r.aanwezig_c) arr.push(`C ${cleanTime(r.aanwezig_c)}`);
           aanwStr = arr.join(' · ');
+        } else {
+          aanwStr = cleanTime(aanwStr);
         }
 
         return {
@@ -458,8 +471,8 @@ async function loadDatabaseData() {
           raw_datum: r.datum,
           naam: routeName,
           plaats: r.plaats || '',
-          vertrek: r.vertrek || '',
-          terug: r.terug || '',
+          vertrek: cleanTime(r.vertrek),
+          terug: cleanTime(r.terug),
           aanwezig: aanwStr,
           opmerkingen: r.opmerkingen || '',
           plekken: plekken
@@ -636,6 +649,10 @@ function renderRoutes() {
     html += `</div>`;
   });
 
+  if (html === "") {
+    html = `<div style="text-align:center; padding:24px; color:#94a3b8; font-weight:bold;">Geen routes gevonden voor deze selectie.</div>`;
+  }
+
   container.innerHTML = html;
 }
 
@@ -654,7 +671,6 @@ function renderSlotsHTML(r) {
     const curVal = p.naam || p.status || "";
     const isUnassigned = !curVal;
 
-    // Filter personen op basis van of hun rol de gezochte rol bevat
     let filteredPersons = [];
     let otherPersons = [];
     let roleTitle = "Personen";
@@ -714,9 +730,9 @@ async function saveRouteEdits(rId) {
   r.nr = document.getElementById('ed-nr-' + rId).value.trim();
   r.naam = document.getElementById('ed-name-' + rId).value.trim();
   r.plaats = document.getElementById('ed-plaats-' + rId).value.trim();
-  r.vertrek = document.getElementById('ed-vertrek-' + rId).value.trim();
-  r.terug = document.getElementById('ed-terug-' + rId).value.trim();
-  r.aanwezig = document.getElementById('ed-aanw-' + rId).value.trim();
+  r.vertrek = cleanTime(document.getElementById('ed-vertrek-' + rId).value.trim());
+  r.terug = cleanTime(document.getElementById('ed-terug-' + rId).value.trim());
+  r.aanwezig = cleanTime(document.getElementById('ed-aanw-' + rId).value.trim());
   r.opmerkingen = document.getElementById('ed-notes-' + rId).value.trim();
 
   try {
@@ -884,15 +900,27 @@ function sendDriverWhatsApp(rId, dName) {
   const sintSlot = (r.plekken || []).find(p => (p.rol_label || p.rol || '').startsWith('S'));
   const sintName = sintSlot && sintSlot.naam ? sintSlot.naam : 'nog niet bekend';
 
-  let msg = `Beste ${dName},\n\nHierbij je ritplanning voor FC Berghuizen Sintactie:\n\n`;
-  msg += `🚗 *Route:* #${r.nr} ${r.naam}\n`;
-  msg += `📅 *Dag:* ${r.datum}\n`;
-  msg += `📍 *Bestemming:* ${r.plaats} - ${r.naam}\n`;
-  msg += `⏰ *Aanwezig:* ${r.aanwezig || 'volgens afspraak'}\n`;
-  msg += `🚗 *Vertrek:* ${r.vertrek || 'n.t.b.'} (Terugkomst: ${r.terug || 'onbekend'})\n`;
-  msg += `🎅 *Sinterklaas:* ${sintName}\n`;
-  if (r.opmerkingen) msg += `ℹ️ *Notitie:* ${r.opmerkingen}\n`;
-  msg += `\nAlvast enorm bedankt voor het rijden namens FC Berghuizen! 🎅⚽`;
+  let msg = `Beste ${dName},
+
+Hierbij je ritplanning voor FC Berghuizen Sintactie:
+
+`;
+  msg += `🚗 *Route:* #${r.nr} ${r.naam}
+`;
+  msg += `📅 *Dag:* ${r.datum}
+`;
+  msg += `📍 *Bestemming:* ${r.plaats} - ${r.naam}
+`;
+  msg += `⏰ *Aanwezig:* ${r.aanwezig || 'volgens afspraak'}
+`;
+  msg += `🚗 *Vertrek:* ${r.vertrek || 'n.t.b.'} (Terugkomst: ${r.terug || 'onbekend'})
+`;
+  msg += `🎅 *Sinterklaas:* ${sintName}
+`;
+  if (r.opmerkingen) msg += `ℹ️ *Notitie:* ${r.opmerkingen}
+`;
+  msg += `
+Alvast enorm bedankt voor het rijden namens FC Berghuizen! 🎅⚽`;
 
   let cleanPhone = phone.replace(/[^0-9]/g, "");
   if (cleanPhone.startsWith("06")) cleanPhone = "316" + cleanPhone.substring(2);
@@ -914,7 +942,8 @@ function copyAllDriverNumbers() {
     }
   });
   if (list.length === 0) return alert("Geen chauffeurs met telefoonnummer gevonden.");
-  navigator.clipboard.writeText(list.join("\n")).then(() => alert("Gekopieerd naar klembord!"));
+  navigator.clipboard.writeText(list.join("
+")).then(() => alert("Gekopieerd naar klembord!"));
 }
 
 // SINTEN
@@ -1024,7 +1053,7 @@ function renderPieten() {
   container.innerHTML = html;
 }
 
-// PERSONENBEHEER MET FILTERS EN BEWERK-MOGELIJKHEID
+// PERSONENBEHEER
 function filterPersonsRole(role) {
   state.personRoleFilter = role;
   document.querySelectorAll('.filter-pill').forEach(btn => btn.classList.remove('active'));
@@ -1121,7 +1150,6 @@ async function saveNewPerson() {
   const telefoon = document.getElementById("newPersPhone").value.trim();
   const notitie = document.getElementById("newPersNote").value.trim();
 
-  // Stel rollen samen op basis van aangevinkte vakjes
   const selectedRoles = [];
   if (document.getElementById("roleChauf").checked) selectedRoles.push("Chauffeur");
   if (document.getElementById("roleSint").checked) selectedRoles.push("Sint");
@@ -1132,7 +1160,6 @@ async function saveNewPerson() {
   if (!naam) return alert("Vul een naam in.");
 
   if (pId) {
-    // Bewerken bestaand persoon
     const p = state.personen.find(item => String(item.id) === String(pId));
     if (p) {
       p.naam = naam;
@@ -1144,7 +1171,6 @@ async function saveNewPerson() {
       await supabaseClient.from('personen').update({ naam, rol, telefoon, notitie }).eq('id', pId);
     } catch(e) { console.log(e); }
   } else {
-    // Nieuwe persoon
     const newP = { id: 'pers_' + Date.now(), naam, rol, telefoon, notitie };
     state.personen.push(newP);
     try {
@@ -1184,9 +1210,9 @@ async function saveNewRoute() {
   const datum = document.getElementById("newRouteDay").value.trim() || "Zaterdag 21 november";
   const naam = document.getElementById("newRouteName").value.trim() || "Nieuwe Route";
   const plaats = document.getElementById("newRoutePlaats").value.trim() || "Oldenzaal";
-  const vertrek = document.getElementById("newRouteVertrek").value.trim();
-  const terug = document.getElementById("newRouteTerug").value.trim();
-  const aanwezig = document.getElementById("newRouteAanwezig").value.trim();
+  const vertrek = cleanTime(document.getElementById("newRouteVertrek").value.trim());
+  const terug = cleanTime(document.getElementById("newRouteTerug").value.trim());
+  const aanwezig = cleanTime(document.getElementById("newRouteAanwezig").value.trim());
   const opmerkingen = document.getElementById("newRouteNotes").value.trim();
 
   const newR = {
