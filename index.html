@@ -74,7 +74,7 @@
     display: flex; align-items: center; gap: 8px; border-bottom: 2px solid #bbf7d0; padding-bottom: 4px;
   }
 
-  .routes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(460px, 1fr)); gap: 10px; margin-bottom: 16px; }
+  .routes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(490px, 1fr)); gap: 10px; margin-bottom: 16px; }
   
   .route-card {
     background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
@@ -82,7 +82,10 @@
   }
   .route-card.is-open { border-left-color: #ef4444; }
 
-  .route-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 6px; margin-bottom: 4px; }
+  .route-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 6px; margin-bottom: 6px;
+  }
   .route-main-line { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
   
   .route-nr-badge { background: var(--fc-green); color: white; font-weight: 800; font-size: 0.76rem; padding: 2px 7px; border-radius: 4px; letter-spacing: 0.3px; }
@@ -94,30 +97,37 @@
   .badge-complete { border: 1px solid #10b981; color: #065f46; background: #ecfdf5; }
   .badge-open { border: 1px solid #ef4444; color: #991b1b; background: #fef2f2; font-weight: 800; }
 
-  .route-subline { font-size: 0.74rem; color: #64748b; margin-bottom: 5px; line-height: 1.3; }
-  .route-notes { font-size: 0.73rem; color: #92400e; background: #fffbeb; border: 1px solid #fde68a; padding: 1px 6px; border-radius: 3px; margin-bottom: 5px; display: inline-block; }
+  .route-notes { font-size: 0.73rem; color: #92400e; background: #fffbeb; border: 1px solid #fde68a; padding: 2px 6px; border-radius: 3px; margin-bottom: 6px; display: inline-block; }
 
-  .slots-list { display: flex; flex-direction: column; gap: 3px; margin-bottom: 5px; }
+  .slots-list { display: flex; flex-direction: column; gap: 4px; margin-bottom: 5px; }
   .slot-row { display: flex; align-items: center; gap: 5px; }
   .slot-label {
     width: 26px; font-weight: 800; font-size: 0.74rem; text-align: center;
-    padding: 2px 0; border-radius: 3px; background: #f1f5f9; color: #475569;
+    padding: 3px 0; border-radius: 3px; background: #f1f5f9; color: #475569; flex-shrink: 0;
   }
   .slot-label.role-s { background: #fee2e2; color: var(--sint-red); border: 1px solid #fca5a5; }
   .slot-label.role-c { background: #dcfce7; color: var(--fc-green-dark); border: 1px solid #86efac; }
   .slot-label.role-p { background: #fef3c7; color: var(--gold-dark); border: 1px solid #fde68a; }
 
   select.slot-select {
-    flex: 1; padding: 3px 6px; font-size: 0.79rem; font-weight: 600;
+    flex: 1; min-width: 140px; padding: 3px 6px; font-size: 0.79rem; font-weight: 600;
     border: 1px solid var(--border); border-radius: 4px; background: white; color: #1e293b; height: 26px;
   }
   select.slot-select:focus { outline: 2px solid var(--fc-green); }
   select.slot-select.unassigned { border-color: #fca5a5; background: #fff5f5; color: #991b1b; font-weight: 700; }
 
+  /* Tijdvakje achter de persoon */
+  .slot-time-box {
+    width: 62px; height: 26px; padding: 2px 4px; font-size: 0.78rem; font-weight: 700;
+    text-align: center; border: 1px solid var(--border); border-radius: 4px; background: #f8fafc;
+    color: #1e293b; flex-shrink: 0;
+  }
+  .slot-time-box:focus { background: #ffffff; border-color: var(--fc-green); outline: none; }
+
   .btn-del-slot { background: transparent; border: none; color: #94a3b8; font-size: 0.9rem; cursor: pointer; padding: 0 4px; }
   .btn-del-slot:hover { color: #dc2626; }
 
-  .card-footer-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 4px; padding-top: 4px; border-top: 1px dashed var(--border); }
+  .card-footer-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 5px; padding-top: 5px; border-top: 1px dashed var(--border); }
   .add-btns { display: flex; gap: 4px; }
   .edit-link { font-size: 0.74rem; color: var(--fc-green); cursor: pointer; font-weight: 700; }
   .edit-link:hover { text-decoration: underline; }
@@ -231,7 +241,7 @@
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
         <div>
           <h3 style="color:var(--fc-green-dark); font-size:1.15rem;">👥 Personenbeheer</h3>
-          <p style="font-size:0.8rem; color:var(--text-muted);">Klik op <strong>✏️</strong> om iemands rollen aan te passen (bijv. Chauffeur én Piet tegelijk).</p>
+          <p style="font-size:0.8rem; color:var(--text-muted);">Beheer contactgegevens en rollen van alle vrijwilligers.</p>
         </div>
         <div style="display:flex; gap:6px; align-items:center;">
           <button class="filter-pill active" id="btnFilterPersAll" onclick="filterPersonsRole('all')">Alle Personen</button>
@@ -348,16 +358,26 @@ let state = {
 
 const SPECIAL_OPTIONS = ["eigen", "zelf", "n.v.t."];
 
-// SCHOONMAAKFUNCTIE VOOR TIJDEN: VERWIJDERT SECONDEN (:00)
-// Maakt van '14:15:00' -> '14:15' en 'P 14:15:00 · S 14:30:00' -> 'P 14:15 · S 14:30'
 function cleanTime(t) {
   if (!t) return '';
   let s = String(t);
-  // Verwijder seconden ':00' of ':SS' uit tijdsaanduidingen (HH:MM:SS -> HH:MM)
   s = s.replace(/(\b\d{1,2}[:.]\d{2}):\d{2}\b/g, '$1');
-  // Vervang eventuele punten door dubbele punten bij tijden (bijv 14.15 -> 14:15)
   s = s.replace(/(\b\d{1,2})\.(\d{2}\b)/g, '$1:$2');
   return s.trim();
+}
+
+// Haalt de aanwezigheidstijd specifiek op voor rol S, C of P
+function extractTimeForRole(r, roleType) {
+  if (roleType === 'S' && r.aanwezig_s) return cleanTime(r.aanwezig_s);
+  if (roleType === 'C' && r.aanwezig_c) return cleanTime(r.aanwezig_c);
+  if (roleType === 'P' && r.aanwezig_p) return cleanTime(r.aanwezig_p);
+
+  const str = r.aanwezig || "";
+  const m = str.match(new RegExp('\\b' + roleType + '[:;\\s]*([0-2]?\\d[:.][0-5]\\d)\\b', 'i'));
+  if (m) {
+    return cleanTime(m[1]);
+  }
+  return '';
 }
 
 async function initApp() {
@@ -411,6 +431,15 @@ function formatDutchDate(dStr) {
   return dStr;
 }
 
+// Gewichtsbepaling voor de volgorde: S = 1, C = 2, P = 3
+function getRoleOrderWeight(roleLabel) {
+  const lbl = (roleLabel || '').toUpperCase();
+  if (lbl.startsWith('S')) return 1;
+  if (lbl.startsWith('C')) return 2;
+  if (lbl.startsWith('P')) return 3;
+  return 4;
+}
+
 async function loadDatabaseData() {
   try {
     const { data: pers } = await supabaseClient.from('personen').select('*').order('naam');
@@ -451,14 +480,20 @@ async function loadDatabaseData() {
           };
         });
 
-        plekken.sort((a,b) => (a.rol_label || '').localeCompare(b.rol_label || ''));
+        // Vaste volgorde: SINT bovenaan (1), dan CHAUFFEUR (2), dan PIETEN (3)
+        plekken.sort((a, b) => {
+          const wA = getRoleOrderWeight(a.rol_label);
+          const wB = getRoleOrderWeight(b.rol_label);
+          if (wA !== wB) return wA - wB;
+          return (a.rol_label || '').localeCompare(b.rol_label || '');
+        });
 
         let aanwStr = r.aanwezig || "";
         if (!aanwStr && (r.aanwezig_p || r.aanwezig_s || r.aanwezig_c)) {
           const arr = [];
-          if (r.aanwezig_p) arr.push(`P ${cleanTime(r.aanwezig_p)}`);
           if (r.aanwezig_s) arr.push(`S ${cleanTime(r.aanwezig_s)}`);
           if (r.aanwezig_c) arr.push(`C ${cleanTime(r.aanwezig_c)}`);
+          if (r.aanwezig_p) arr.push(`P ${cleanTime(r.aanwezig_p)}`);
           aanwStr = arr.join(' · ');
         } else {
           aanwStr = cleanTime(aanwStr);
@@ -474,6 +509,9 @@ async function loadDatabaseData() {
           vertrek: cleanTime(r.vertrek),
           terug: cleanTime(r.terug),
           aanwezig: aanwStr,
+          aanwezig_s: cleanTime(r.aanwezig_s),
+          aanwezig_c: cleanTime(r.aanwezig_c),
+          aanwezig_p: cleanTime(r.aanwezig_p),
           opmerkingen: r.opmerkingen || '',
           plekken: plekken
         };
@@ -584,7 +622,6 @@ function renderRoutes() {
             </div>
           </div>
 
-          ${r.aanwezig ? `<div class="route-subline">⏰ ${r.aanwezig}</div>` : ''}
           ${r.opmerkingen ? `<div class="route-notes">ℹ️ ${r.opmerkingen}</div>` : ''}
 
           <div class="slots-list">
@@ -656,7 +693,7 @@ function renderRoutes() {
   container.innerHTML = html;
 }
 
-// SLOTS MET FLEXIBELE ROLFILTERING
+// SLOTS MET TIJDVAKJE ACHTER DE PERSOON EN GEEN "(vrijwilliger)" MEER
 function renderSlotsHTML(r) {
   if (!r.plekken || r.plekken.length === 0) return '<span style="font-size:0.75rem; color:#94a3b8; font-style:italic;">Geen plekken aangemaakt.</span>';
 
@@ -667,9 +704,13 @@ function renderSlotsHTML(r) {
     const isC = label.startsWith('C');
     const isP = label.startsWith('P');
     const roleCls = isS ? 'role-s' : (isC ? 'role-c' : 'role-p');
+    const roleChar = isS ? 'S' : (isC ? 'C' : 'P');
 
     const curVal = p.naam || p.status || "";
     const isUnassigned = !curVal;
+
+    // Specifieke aanwezigheidstijd voor deze rol ophalen
+    const roleTime = extractTimeForRole(r, roleChar);
 
     let filteredPersons = [];
     let otherPersons = [];
@@ -694,6 +735,8 @@ function renderSlotsHTML(r) {
     html += `
       <div class="slot-row">
         <span class="slot-label ${roleCls}">${label}</span>
+        
+        <!-- Naam keuzelijst (ZONDER "(vrijwilliger)" achter de naam) -->
         <select class="slot-select ${isUnassigned ? 'unassigned' : ''}" onchange="assignSlot('${r.id}', '${p.id}', this.value)">
           <option value="">-- Kies ${label} (${roleTitle} - Open) --</option>
           <optgroup label="Standaard">
@@ -704,10 +747,16 @@ function renderSlotsHTML(r) {
           </optgroup>
           ${otherPersons.length > 0 ? `
             <optgroup label="Overige Vrijwilligers">
-              ${otherPersons.map(pers => `<option value="${pers.id}" ${p.persoon_id === pers.id || curVal === pers.naam ? 'selected' : ''}>${pers.naam} (${pers.rol || 'vrijwilliger'})</option>`).join('')}
+              ${otherPersons.map(pers => `<option value="${pers.id}" ${p.persoon_id === pers.id || curVal === pers.naam ? 'selected' : ''}>${pers.naam}</option>`).join('')}
             </optgroup>
           ` : ''}
         </select>
+
+        <!-- Tijdvakje direct achter de persoon -->
+        <input type="text" class="slot-time-box" value="${roleTime}" placeholder="--:--" 
+               title="Aanwezigheidstijd voor ${label}" 
+               onchange="updateRoleTime('${r.id}', '${roleChar}', this.value)">
+
         ${isC && curVal && !SPECIAL_OPTIONS.includes(curVal) ? `
           <button class="btn btn-whatsapp btn-sm no-print" onclick="sendDriverWhatsApp('${r.id}', '${curVal}')" title="Stuur WhatsApp ritbericht">📲 App</button>
         ` : ''}
@@ -716,6 +765,31 @@ function renderSlotsHTML(r) {
     `;
   });
   return html;
+}
+
+// Direct aanwezigheidstijd bijwerken via het tijdvakje
+async function updateRoleTime(routeId, roleChar, newTime) {
+  const r = state.routes.find(item => String(item.id) === String(routeId));
+  if (!r) return;
+
+  const clean = cleanTime(newTime);
+  if (roleChar === 'S') r.aanwezig_s = clean;
+  if (roleChar === 'C') r.aanwezig_c = clean;
+  if (roleChar === 'P') r.aanwezig_p = clean;
+
+  const arr = [];
+  if (r.aanwezig_s) arr.push(`S ${r.aanwezig_s}`);
+  if (r.aanwezig_c) arr.push(`C ${r.aanwezig_c}`);
+  if (r.aanwezig_p) arr.push(`P ${r.aanwezig_p}`);
+  r.aanwezig = arr.join(' · ');
+
+  try {
+    const payload = {};
+    if (roleChar === 'S') payload.aanwezig_s = clean;
+    if (roleChar === 'C') payload.aanwezig_c = clean;
+    if (roleChar === 'P') payload.aanwezig_p = clean;
+    await supabaseClient.from('routes').update(payload).eq('id', routeId);
+  } catch(e) { console.log("Time update error:", e); }
 }
 
 function toggleEditPanel(rId) {
@@ -793,6 +867,13 @@ async function addSlot(rId, role) {
     status: 'open'
   };
   r.plekken.push(newPlek);
+
+  r.plekken.sort((a, b) => {
+    const wA = getRoleOrderWeight(a.rol_label);
+    const wB = getRoleOrderWeight(b.rol_label);
+    if (wA !== wB) return wA - wB;
+    return (a.rol_label || '').localeCompare(b.rol_label || '');
+  });
 
   try {
     const { data } = await supabaseClient.from('plekken').insert({
@@ -899,28 +980,17 @@ function sendDriverWhatsApp(rId, dName) {
 
   const sintSlot = (r.plekken || []).find(p => (p.rol_label || p.rol || '').startsWith('S'));
   const sintName = sintSlot && sintSlot.naam ? sintSlot.naam : 'nog niet bekend';
+  const cAanw = extractTimeForRole(r, 'C') || r.aanwezig || 'volgens afspraak';
 
-  let msg = `Beste ${dName},
-
-Hierbij je ritplanning voor FC Berghuizen Sintactie:
-
-`;
-  msg += `🚗 *Route:* #${r.nr} ${r.naam}
-`;
-  msg += `📅 *Dag:* ${r.datum}
-`;
-  msg += `📍 *Bestemming:* ${r.plaats} - ${r.naam}
-`;
-  msg += `⏰ *Aanwezig:* ${r.aanwezig || 'volgens afspraak'}
-`;
-  msg += `🚗 *Vertrek:* ${r.vertrek || 'n.t.b.'} (Terugkomst: ${r.terug || 'onbekend'})
-`;
-  msg += `🎅 *Sinterklaas:* ${sintName}
-`;
-  if (r.opmerkingen) msg += `ℹ️ *Notitie:* ${r.opmerkingen}
-`;
-  msg += `
-Alvast enorm bedankt voor het rijden namens FC Berghuizen! 🎅⚽`;
+  let msg = `Beste ${dName},\n\nHierbij je ritplanning voor FC Berghuizen Sintactie:\n\n`;
+  msg += `🚗 *Route:* #${r.nr} ${r.naam}\n`;
+  msg += `📅 *Dag:* ${r.datum}\n`;
+  msg += `📍 *Bestemming:* ${r.plaats} - ${r.naam}\n`;
+  msg += `⏰ *Aanwezig:* ${cAanw}\n`;
+  msg += `🚗 *Vertrek:* ${r.vertrek || 'n.t.b.'} (Terugkomst: ${r.terug || 'onbekend'})\n`;
+  msg += `🎅 *Sinterklaas:* ${sintName}\n`;
+  if (r.opmerkingen) msg += `ℹ️ *Notitie:* ${r.opmerkingen}\n`;
+  msg += `\nAlvast enorm bedankt voor het rijden namens FC Berghuizen! 🎅⚽`;
 
   let cleanPhone = phone.replace(/[^0-9]/g, "");
   if (cleanPhone.startsWith("06")) cleanPhone = "316" + cleanPhone.substring(2);
@@ -942,8 +1012,7 @@ function copyAllDriverNumbers() {
     }
   });
   if (list.length === 0) return alert("Geen chauffeurs met telefoonnummer gevonden.");
-  navigator.clipboard.writeText(list.join("
-")).then(() => alert("Gekopieerd naar klembord!"));
+  navigator.clipboard.writeText(list.join("\n")).then(() => alert("Gekopieerd naar klembord!"));
 }
 
 // SINTEN
@@ -987,10 +1056,11 @@ function renderSinten() {
     }
 
     list.forEach(r => {
+      const sAanw = extractTimeForRole(r, 'S');
       html += `
         <div style="background:#fff5f5; border:1px solid #fecaca; border-radius:4px; padding:5px 8px; font-size:0.76rem;">
           <div style="font-weight:bold; color:var(--sint-red);">#${r.nr} ${r.naam} (${r.plaats})</div>
-          <div style="color:#7f1d1d;">📅 ${r.datum} | Vertrek: ${r.vertrek || 'n.t.b.'} | ${r.aanwezig || ''}</div>
+          <div style="color:#7f1d1d;">📅 ${r.datum} | Vertrek: ${r.vertrek || 'n.t.b.'} ${sAanw ? `| Aanwezig: ${sAanw}` : ''}</div>
         </div>
       `;
     });
@@ -1041,10 +1111,11 @@ function renderPieten() {
 
     list.forEach(item => {
       const r = item.route;
+      const pAanw = extractTimeForRole(r, 'P');
       html += `
         <div style="background:#fffbeb; border:1px solid #fde68a; border-radius:4px; padding:5px 8px; font-size:0.76rem;">
           <div style="font-weight:bold; color:#92400e;">#${r.nr} ${r.naam} (${r.plaats}) - [${item.label}]</div>
-          <div style="color:#78350f;">📅 ${r.datum} | Vertrek: ${r.vertrek || 'n.t.b.'} | ${r.aanwezig || ''}</div>
+          <div style="color:#78350f;">📅 ${r.datum} | Vertrek: ${r.vertrek || 'n.t.b.'} ${pAanw ? `| Aanwezig: ${pAanw}` : ''}</div>
         </div>
       `;
     });
