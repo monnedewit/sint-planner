@@ -11,108 +11,50 @@
     --fc-green: #007A3D;
     --fc-green-dark: #005A2C;
     --sint-red: #991b1b;
-    --sint-red-dark: #7f1d1d;
     --gold: #d97706;
     --gold-dark: #b45309;
     --bg: #f8fafc;
     --surface: #ffffff;
     --border: #cbd5e1;
     --text: #0f172a;
-    --text-muted: #64748b;
     --whatsapp: #25d366;
     --whatsapp-dark: #128c7e;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-  
-  body {
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    padding: 12px 18px;
-    font-size: 0.86rem;
-  }
+  body { background: var(--bg); color: var(--text); min-height: 100vh; padding: 12px 18px; font-size: 0.86rem; }
 
   header {
     background: linear-gradient(90deg, var(--fc-green-dark) 0%, var(--fc-green) 50%, var(--fc-green-dark) 100%);
-    color: white;
-    padding: 10px 16px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 122, 61, 0.2);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 14px;
+    color: white; padding: 10px 16px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0, 122, 61, 0.2);
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 14px;
   }
-  .header-brand { display: flex; align-items: center; gap: 12px; }
-  .header-title-box h1 { font-size: 1.25rem; font-weight: 800; line-height: 1.1; }
-  .header-title-box span { font-size: 0.78rem; color: #bbf7d0; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  .header-brand h1 { font-size: 1.25rem; font-weight: 800; line-height: 1.1; }
+  .header-brand span { font-size: 0.78rem; color: #bbf7d0; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
 
-  .app-container {
-    max-width: 1300px;
-    margin: 0 auto;
-  }
+  .app-container { max-width: 1300px; margin: 0 auto; }
 
   .tabs-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 6px;
-    margin-bottom: 14px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    flex-wrap: wrap;
-    gap: 8px;
+    display: flex; justify-content: space-between; align-items: center; background: white;
+    border: 1px solid var(--border); border-radius: 8px; padding: 6px; margin-bottom: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04); flex-wrap: wrap; gap: 8px;
   }
   .tabs-group { display: flex; gap: 5px; flex-wrap: wrap; }
   .tab-btn {
-    padding: 8px 14px;
-    border-radius: 6px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    border: none;
-    background: transparent;
-    color: #475569;
-    cursor: pointer;
-    transition: all 0.15s;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
+    padding: 8px 14px; border-radius: 6px; font-size: 0.85rem; font-weight: 700; border: none;
+    background: transparent; color: #475569; cursor: pointer; transition: all 0.15s;
+    display: inline-flex; align-items: center; gap: 6px;
   }
   .tab-btn:hover { background: #f1f5f9; color: var(--text); }
-  .tab-btn.active {
-    background: var(--fc-green);
-    color: white;
-    box-shadow: 0 2px 4px rgba(0,122,61,0.25);
-  }
+  .tab-btn.active { background: var(--fc-green); color: white; box-shadow: 0 2px 4px rgba(0,122,61,0.25); }
   .tab-btn.tab-sint.active { background: var(--sint-red); color: white; }
   .tab-btn.tab-piet.active { background: var(--gold-dark); color: white; }
 
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 16px 18px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-    margin-bottom: 18px;
-  }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); margin-bottom: 18px; }
 
   .btn {
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 0.82rem;
-    font-weight: 700;
-    cursor: pointer;
-    border: 1px solid var(--border);
-    background: white;
-    color: var(--text);
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    text-decoration: none;
+    padding: 6px 12px; border-radius: 6px; font-size: 0.82rem; font-weight: 700; cursor: pointer;
+    border: 1px solid var(--border); background: white; color: var(--text); display: inline-flex;
+    align-items: center; gap: 5px; text-decoration: none;
   }
   .btn:hover { background: #f8fafc; }
   .btn-fc { background: var(--fc-green); border-color: var(--fc-green); color: white; }
@@ -128,196 +70,65 @@
   .filter-pill.active { background: var(--fc-green); color: white; border-color: var(--fc-green); }
 
   .day-header {
-    font-size: 1rem;
-    font-weight: 800;
-    color: var(--fc-green-dark);
-    margin: 18px 0 8px 0;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border-bottom: 2px solid #bbf7d0;
-    padding-bottom: 4px;
+    font-size: 1rem; font-weight: 800; color: var(--fc-green-dark); margin: 18px 0 8px 0;
+    display: flex; align-items: center; gap: 8px; border-bottom: 2px solid #bbf7d0; padding-bottom: 4px;
   }
 
-  .routes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
-    gap: 10px;
-    margin-bottom: 16px;
-  }
+  .routes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(460px, 1fr)); gap: 10px; margin-bottom: 16px; }
   
   .route-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 9px 12px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
-    border-left: 4px solid var(--fc-green);
-    position: relative;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
+    padding: 9px 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.03); border-left: 4px solid var(--fc-green); position: relative;
   }
   .route-card.is-open { border-left-color: #ef4444; }
 
-  .route-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 6px;
-    margin-bottom: 4px;
-  }
-  .route-main-line {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    flex-wrap: wrap;
-  }
+  .route-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 6px; margin-bottom: 4px; }
+  .route-main-line { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
   
-  .route-nr-badge {
-    background: var(--fc-green);
-    color: white;
-    font-weight: 800;
-    font-size: 0.76rem;
-    padding: 2px 7px;
-    border-radius: 4px;
-    letter-spacing: 0.3px;
-  }
-  .route-name {
-    font-weight: 800;
-    font-size: 0.94rem;
-    color: #0f172a;
-  }
-  .route-place {
-    color: #475569;
-    font-weight: 600;
-    font-size: 0.8rem;
-  }
-  .route-times-chip {
-    font-size: 0.76rem;
-    color: var(--fc-green-dark);
-    font-weight: 700;
-    background: #ecfdf5;
-    border: 1px solid #a7f3d0;
-    padding: 1px 6px;
-    border-radius: 4px;
-  }
+  .route-nr-badge { background: var(--fc-green); color: white; font-weight: 800; font-size: 0.76rem; padding: 2px 7px; border-radius: 4px; letter-spacing: 0.3px; }
+  .route-name { font-weight: 800; font-size: 0.94rem; color: #0f172a; }
+  .route-place { color: #475569; font-weight: 600; font-size: 0.8rem; }
+  .route-times-chip { font-size: 0.76rem; color: var(--fc-green-dark); font-weight: 700; background: #ecfdf5; border: 1px solid #a7f3d0; padding: 1px 6px; border-radius: 4px; }
 
-  .status-badge {
-    font-size: 0.7rem;
-    font-weight: 700;
-    padding: 2px 6px;
-    border-radius: 8px;
-    border: 1px solid transparent;
-  }
-  .badge-complete { border-color: #10b981; color: #065f46; background: #ecfdf5; }
-  .badge-open { border-color: #ef4444; color: #991b1b; background: #fef2f2; font-weight: 800; }
+  .status-badge { font-size: 0.7rem; font-weight: 700; padding: 2px 6px; border-radius: 8px; }
+  .badge-complete { border: 1px solid #10b981; color: #065f46; background: #ecfdf5; }
+  .badge-open { border: 1px solid #ef4444; color: #991b1b; background: #fef2f2; font-weight: 800; }
 
-  .route-subline {
-    font-size: 0.74rem;
-    color: #64748b;
-    margin-bottom: 5px;
-    line-height: 1.3;
-  }
-  .route-notes {
-    font-size: 0.73rem;
-    color: #92400e;
-    background: #fffbeb;
-    border: 1px solid #fde68a;
-    padding: 1px 6px;
-    border-radius: 3px;
-    margin-bottom: 5px;
-    display: inline-block;
-  }
+  .route-subline { font-size: 0.74rem; color: #64748b; margin-bottom: 5px; line-height: 1.3; }
+  .route-notes { font-size: 0.73rem; color: #92400e; background: #fffbeb; border: 1px solid #fde68a; padding: 1px 6px; border-radius: 3px; margin-bottom: 5px; display: inline-block; }
 
-  .slots-list {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    margin-bottom: 5px;
-  }
-  .slot-row {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
+  .slots-list { display: flex; flex-direction: column; gap: 3px; margin-bottom: 5px; }
+  .slot-row { display: flex; align-items: center; gap: 5px; }
   .slot-label {
-    width: 26px;
-    font-weight: 800;
-    font-size: 0.74rem;
-    text-align: center;
-    padding: 2px 0;
-    border-radius: 3px;
-    background: #f1f5f9;
-    color: #475569;
+    width: 26px; font-weight: 800; font-size: 0.74rem; text-align: center;
+    padding: 2px 0; border-radius: 3px; background: #f1f5f9; color: #475569;
   }
   .slot-label.role-s { background: #fee2e2; color: var(--sint-red); border: 1px solid #fca5a5; }
   .slot-label.role-c { background: #dcfce7; color: var(--fc-green-dark); border: 1px solid #86efac; }
   .slot-label.role-p { background: #fef3c7; color: var(--gold-dark); border: 1px solid #fde68a; }
 
   select.slot-select {
-    flex: 1;
-    padding: 3px 6px;
-    font-size: 0.79rem;
-    font-weight: 600;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    background: white;
-    color: #1e293b;
-    height: 26px;
+    flex: 1; padding: 3px 6px; font-size: 0.79rem; font-weight: 600;
+    border: 1px solid var(--border); border-radius: 4px; background: white; color: #1e293b; height: 26px;
   }
   select.slot-select:focus { outline: 2px solid var(--fc-green); }
-  select.slot-select.unassigned {
-    border-color: #fca5a5;
-    background: #fff5f5;
-    color: #991b1b;
-    font-weight: 700;
-  }
+  select.slot-select.unassigned { border-color: #fca5a5; background: #fff5f5; color: #991b1b; font-weight: 700; }
 
-  .btn-del-slot {
-    background: transparent;
-    border: none;
-    color: #94a3b8;
-    font-size: 0.9rem;
-    cursor: pointer;
-    padding: 0 4px;
-  }
+  .btn-del-slot { background: transparent; border: none; color: #94a3b8; font-size: 0.9rem; cursor: pointer; padding: 0 4px; }
   .btn-del-slot:hover { color: #dc2626; }
 
-  .card-footer-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 4px;
-    padding-top: 4px;
-    border-top: 1px dashed var(--border);
-  }
+  .card-footer-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 4px; padding-top: 4px; border-top: 1px dashed var(--border); }
   .add-btns { display: flex; gap: 4px; }
-  .edit-link {
-    font-size: 0.74rem;
-    color: var(--fc-green);
-    cursor: pointer;
-    font-weight: 700;
-  }
+  .edit-link { font-size: 0.74rem; color: var(--fc-green); cursor: pointer; font-weight: 700; }
   .edit-link:hover { text-decoration: underline; }
 
-  .edit-panel {
-    background: #f8fafc;
-    border: 1px solid #cbd5e1;
-    border-radius: 5px;
-    padding: 8px 10px;
-    margin-top: 6px;
-    display: none;
-  }
+  .edit-panel { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 5px; padding: 8px 10px; margin-top: 6px; display: none; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 5px; }
   .form-col label { display: block; font-size: 0.7rem; font-weight: 700; color: #475569; margin-bottom: 1px; }
   .form-col input { width: 100%; padding: 3px 6px; font-size: 0.78rem; border: 1px solid var(--border); border-radius: 4px; }
 
-  .modal-overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.5);
-    display: none; justify-content: center; align-items: center; z-index: 1000;
-  }
-  .modal-box {
-    background: white; border-radius: 8px; padding: 20px;
-    width: 92%; max-width: 520px; max-height: 90vh; overflow-y: auto;
-  }
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: none; justify-content: center; align-items: center; z-index: 1000; }
+  .modal-box { background: white; border-radius: 8px; padding: 20px; width: 92%; max-width: 520px; max-height: 90vh; overflow-y: auto; }
 </style>
 </head>
 <body>
@@ -358,18 +169,12 @@
     <div class="card" style="padding: 10px 14px; margin-bottom: 12px;">
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;" class="no-print">
         <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
-          <button class="btn btn-sm" id="btnFilterOpenOnly" onclick="toggleFilterOpenOnly()">
-            ⚠️ Alleen open plekken
-          </button>
+          <button class="btn btn-sm" id="btnFilterOpenOnly" onclick="toggleFilterOpenOnly()">⚠️ Alleen open plekken</button>
           <label style="font-size:0.78rem; font-weight:bold;">Filter Dag:</label>
-          <select id="selectDayFilter" class="btn btn-sm" onchange="renderRoutes()">
-            <option value="all">Alle dagen tonen</option>
-          </select>
+          <select id="selectDayFilter" class="btn btn-sm" onchange="renderRoutes()"><option value="all">Alle dagen tonen</option></select>
           <input type="text" id="routeSearchInput" placeholder="Zoek op wijk, plaats, sint..." style="padding:3px 8px; font-size:0.78rem; border:1px solid var(--border); border-radius:4px;" oninput="renderRoutes()">
         </div>
-        <div style="font-size:0.78rem; font-weight:bold; color:var(--fc-green);" id="routeCountStatus">
-          Laden...
-        </div>
+        <div style="font-size:0.78rem; font-weight:bold; color:var(--fc-green);" id="routeCountStatus">Laden...</div>
       </div>
     </div>
     <div id="routesCardsContainer"></div>
@@ -381,9 +186,7 @@
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;" class="no-print">
         <div>
           <h3 style="color:var(--fc-green-dark); font-size:1.15rem;">🚗 Chauffeurslijst & WhatsApp Planning</h3>
-          <p style="font-size:0.8rem; color:var(--text-muted);">
-            Overzicht per chauffeur. Klik op <strong>📲 WhatsApp</strong> om direct het ritbericht door te sturen!
-          </p>
+          <p style="font-size:0.8rem; color:var(--text-muted);">Overzicht per chauffeur. Klik op <strong>📲 WhatsApp</strong> om direct het ritbericht door te sturen!</p>
         </div>
         <div style="display:flex; gap:6px;">
           <button class="btn btn-fc btn-sm" onclick="openAddPersonModalWithRole('Chauffeur')">+ Chauffeur Toevoegen</button>
@@ -428,7 +231,7 @@
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
         <div>
           <h3 style="color:var(--fc-green-dark); font-size:1.15rem;">👥 Personenbeheer</h3>
-          <p style="font-size:0.8rem; color:var(--text-muted);">Beheer contactgegevens en mobiele nummers van alle vrijwilligers.</p>
+          <p style="font-size:0.8rem; color:var(--text-muted);">Klik op <strong>✏️ Wijzigen</strong> om iemands rol aan te passen (bijv. van Chauffeur naar Sint, of meerdere rollen tegelijk).</p>
         </div>
         <div style="display:flex; gap:6px; align-items:center;">
           <button class="filter-pill active" id="btnFilterPersAll" onclick="filterPersonsRole('all')">Alle Personen</button>
@@ -442,6 +245,41 @@
     </div>
   </div>
 
+</div>
+
+<!-- MODAL: PERSOON TOEVOEGEN / BEWERKEN (MET MEERVOUDIGE ROLLEN) -->
+<div class="modal-overlay" id="addPersonModal">
+  <div class="modal-box" style="max-width:420px;">
+    <h3 id="addPersonModalTitle" style="color:var(--fc-green-dark); margin-bottom:10px; font-size:1.05rem;">Persoon Toevoegen / Bewerken</h3>
+    <input type="hidden" id="editPersonId" value="">
+    <div class="form-col" style="margin-bottom:8px;">
+      <label style="font-weight:bold; font-size:0.75rem;">Volledige Naam:</label>
+      <input type="text" id="newPersName" placeholder="bijv. Rob Egberink" style="width:100%; padding:6px; font-size:0.82rem; border:1px solid var(--border); border-radius:4px;">
+    </div>
+    
+    <!-- Meerdere rollen selecteren met handige checkboxen -->
+    <div class="form-col" style="margin-bottom:10px;">
+      <label style="font-weight:bold; font-size:0.75rem;">Rollen van deze persoon (vink aan wat van toepassing is):</label>
+      <div style="display:flex; gap:12px; margin-top:5px; background:#f1f5f9; padding:8px 10px; border-radius:5px;">
+        <label style="font-size:0.8rem; cursor:pointer;"><input type="checkbox" id="roleChauf" value="Chauffeur"> 🚗 Chauffeur</label>
+        <label style="font-size:0.8rem; cursor:pointer;"><input type="checkbox" id="roleSint" value="Sint"> 🎅 Sint</label>
+        <label style="font-size:0.8rem; cursor:pointer;"><input type="checkbox" id="rolePiet" value="Piet"> 🎁 Piet</label>
+      </div>
+    </div>
+
+    <div class="form-col" style="margin-bottom:8px;">
+      <label style="font-weight:bold; font-size:0.75rem;">Mobiel Telefoonnummer (voor WhatsApp):</label>
+      <input type="tel" id="newPersPhone" placeholder="0612345678" style="width:100%; padding:6px; font-size:0.82rem; border:1px solid var(--border); border-radius:4px;">
+    </div>
+    <div class="form-col" style="margin-bottom:8px;">
+      <label style="font-weight:bold; font-size:0.75rem;">Notitie / Beschikbaarheid:</label>
+      <input type="text" id="newPersNote" placeholder="bijv. Rijdt zaterdag, Sint op zondag" style="width:100%; padding:6px; font-size:0.82rem; border:1px solid var(--border); border-radius:4px;">
+    </div>
+    <div style="display:flex; justify-content:flex-end; gap:6px; margin-top:14px;">
+      <button class="btn btn-sm" onclick="closeAddPersonModal()">Annuleren</button>
+      <button class="btn btn-fc btn-sm" onclick="saveNewPerson()">💾 Opslaan</button>
+    </div>
+  </div>
 </div>
 
 <!-- MODAL: NIEUWE ROUTE -->
@@ -461,7 +299,7 @@
     <div class="form-row">
       <div class="form-col">
         <label>Routenaam / Bestemming / School:</label>
-        <input type="text" id="newRouteName" placeholder="bijv. Judo Losser of Martinus">
+        <input type="text" id="newRouteName" placeholder="bijv. Judo Losser">
       </div>
       <div class="form-col">
         <label>Plaats / Wijk:</label>
@@ -491,38 +329,6 @@
     <div style="display:flex; justify-content:flex-end; gap:6px; margin-top:12px;">
       <button class="btn btn-sm" onclick="closeNewRouteModal()">Annuleren</button>
       <button class="btn btn-fc btn-sm" onclick="saveNewRoute()">💾 Route Opslaan</button>
-    </div>
-  </div>
-</div>
-
-<!-- MODAL: PERSOON TOEVOEGEN -->
-<div class="modal-overlay" id="addPersonModal">
-  <div class="modal-box" style="max-width:400px;">
-    <h3 id="addPersonModalTitle" style="color:var(--fc-green-dark); margin-bottom:10px; font-size:1.05rem;">+ Nieuwe Persoon Toevoegen</h3>
-    <div class="form-col" style="margin-bottom:8px;">
-      <label>Volledige Naam:</label>
-      <input type="text" id="newPersName" placeholder="bijv. Rob Egberink">
-    </div>
-    <div class="form-col" style="margin-bottom:8px;">
-      <label>Rol:</label>
-      <select id="newPersRole" style="width:100%; padding:5px; font-size:0.82rem; border:1px solid var(--border); border-radius:4px;">
-        <option value="Chauffeur">Chauffeur</option>
-        <option value="Sint">Sint</option>
-        <option value="Piet">Piet</option>
-        <option value="Schminker">Schminker</option>
-      </select>
-    </div>
-    <div class="form-col" style="margin-bottom:8px;">
-      <label>Mobiel Telefoonnummer (voor WhatsApp):</label>
-      <input type="tel" id="newPersPhone" placeholder="0612345678">
-    </div>
-    <div class="form-col" style="margin-bottom:8px;">
-      <label>Notitie / Beschikbaarheid:</label>
-      <input type="text" id="newPersNote" placeholder="bijv. Rijdt op vrijdagavond">
-    </div>
-    <div style="display:flex; justify-content:flex-end; gap:6px; margin-top:12px;">
-      <button class="btn btn-sm" onclick="closeAddPersonModal()">Annuleren</button>
-      <button class="btn btn-fc btn-sm" onclick="saveNewPerson()">Opslaan</button>
     </div>
   </div>
 </div>
@@ -581,48 +387,36 @@ async function handleAuthClick() {
   }
 }
 
-// Helpt datum te converteren naar leesbaar Nederlands
 function formatDutchDate(dStr) {
   if (!dStr) return "Onbekende dag";
   if (dStr.toLowerCase().includes("november") || dStr.toLowerCase().includes("december")) return dStr;
-  
-  // Format ISO date YYYY-MM-DD
   const parts = dStr.split('-');
   if (parts.length === 3) {
     const d = new Date(parts[0], parseInt(parts[1]) - 1, parts[2]);
     const days = ['Zondag', 'Maandag', 'Dinsdag', 'Woensdag', 'Donderdag', 'Vrijdag', 'Zaterdag'];
     const months = ['', 'januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'];
-    const dayName = days[d.getDay()];
-    const dayNr = parseInt(parts[2]);
-    const monthName = months[parseInt(parts[1])];
-    return `${dayName} ${dayNr} ${monthName}`;
+    return `${days[d.getDay()]} ${parseInt(parts[2])} ${months[parseInt(parts[1])]}`;
   }
   return dStr;
 }
 
 async function loadDatabaseData() {
   try {
-    // 1. Haal personen op
     const { data: pers } = await supabaseClient.from('personen').select('*').order('naam');
     if (pers && pers.length > 0) state.personen = pers;
 
-    // 2. Haal routes op, gesorteerd op datum
     const { data: rts } = await supabaseClient.from('routes').select('*, plekken(*)').order('datum', { ascending: true });
     
     if (rts && rts.length > 0) {
-      // Koppel namen van personen aan de plekken
       const persMap = {};
       state.personen.forEach(p => { persMap[p.id] = p.naam; });
 
       let autoNr = 1;
       state.routes = rts.map((r, idx) => {
-        // Zorg dat route nummer altijd netjes #1, #2 etc is
         const nrVal = r.nr || r.volgnummer || String(autoNr++);
-        // Zorg dat naam altijd locatie of naam pakt
         const routeName = r.locatie || r.naam || r.bestemming || (r.plaats ? `Bezoek ${r.plaats}` : `Gezinsroute ${idx+1}`);
         const dayLabel = formatDutchDate(r.datum);
 
-        // Koppel plekken
         const plekken = (r.plekken || []).map(p => {
           let assignedName = "";
           let isStatus = false;
@@ -646,10 +440,8 @@ async function loadDatabaseData() {
           };
         });
 
-        // Sorteer plekken op rol: S, C, P
         plekken.sort((a,b) => (a.rol_label || '').localeCompare(b.rol_label || ''));
 
-        // Aanwezigheid samenstellen
         let aanwStr = r.aanwezig || "";
         if (!aanwStr && (r.aanwezig_p || r.aanwezig_s || r.aanwezig_c)) {
           const arr = [];
@@ -844,14 +636,10 @@ function renderRoutes() {
     html += `</div>`;
   });
 
-  if (html === "") {
-    html = `<div style="text-align:center; padding:24px; color:#94a3b8; font-weight:bold;">Geen routes gevonden voor deze selectie.</div>`;
-  }
-
   container.innerHTML = html;
 }
 
-// SLOTS MET STRIKTE ROLFILTERING
+// SLOTS MET FLEXIBELE ROLFILTERING
 function renderSlotsHTML(r) {
   if (!r.plekken || r.plekken.length === 0) return '<span style="font-size:0.75rem; color:#94a3b8; font-style:italic;">Geen plekken aangemaakt.</span>';
 
@@ -866,26 +654,26 @@ function renderSlotsHTML(r) {
     const curVal = p.naam || p.status || "";
     const isUnassigned = !curVal;
 
+    // Filter personen op basis van of hun rol de gezochte rol bevat
     let filteredPersons = [];
+    let otherPersons = [];
     let roleTitle = "Personen";
 
     if (isC) {
       filteredPersons = state.personen.filter(pers => (pers.rol || '').toLowerCase().includes('chauffeur'));
+      otherPersons = state.personen.filter(pers => !(pers.rol || '').toLowerCase().includes('chauffeur'));
       roleTitle = "Chauffeurs";
     } else if (isS) {
       filteredPersons = state.personen.filter(pers => (pers.rol || '').toLowerCase().includes('sint'));
+      otherPersons = state.personen.filter(pers => !(pers.rol || '').toLowerCase().includes('sint'));
       roleTitle = "Sinterklazen";
     } else if (isP) {
       filteredPersons = state.personen.filter(pers => (pers.rol || '').toLowerCase().includes('piet'));
+      otherPersons = state.personen.filter(pers => !(pers.rol || '').toLowerCase().includes('piet'));
       roleTitle = "Pieten";
     } else {
       filteredPersons = state.personen;
     }
-
-    let currentInList = filteredPersons.some(pers => pers.naam === curVal);
-    let extraOption = (!currentInList && curVal && !SPECIAL_OPTIONS.includes(curVal))
-      ? `<option value="${curVal}" selected>${curVal} (Toegewezen)</option>`
-      : '';
 
     html += `
       <div class="slot-row">
@@ -898,7 +686,11 @@ function renderSlotsHTML(r) {
           <optgroup label="${roleTitle}">
             ${filteredPersons.map(pers => `<option value="${pers.id}" ${p.persoon_id === pers.id || curVal === pers.naam ? 'selected' : ''}>${pers.naam}</option>`).join('')}
           </optgroup>
-          ${extraOption}
+          ${otherPersons.length > 0 ? `
+            <optgroup label="Overige Vrijwilligers">
+              ${otherPersons.map(pers => `<option value="${pers.id}" ${p.persoon_id === pers.id || curVal === pers.naam ? 'selected' : ''}>${pers.naam} (${pers.rol || 'vrijwilliger'})</option>`).join('')}
+            </optgroup>
+          ` : ''}
         </select>
         ${isC && curVal && !SPECIAL_OPTIONS.includes(curVal) ? `
           <button class="btn btn-whatsapp btn-sm no-print" onclick="sendDriverWhatsApp('${r.id}', '${curVal}')" title="Stuur WhatsApp ritbericht">📲 App</button>
@@ -929,11 +721,7 @@ async function saveRouteEdits(rId) {
 
   try {
     await supabaseClient.from('routes').update({
-      locatie: r.naam,
-      plaats: r.plaats,
-      vertrek: r.vertrek,
-      terug: r.terug,
-      opmerkingen: r.opmerkingen
+      locatie: r.naam, plaats: r.plaats, vertrek: r.vertrek, terug: r.terug, opmerkingen: r.opmerkingen
     }).eq('id', rId);
   } catch(e) { console.log(e); }
 
@@ -992,9 +780,7 @@ async function addSlot(rId, role) {
 
   try {
     const { data } = await supabaseClient.from('plekken').insert({
-      route_id: rId,
-      rol: role,
-      status: 'open'
+      route_id: rId, rol: role, status: 'open'
     }).select().single();
     if (data) newPlek.id = data.id;
   } catch(e) { console.log(e); }
@@ -1238,7 +1024,7 @@ function renderPieten() {
   container.innerHTML = html;
 }
 
-// PERSONENBEHEER
+// PERSONENBEHEER MET FILTERS EN BEWERK-MOGELIJKHEID
 function filterPersonsRole(role) {
   state.personRoleFilter = role;
   document.querySelectorAll('.filter-pill').forEach(btn => btn.classList.remove('active'));
@@ -1259,23 +1045,22 @@ function renderPersonsList() {
 
   let html = "";
   filtered.forEach(p => {
-    const isChauf = (p.rol || '').toLowerCase().includes('chauffeur');
-    const isS = (p.rol || '').toLowerCase().includes('sint');
-    const badgeColor = isChauf ? 'background:#dcfce7; color:var(--fc-green-dark);' : (isS ? 'background:#fee2e2; color:var(--sint-red);' : 'background:#fef3c7; color:var(--gold-dark);');
+    const roles = p.rol || 'Vrijwilliger';
 
     html += `
       <div style="background:white; border:1px solid var(--border); border-radius:6px; padding:10px 12px; display:flex; justify-content:space-between; align-items:center;">
         <div>
           <strong style="color:var(--fc-green-dark); font-size:0.9rem;">${p.naam}</strong>
           <div style="font-size:0.75rem; color:#64748b; margin-top:2px;">
-            <span style="padding:1px 6px; border-radius:3px; font-weight:700; ${badgeColor}">${p.rol || 'Vrijwilliger'}</span>
+            <span style="padding:1px 6px; border-radius:3px; font-weight:700; background:#f1f5f9; color:#334155;">${roles}</span>
             ${p.telefoon ? ` &bull; 📞 ${p.telefoon}` : ''}
           </div>
           ${p.notitie ? `<div style="font-size:0.72rem; color:#94a3b8; margin-top:2px;">${p.notitie}</div>` : ''}
         </div>
         <div style="display:flex; gap:4px; align-items:center;">
+          <button class="btn btn-sm" onclick="editPerson('${p.id}')" title="Rollen of gegevens wijzigen">✏️</button>
           ${p.telefoon ? `
-            <a class="btn btn-whatsapp btn-sm" href="https://wa.me/${p.telefoon.replace(/[^0-9]/g,'')}?text=Hallo%20${encodeURIComponent(p.naam)},%20vanuit%20FC%20Berghuizen%20Sintactie:" target="_blank">💬 App</a>
+            <a class="btn btn-whatsapp btn-sm" href="https://wa.me/${p.telefoon.replace(/[^0-9]/g,'')}?text=Hallo%20${encodeURIComponent(p.naam)},%20vanuit%20FC%20Berghuizen%20Sintactie:" target="_blank">💬</a>
           ` : ''}
           <button class="btn btn-outline btn-sm" style="color:var(--sint-red);" onclick="deletePerson('${p.id}')">🗑️</button>
         </div>
@@ -1292,8 +1077,11 @@ function renderPersonsList() {
 
 function openAddPersonModal() {
   document.getElementById("addPersonModalTitle").innerText = "+ Nieuwe Persoon Toevoegen";
+  document.getElementById("editPersonId").value = "";
   document.getElementById("newPersName").value = "";
-  document.getElementById("newPersRole").value = "Chauffeur";
+  document.getElementById("roleChauf").checked = true;
+  document.getElementById("roleSint").checked = false;
+  document.getElementById("rolePiet").checked = false;
   document.getElementById("newPersPhone").value = "";
   document.getElementById("newPersNote").value = "";
   document.getElementById("addPersonModal").style.display = "flex";
@@ -1301,33 +1089,76 @@ function openAddPersonModal() {
 
 function openAddPersonModalWithRole(role) {
   openAddPersonModal();
-  document.getElementById("newPersRole").value = role;
+  document.getElementById("roleChauf").checked = role === 'Chauffeur';
+  document.getElementById("roleSint").checked = role === 'Sint';
+  document.getElementById("rolePiet").checked = role === 'Piet';
   document.getElementById("addPersonModalTitle").innerText = `+ Nieuwe ${role} Toevoegen`;
+}
+
+function editPerson(pId) {
+  const p = state.personen.find(item => String(item.id) === String(pId));
+  if (!p) return;
+
+  document.getElementById("addPersonModalTitle").innerText = `✏️ ${p.naam} Bewerken`;
+  document.getElementById("editPersonId").value = p.id;
+  document.getElementById("newPersName").value = p.naam;
+  
+  const rolStr = (p.rol || '').toLowerCase();
+  document.getElementById("roleChauf").checked = rolStr.includes('chauffeur');
+  document.getElementById("roleSint").checked = rolStr.includes('sint');
+  document.getElementById("rolePiet").checked = rolStr.includes('piet');
+  
+  document.getElementById("newPersPhone").value = p.telefoon || '';
+  document.getElementById("newPersNote").value = p.notitie || '';
+  document.getElementById("addPersonModal").style.display = "flex";
 }
 
 function closeAddPersonModal() { document.getElementById("addPersonModal").style.display = "none"; }
 
 async function saveNewPerson() {
+  const pId = document.getElementById("editPersonId").value;
   const naam = document.getElementById("newPersName").value.trim();
-  const rol = document.getElementById("newPersRole").value;
   const telefoon = document.getElementById("newPersPhone").value.trim();
   const notitie = document.getElementById("newPersNote").value.trim();
 
+  // Stel rollen samen op basis van aangevinkte vakjes
+  const selectedRoles = [];
+  if (document.getElementById("roleChauf").checked) selectedRoles.push("Chauffeur");
+  if (document.getElementById("roleSint").checked) selectedRoles.push("Sint");
+  if (document.getElementById("rolePiet").checked) selectedRoles.push("Piet");
+  
+  const rol = selectedRoles.length > 0 ? selectedRoles.join(", ") : "Vrijwilliger";
+
   if (!naam) return alert("Vul een naam in.");
 
-  const newP = { id: 'pers_' + Date.now(), naam, rol, telefoon, notitie };
-  state.personen.push(newP);
+  if (pId) {
+    // Bewerken bestaand persoon
+    const p = state.personen.find(item => String(item.id) === String(pId));
+    if (p) {
+      p.naam = naam;
+      p.rol = rol;
+      p.telefoon = telefoon;
+      p.notitie = notitie;
+    }
+    try {
+      await supabaseClient.from('personen').update({ naam, rol, telefoon, notitie }).eq('id', pId);
+    } catch(e) { console.log(e); }
+  } else {
+    // Nieuwe persoon
+    const newP = { id: 'pers_' + Date.now(), naam, rol, telefoon, notitie };
+    state.personen.push(newP);
+    try {
+      const { data } = await supabaseClient.from('personen').insert({ naam, rol, telefoon, notitie }).select().single();
+      if (data) newP.id = data.id;
+    } catch(e) { console.log(e); }
+  }
+
   closeAddPersonModal();
   renderPersonsList();
   renderRoutes();
   renderChauffeurs();
   renderSinten();
   renderPieten();
-
-  try {
-    const { data } = await supabaseClient.from('personen').insert({ naam, rol, telefoon, notitie }).select().single();
-    if (data) newP.id = data.id;
-  } catch(e) { console.log(e); }
 }
 
 async function deletePerson(pId) {
@@ -1378,11 +1209,7 @@ async function saveNewRoute() {
 
   try {
     const { data } = await supabaseClient.from('routes').insert({
-      locatie: naam,
-      plaats: plaats,
-      vertrek: vertrek,
-      terug: terug,
-      opmerkingen: opmerkingen
+      locatie: naam, plaats: plaats, vertrek: vertrek, terug: terug, opmerkingen: opmerkingen
     }).select().single();
     if (data) newR.id = data.id;
   } catch(e) { console.log(e); }
