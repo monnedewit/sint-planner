@@ -116,7 +116,6 @@
   select.slot-select:focus { outline: 2px solid var(--fc-green); }
   select.slot-select.unassigned { border-color: #fca5a5; background: #fff5f5; color: #991b1b; font-weight: 700; }
 
-  /* Tijd dropdown menu */
   select.slot-time-select {
     width: 72px; height: 26px; padding: 2px 4px; font-size: 0.78rem; font-weight: 700;
     text-align: center; border: 1px solid var(--border); border-radius: 4px; background: #f8fafc;
@@ -145,9 +144,9 @@
 
 <header class="no-print">
   <div class="header-brand">
-    <div class="header-title-box">
+    <div>
       <h1>🎅 FC Berghuizen Sint-planner</h1>
-      <span>Sint-Nicolaasactie 2026 &bull; sinterklaaskomtlangs.nl</span>
+      <span>Sint-Nicolaasactie &bull; sinterklaaskomtlangs.nl</span>
     </div>
   </div>
   <div>
@@ -196,7 +195,7 @@
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;" class="no-print">
         <div>
           <h3 style="color:var(--fc-green-dark); font-size:1.15rem;">🚗 Chauffeurslijst & WhatsApp Planning</h3>
-          <p style="font-size:0.8rem; color:var(--text-muted);">Overzicht per chauffeur. Klik op <strong>📲 WhatsApp</strong> om direct het ritbericht door te sturen!</p>
+          <p style="font-size:0.8rem; color:#64748b;">Overzicht per chauffeur. Klik op <strong>📲 WhatsApp</strong> om direct het ritbericht door te sturen.</p>
         </div>
         <div style="display:flex; gap:6px;">
           <button class="btn btn-fc btn-sm" onclick="openAddPersonModalWithRole('Chauffeur')">+ Chauffeur Toevoegen</button>
@@ -213,7 +212,7 @@
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;" class="no-print">
         <div>
           <h3 style="color:var(--sint-red); font-size:1.15rem;">🎅 Sinterklazen & Schminkrooster</h3>
-          <p style="font-size:0.8rem; color:var(--text-muted);">Overzicht per Sinterklaas: bezoeken, vertrektijden en schminktijden.</p>
+          <p style="font-size:0.8rem; color:#64748b;">Overzicht per Sinterklaas: bezoeken, vertrektijden en tijden aanwezig.</p>
         </div>
         <button class="btn btn-sm" style="background:var(--sint-red); color:white;" onclick="openAddPersonModalWithRole('Sint')">+ Sint Toevoegen</button>
       </div>
@@ -227,9 +226,9 @@
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;" class="no-print">
         <div>
           <h3 style="color:var(--gold-dark); font-size:1.15rem;">🎁 Pietenlijst & Bezetting</h3>
-          <p style="font-size:0.8rem; color:var(--text-muted);">Overzicht van alle ritten met Pietenbezetting, aantallen en schminktijden.</p>
+          <p style="font-size:0.8rem; color:#64748b;">Overzicht van alle ritten met Pietenbezetting en aanwezigheidstijden.</p>
         </div>
-        <button class="btn btn-warning btn-sm" onclick="openAddPersonModalWithRole('Piet')">+ Piet Toevoegen</button>
+        <button class="btn btn-sm" style="background:var(--gold-dark); color:white;" onclick="openAddPersonModalWithRole('Piet')">+ Piet Toevoegen</button>
       </div>
       <div id="pietenGrid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(340px, 1fr)); gap:12px;"></div>
     </div>
@@ -241,7 +240,7 @@
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
         <div>
           <h3 style="color:var(--fc-green-dark); font-size:1.15rem;">👥 Personenbeheer</h3>
-          <p style="font-size:0.8rem; color:var(--text-muted);">Klik op <strong>✏️</strong> om iemands rollen aan te passen (bijv. Chauffeur én Piet tegelijk).</p>
+          <p style="font-size:0.8rem; color:#64748b;">Klik op <strong>✏️</strong> om iemands rollen of gegevens aan te passen.</p>
         </div>
         <div style="display:flex; gap:6px; align-items:center;">
           <button class="filter-pill active" id="btnFilterPersAll" onclick="filterPersonsRole('all')">Alle Personen</button>
@@ -277,12 +276,12 @@
     </div>
 
     <div class="form-col" style="margin-bottom:8px;">
-      <label style="font-weight:bold; font-size:0.75rem;">Mobiel Telefoonnummer (voor WhatsApp):</label>
+      <label style="font-weight:bold; font-size:0.75rem;">Mobiel Telefoonnummer:</label>
       <input type="tel" id="newPersPhone" placeholder="0612345678" style="width:100%; padding:6px; font-size:0.82rem; border:1px solid var(--border); border-radius:4px;">
     </div>
     <div class="form-col" style="margin-bottom:8px;">
       <label style="font-weight:bold; font-size:0.75rem;">Notitie / Beschikbaarheid:</label>
-      <input type="text" id="newPersNote" placeholder="bijv. Rijdt zaterdag, Sint op zondag" style="width:100%; padding:6px; font-size:0.82rem; border:1px solid var(--border); border-radius:4px;">
+      <input type="text" id="newPersNote" placeholder="bijv. Sint op zaterdag" style="width:100%; padding:6px; font-size:0.82rem; border:1px solid var(--border); border-radius:4px;">
     </div>
     <div style="display:flex; justify-content:flex-end; gap:6px; margin-top:14px;">
       <button class="btn btn-sm" onclick="closeAddPersonModal()">Annuleren</button>
@@ -297,17 +296,17 @@
     <h3 style="color:var(--fc-green-dark); margin-bottom:10px; font-size:1.05rem;">+ Nieuwe Route Toevoegen</h3>
     <div class="form-row">
       <div class="form-col" style="flex:0 0 80px;">
-        <label>Route Nr (#):</label>
-        <input type="text" id="newRouteNr" placeholder="1">
+        <label>Volgorde (#):</label>
+        <input type="number" id="newRouteNr" placeholder="1">
       </div>
       <div class="form-col">
-        <label>Dag van de actie:</label>
-        <input type="text" id="newRouteDay" placeholder="Zaterdag 21 november">
+        <label>Datum (YYYY-MM-DD):</label>
+        <input type="date" id="newRouteDay" value="2026-11-21">
       </div>
     </div>
     <div class="form-row">
       <div class="form-col">
-        <label>Routenaam / Bestemming / School:</label>
+        <label>Locatie / Bestemming / School:</label>
         <input type="text" id="newRouteName" placeholder="bijv. Judo Losser">
       </div>
       <div class="form-col">
@@ -331,7 +330,7 @@
         <input type="text" id="newRouteAanwezig" placeholder="P 14:30 · S 14:45 · C 15:00">
       </div>
       <div class="form-col">
-        <label>Bijzonderheden / Opmerkingen:</label>
+        <label>Opmerking:</label>
         <input type="text" id="newRouteNotes" placeholder="bijv. incl. schminken">
       </div>
     </div>
@@ -420,6 +419,24 @@ function formatDutchDate(dStr) {
   return dStr;
 }
 
+function getPersonRolesString(p) {
+  if (!p) return '';
+  if (Array.isArray(p.rollen)) return p.rollen.join(', ');
+  if (p.rol) return String(p.rol);
+  if (p.rollen) return String(p.rollen);
+  return 'Vrijwilliger';
+}
+
+function personHasRole(p, roleQuery) {
+  if (!p) return false;
+  const q = roleQuery.toLowerCase();
+  if (Array.isArray(p.rollen)) {
+    return p.rollen.some(r => String(r).toLowerCase().includes(q));
+  }
+  const str = (p.rol || p.rollen || '').toLowerCase();
+  return str.includes(q);
+}
+
 async function initApp() {
   await checkAuthSession();
   await loadDatabaseData();
@@ -484,31 +501,37 @@ async function loadDatabaseData() {
     
     if (rts && rts.length > 0) {
       const persMap = {};
-      state.personen.forEach(p => { persMap[p.id] = p.naam; });
+      state.personen.forEach(p => { persMap[String(p.id)] = p.naam; });
 
       let autoNr = 1;
       state.routes = rts.map((r, idx) => {
-        const nrVal = r.nr || r.volgnummer || String(autoNr++);
-        const routeName = r.locatie || r.naam || r.bestemming || (r.plaats ? `Bezoek ${r.plaats}` : `Gezinsroute ${idx+1}`);
+        const nrVal = r.volgorde || r.nr || String(autoNr++);
+        const routeName = r.locatie || r.naam || (r.plaats ? `Bezoek ${r.plaats}` : `Rit ${idx+1}`);
         const dayLabel = formatDutchDate(r.datum);
 
         const plekken = (r.plekken || []).map(p => {
           let assignedName = "";
           let isStatus = false;
 
-          if (p.persoon_id && persMap[p.persoon_id]) {
-            assignedName = persMap[p.persoon_id];
+          if (p.naam && p.naam !== 'open') {
+            assignedName = p.naam;
+          } else if (p.persoon_id && persMap[String(p.persoon_id)]) {
+            assignedName = persMap[String(p.persoon_id)];
           } else if (p.status && p.status !== 'open') {
             assignedName = p.status;
             isStatus = true;
-          } else if (p.naam && p.naam !== 'open') {
-            assignedName = p.naam;
+          } else if (p.vrije_tekst) {
+            assignedName = p.vrije_tekst;
           }
+
+          let rolLabel = p.rol || 'Rol';
+          if (p.nummer) rolLabel = `${p.rol}${p.nummer}`;
 
           return {
             id: p.id,
             rol: p.rol,
-            rol_label: p.rol_label || p.label || p.rol,
+            nummer: p.nummer,
+            rol_label: rolLabel,
             persoon_id: p.persoon_id,
             status: isStatus ? assignedName : null,
             naam: assignedName
@@ -541,12 +564,12 @@ async function loadDatabaseData() {
           naam: routeName,
           plaats: r.plaats || '',
           vertrek: cleanTime(r.vertrek),
-          terug: cleanTime(r.terug),
+          terug: cleanTime(r.terug || r.terugkomst),
           aanwezig: aanwStr,
           aanwezig_s: cleanTime(r.aanwezig_s),
           aanwezig_c: cleanTime(r.aanwezig_c),
           aanwezig_p: cleanTime(r.aanwezig_p),
-          opmerkingen: r.opmerkingen || '',
+          opmerking: r.opmerking || '',
           plekken: plekken
         };
       });
@@ -616,7 +639,7 @@ function renderRoutes() {
     filtered = filtered.filter(r => isRouteOpen(r));
   }
   if (search) {
-    filtered = filtered.filter(r => `${r.nr} ${r.datum} ${r.naam} ${r.plaats} ${r.aanwezig} ${r.opmerkingen}`.toLowerCase().includes(search));
+    filtered = filtered.filter(r => `${r.nr} ${r.datum} ${r.naam} ${r.plaats} ${r.aanwezig} ${r.opmerking}`.toLowerCase().includes(search));
   }
 
   const countLabel = document.getElementById("routeCountStatus");
@@ -632,7 +655,7 @@ function renderRoutes() {
   let html = "";
   Object.keys(byDay).forEach(day => {
     const list = byDay[day];
-    html += `<div class="day-header">📅 ${day} <span style="font-size:0.75rem; font-weight:bold; color:var(--text-muted);">(${list.length} ritten)</span></div>`;
+    html += `<div class="day-header">📅 ${day} <span style="font-size:0.75rem; font-weight:bold; color:#64748b;">(${list.length} ritten)</span></div>`;
     html += `<div class="routes-grid">`;
 
     list.forEach(r => {
@@ -655,7 +678,7 @@ function renderRoutes() {
             </div>
           </div>
 
-          ${r.opmerkingen ? `<div class="route-notes">ℹ️ ${r.opmerkingen}</div>` : ''}
+          ${r.opmerking ? `<div class="route-notes">ℹ️ ${r.opmerking}</div>` : ''}
 
           <div class="slots-list">
             ${renderSlotsHTML(r)}
@@ -674,11 +697,11 @@ function renderRoutes() {
           <div class="edit-panel no-print" id="editpanel-${r.id}">
             <div class="form-row">
               <div class="form-col" style="flex:0 0 75px;">
-                <label>Route #:</label>
-                <input type="text" id="ed-nr-${r.id}" value="${r.nr || ''}">
+                <label>Volgorde (#):</label>
+                <input type="number" id="ed-nr-${r.id}" value="${r.nr || ''}">
               </div>
               <div class="form-col">
-                <label>Routenaam / Bestemming:</label>
+                <label>Locatie / Bestemming:</label>
                 <input type="text" id="ed-name-${r.id}" value="${r.naam || ''}">
               </div>
             </div>
@@ -703,8 +726,8 @@ function renderRoutes() {
               </div>
             </div>
             <div style="margin-bottom:5px;">
-              <label style="font-size:0.7rem; font-weight:700; color:#475569;">Opmerkingen:</label>
-              <input type="text" id="ed-notes-${r.id}" value="${r.opmerkingen || ''}" style="width:100%; padding:3px 6px; font-size:0.76rem; border:1px solid var(--border); border-radius:3px;">
+              <label style="font-size:0.7rem; font-weight:700; color:#475569;">Opmerking:</label>
+              <input type="text" id="ed-notes-${r.id}" value="${r.opmerking || ''}" style="width:100%; padding:3px 6px; font-size:0.76rem; border:1px solid var(--border); border-radius:3px;">
             </div>
             <div style="display:flex; justify-content:space-between; align-items:center; margin-top:6px;">
               <button class="btn btn-sm" style="color:var(--sint-red);" onclick="deleteRoute('${r.id}')">🗑️ Verwijder</button>
@@ -747,16 +770,16 @@ function renderSlotsHTML(r) {
     let roleTitle = "Personen";
 
     if (isC) {
-      filteredPersons = state.personen.filter(pers => (pers.rol || '').toLowerCase().includes('chauffeur'));
-      otherPersons = state.personen.filter(pers => !(pers.rol || '').toLowerCase().includes('chauffeur'));
+      filteredPersons = state.personen.filter(pers => personHasRole(pers, 'chauffeur'));
+      otherPersons = state.personen.filter(pers => !personHasRole(pers, 'chauffeur'));
       roleTitle = "Chauffeurs";
     } else if (isS) {
-      filteredPersons = state.personen.filter(pers => (pers.rol || '').toLowerCase().includes('sint'));
-      otherPersons = state.personen.filter(pers => !(pers.rol || '').toLowerCase().includes('sint'));
+      filteredPersons = state.personen.filter(pers => personHasRole(pers, 'sint'));
+      otherPersons = state.personen.filter(pers => !personHasRole(pers, 'sint'));
       roleTitle = "Sinterklazen";
     } else if (isP) {
-      filteredPersons = state.personen.filter(pers => (pers.rol || '').toLowerCase().includes('piet'));
-      otherPersons = state.personen.filter(pers => !(pers.rol || '').toLowerCase().includes('piet'));
+      filteredPersons = state.personen.filter(pers => personHasRole(pers, 'piet'));
+      otherPersons = state.personen.filter(pers => !personHasRole(pers, 'piet'));
       roleTitle = "Pieten";
     } else {
       filteredPersons = state.personen;
@@ -772,11 +795,11 @@ function renderSlotsHTML(r) {
             ${SPECIAL_OPTIONS.map(opt => `<option value="${opt}" ${curVal === opt ? 'selected' : ''}>${opt}</option>`).join('')}
           </optgroup>
           <optgroup label="${roleTitle}">
-            ${filteredPersons.map(pers => `<option value="${pers.id}" ${p.persoon_id === pers.id || curVal === pers.naam ? 'selected' : ''}>${pers.naam}</option>`).join('')}
+            ${filteredPersons.map(pers => `<option value="${pers.id}" ${String(p.persoon_id) === String(pers.id) || curVal === pers.naam ? 'selected' : ''}>${pers.naam}</option>`).join('')}
           </optgroup>
           ${otherPersons.length > 0 ? `
             <optgroup label="Overige Vrijwilligers">
-              ${otherPersons.map(pers => `<option value="${pers.id}" ${p.persoon_id === pers.id || curVal === pers.naam ? 'selected' : ''}>${pers.naam}</option>`).join('')}
+              ${otherPersons.map(pers => `<option value="${pers.id}" ${String(p.persoon_id) === String(pers.id) || curVal === pers.naam ? 'selected' : ''}>${pers.naam}</option>`).join('')}
             </optgroup>
           ` : ''}
         </select>
@@ -818,16 +841,9 @@ async function updateRoleTime(routeId, roleChar, newTime) {
 
     const { error } = await supabaseClient.from('routes').update(payload).eq('id', routeId);
     if (error) {
-      console.warn("Retrying routes update with only aanwezig column:", error.message);
       await supabaseClient.from('routes').update({ aanwezig: r.aanwezig }).eq('id', routeId);
     }
-  } catch(e) {
-    try {
-      await supabaseClient.from('routes').update({ aanwezig: r.aanwezig }).eq('id', routeId);
-    } catch(err) {
-      alert("Fout bij opslaan tijd: " + err.message);
-    }
-  }
+  } catch(e) { console.log(e); }
 }
 
 function toggleEditPanel(rId) {
@@ -839,17 +855,22 @@ async function saveRouteEdits(rId) {
   const r = state.routes.find(item => String(item.id) === String(rId));
   if (!r) return;
 
-  r.nr = document.getElementById('ed-nr-' + rId).value.trim();
+  r.nr = parseInt(document.getElementById('ed-nr-' + rId).value) || 1;
   r.naam = document.getElementById('ed-name-' + rId).value.trim();
   r.plaats = document.getElementById('ed-plaats-' + rId).value.trim();
   r.vertrek = cleanTime(document.getElementById('ed-vertrek-' + rId).value.trim());
   r.terug = cleanTime(document.getElementById('ed-terug-' + rId).value.trim());
   r.aanwezig = cleanTime(document.getElementById('ed-aanw-' + rId).value.trim());
-  r.opmerkingen = document.getElementById('ed-notes-' + rId).value.trim();
+  r.opmerking = document.getElementById('ed-notes-' + rId).value.trim();
 
   try {
     const { error } = await supabaseClient.from('routes').update({
-      locatie: r.naam, plaats: r.plaats, vertrek: r.vertrek, terug: r.terug, opmerkingen: r.opmerkingen
+      volgorde: r.nr,
+      locatie: r.naam,
+      plaats: r.plaats,
+      vertrek: r.vertrek,
+      terug: r.terug,
+      opmerking: r.opmerking
     }).eq('id', rId);
     if (error) alert("Fout bij bewerken route: " + error.message);
   } catch(e) { console.log(e); }
@@ -869,41 +890,29 @@ async function assignSlot(rId, pId, val) {
     p.status = val;
     p.naam = val;
     p.persoon_id = null;
-    updatePayload = { status: val, naam: val, persoon_id: null };
+    updatePayload = { status: val, naam: val, vrije_tekst: val, persoon_id: null };
   } else if (val) {
     const pers = state.personen.find(person => String(person.id) === String(val) || person.naam === val);
     p.status = null;
     p.persoon_id = pers ? String(pers.id) : String(val);
     p.naam = pers ? pers.naam : val;
-    updatePayload = { status: null, naam: p.naam, persoon_id: p.persoon_id };
+    updatePayload = { status: null, naam: p.naam, vrije_tekst: p.naam, persoon_id: p.persoon_id };
   } else {
     p.status = 'open';
     p.naam = "";
     p.persoon_id = null;
-    updatePayload = { status: 'open', naam: null, persoon_id: null };
+    updatePayload = { status: 'open', naam: null, vrije_tekst: null, persoon_id: null };
   }
 
   try {
-    const { data, error } = await supabaseClient
+    const { error } = await supabaseClient
       .from('plekken')
       .update(updatePayload)
-      .eq('id', pId)
-      .select();
+      .eq('id', pId);
 
     if (error) {
       alert("Fout bij opslaan persoon in database: " + error.message);
       console.error("Supabase update error:", error);
-    } else if (!data || data.length === 0) {
-      const { error: insErr } = await supabaseClient
-        .from('plekken')
-        .insert({
-          route_id: rId,
-          rol: p.rol,
-          status: updatePayload.status,
-          naam: updatePayload.naam,
-          persoon_id: updatePayload.persoon_id
-        });
-      if (insErr) alert("Kon nieuwe plek niet toevoegen: " + insErr.message);
     }
   } catch (err) {
     alert("Netwerkfout bij opslaan persoon: " + err.message);
@@ -917,28 +926,25 @@ async function addSlot(rId, role) {
   if (!r) return;
   if (!r.plekken) r.plekken = [];
 
-  const count = r.plekken.filter(p => (p.rol_label || p.rol || '').startsWith(role)).length;
-  const newLabel = role === 'S' && count === 0 ? 'S' : `${role}${count + 1}`;
+  const count = r.plekken.filter(p => (p.rol_label || p.rol || '').startsWith(role)).length + 1;
+  const newLabel = role === 'S' && count === 1 ? 'S' : `${role}${count}`;
   const newPlek = {
     id: 'p_' + Date.now(),
     route_id: rId,
     rol: role,
+    nummer: count,
     rol_label: newLabel,
     naam: '',
     status: 'open'
   };
   r.plekken.push(newPlek);
 
-  r.plekken.sort((a, b) => {
-    const wA = getRoleOrderWeight(a.rol_label);
-    const wB = getRoleOrderWeight(b.rol_label);
-    if (wA !== wB) return wA - wB;
-    return (a.rol_label || '').localeCompare(b.rol_label || '');
-  });
-
   try {
     const { data } = await supabaseClient.from('plekken').insert({
-      route_id: rId, rol: role, status: 'open'
+      route_id: rId,
+      rol: role,
+      nummer: count,
+      status: 'open'
     }).select().single();
     if (data) newPlek.id = data.id;
   } catch(e) { console.log(e); }
@@ -972,7 +978,7 @@ function renderChauffeurs() {
   const container = document.getElementById("chauffeursGrid");
   const byDriver = {};
 
-  const chauffeurPersons = state.personen.filter(p => (p.rol || '').toLowerCase().includes('chauffeur'));
+  const chauffeurPersons = state.personen.filter(p => personHasRole(p, 'chauffeur'));
   chauffeurPersons.forEach(cp => { byDriver[cp.naam] = []; });
 
   state.routes.forEach(r => {
@@ -1049,7 +1055,7 @@ function sendDriverWhatsApp(rId, dName) {
   msg += `⏰ *Aanwezig:* ${cAanw}\n`;
   msg += `🚗 *Vertrek:* ${r.vertrek || 'n.t.b.'} (Terugkomst: ${r.terug || 'onbekend'})\n`;
   msg += `🎅 *Sinterklaas:* ${sintName}\n`;
-  if (r.opmerkingen) msg += `ℹ️ *Notitie:* ${r.opmerkingen}\n`;
+  if (r.opmerking) msg += `ℹ️ *Notitie:* ${r.opmerking}\n`;
   msg += `\nAlvast enorm bedankt voor het rijden namens FC Berghuizen! 🎅⚽`;
 
   let cleanPhone = phone.replace(/[^0-9]/g, "");
@@ -1067,7 +1073,7 @@ function sendDriverWhatsApp(rId, dName) {
 function copyAllDriverNumbers() {
   const list = [];
   state.personen.forEach(p => {
-    if ((p.rol || '').toLowerCase().includes('chauffeur') && p.telefoon) {
+    if (personHasRole(p, 'chauffeur') && p.telefoon) {
       list.push(`${p.naam}: ${p.telefoon}`);
     }
   });
@@ -1079,7 +1085,7 @@ function renderSinten() {
   const container = document.getElementById("sintenGrid");
   const bySint = {};
 
-  const sintPersons = state.personen.filter(p => (p.rol || '').toLowerCase().includes('sint'));
+  const sintPersons = state.personen.filter(p => personHasRole(p, 'sint'));
   sintPersons.forEach(sp => { bySint[sp.naam] = []; });
 
   state.routes.forEach(r => {
@@ -1132,7 +1138,7 @@ function renderPieten() {
   const container = document.getElementById("pietenGrid");
   const byPiet = {};
 
-  const pietPersons = state.personen.filter(p => (p.rol || '').toLowerCase().includes('piet'));
+  const pietPersons = state.personen.filter(p => personHasRole(p, 'piet'));
   pietPersons.forEach(pp => { byPiet[pp.naam] = []; });
 
   state.routes.forEach(r => {
@@ -1197,12 +1203,12 @@ function renderPersonsList() {
   let filtered = state.personen;
 
   if (state.personRoleFilter !== 'all') {
-    filtered = filtered.filter(p => (p.rol || '').toLowerCase().includes(state.personRoleFilter));
+    filtered = filtered.filter(p => personHasRole(p, state.personRoleFilter));
   }
 
   let html = "";
   filtered.forEach(p => {
-    const roles = p.rol || 'Vrijwilliger';
+    const roles = getPersonRolesString(p);
 
     html += `
       <div style="background:white; border:1px solid var(--border); border-radius:6px; padding:10px 12px; display:flex; justify-content:space-between; align-items:center;">
@@ -1219,7 +1225,7 @@ function renderPersonsList() {
           ${p.telefoon ? `
             <a class="btn btn-whatsapp btn-sm" href="https://wa.me/${p.telefoon.replace(/[^0-9]/g,'')}?text=Hallo%20${encodeURIComponent(p.naam)},%20vanuit%20FC%20Berghuizen%20Sintactie:" target="_blank">💬</a>
           ` : ''}
-          <button class="btn btn-outline btn-sm" style="color:var(--sint-red);" onclick="deletePerson('${p.id}')">🗑️</button>
+          <button class="btn btn-sm" style="color:var(--sint-red);" onclick="deletePerson('${p.id}')">🗑️</button>
         </div>
       </div>
     `;
@@ -1260,10 +1266,9 @@ function editPerson(pId) {
   document.getElementById("editPersonId").value = p.id;
   document.getElementById("newPersName").value = p.naam;
   
-  const rolStr = (p.rol || '').toLowerCase();
-  document.getElementById("roleChauf").checked = rolStr.includes('chauffeur');
-  document.getElementById("roleSint").checked = rolStr.includes('sint');
-  document.getElementById("rolePiet").checked = rolStr.includes('piet');
+  document.getElementById("roleChauf").checked = personHasRole(p, 'chauffeur');
+  document.getElementById("roleSint").checked = personHasRole(p, 'sint');
+  document.getElementById("rolePiet").checked = personHasRole(p, 'piet');
   
   document.getElementById("newPersPhone").value = p.telefoon || '';
   document.getElementById("newPersNote").value = p.notitie || '';
@@ -1282,8 +1287,7 @@ async function saveNewPerson() {
   if (document.getElementById("roleChauf").checked) selectedRoles.push("Chauffeur");
   if (document.getElementById("roleSint").checked) selectedRoles.push("Sint");
   if (document.getElementById("rolePiet").checked) selectedRoles.push("Piet");
-  
-  const rol = selectedRoles.length > 0 ? selectedRoles.join(", ") : "Vrijwilliger";
+  if (selectedRoles.length === 0) selectedRoles.push("Vrijwilliger");
 
   if (!naam) return alert("Vul een naam in.");
 
@@ -1291,19 +1295,28 @@ async function saveNewPerson() {
     const p = state.personen.find(item => String(item.id) === String(pId));
     if (p) {
       p.naam = naam;
-      p.rol = rol;
+      p.rollen = selectedRoles;
       p.telefoon = telefoon;
       p.notitie = notitie;
     }
     try {
-      await supabaseClient.from('personen').update({ naam, rol, telefoon, notitie }).eq('id', pId);
+      await supabaseClient.from('personen').update({
+        naam: naam,
+        rollen: selectedRoles,
+        telefoon: telefoon,
+        notitie: notitie
+      }).eq('id', pId);
     } catch(e) { console.log(e); }
   } else {
-    const newP = { id: 'pers_' + Date.now(), naam, rol, telefoon, notitie };
-    state.personen.push(newP);
     try {
-      const { data } = await supabaseClient.from('personen').insert({ naam, rol, telefoon, notitie }).select().single();
-      if (data) newP.id = data.id;
+      const { data, error } = await supabaseClient.from('personen').insert({
+        naam: naam,
+        rollen: selectedRoles,
+        telefoon: telefoon,
+        notitie: notitie,
+        actief: true
+      }).select().single();
+      if (data) state.personen.push(data);
     } catch(e) { console.log(e); }
   }
 
@@ -1333,28 +1346,27 @@ function openNewRouteModal() { document.getElementById("newRouteModal").style.di
 function closeNewRouteModal() { document.getElementById("newRouteModal").style.display = "none"; }
 
 async function saveNewRoute() {
-  const nr = document.getElementById("newRouteNr").value.trim() || String(state.routes.length + 1);
-  const datum = document.getElementById("newRouteDay").value.trim() || "Zaterdag 21 november";
+  const volgorde = parseInt(document.getElementById("newRouteNr").value) || (state.routes.length + 1);
+  const datum = document.getElementById("newRouteDay").value || "2026-11-21";
   const naam = document.getElementById("newRouteName").value.trim() || "Nieuwe Route";
   const plaats = document.getElementById("newRoutePlaats").value.trim() || "Oldenzaal";
   const vertrek = cleanTime(document.getElementById("newRouteVertrek").value.trim());
   const terug = cleanTime(document.getElementById("newRouteTerug").value.trim());
   const aanwezig = cleanTime(document.getElementById("newRouteAanwezig").value.trim());
-  const opmerkingen = document.getElementById("newRouteNotes").value.trim();
+  const opmerking = document.getElementById("newRouteNotes").value.trim();
 
   try {
-    // 1. Sla de route zelf op in Supabase
     const { data: routeData, error: routeErr } = await supabaseClient
       .from('routes')
       .insert({
-        nr: nr,
+        volgorde: volgorde,
         datum: datum,
         locatie: naam,
         plaats: plaats,
         vertrek: vertrek,
         terug: terug,
         aanwezig: aanwezig,
-        opmerkingen: opmerkingen
+        opmerking: opmerking
       })
       .select()
       .single();
@@ -1366,20 +1378,13 @@ async function saveNewRoute() {
 
     const newRouteId = routeData.id;
 
-    // 2. Maak direct standaardplekken (S, C, P) aan in de database
     const standardPlekken = [
-      { route_id: newRouteId, rol: 'S', rol_label: 'S', status: 'open' },
-      { route_id: newRouteId, rol: 'C', rol_label: 'C1', status: 'open' },
-      { route_id: newRouteId, rol: 'P', rol_label: 'P1', status: 'open' }
+      { route_id: newRouteId, rol: 'S', nummer: 1, status: 'open' },
+      { route_id: newRouteId, rol: 'C', nummer: 1, status: 'open' },
+      { route_id: newRouteId, rol: 'P', nummer: 1, status: 'open' }
     ];
 
-    const { error: plekkenErr } = await supabaseClient
-      .from('plekken')
-      .insert(standardPlekken);
-
-    if (plekkenErr) {
-      console.warn("Kon standaardplekken niet aanmaken:", plekkenErr.message);
-    }
+    await supabaseClient.from('plekken').insert(standardPlekken);
 
     closeNewRouteModal();
     await loadDatabaseData();
@@ -1393,12 +1398,12 @@ function exportRouteExcel() {
   if (typeof XLSX === "undefined") return alert("Excel bibliotheek laadt nog...");
   const rows = [
     ["OVERZICHTSLIJST SINT-NICOLAASACTIE FC BERGHUIZEN"],
-    ["Route Nr", "Dag", "Locatie / Bestemming", "Plaats", "Aanwezig", "Vertrek", "Terug", "Opmerkingen", "Bezetting (Sint / Chauffeur / Piet)"]
+    ["Route Nr", "Dag", "Locatie / Bestemming", "Plaats", "Aanwezig", "Vertrek", "Terug", "Opmerking", "Bezetting (Sint / Chauffeur / Piet)"]
   ];
 
   state.routes.forEach(r => {
     const bezettingStr = (r.plekken || []).map(p => `${p.rol_label}: ${p.naam || p.status || 'open'}`).join(' | ');
-    rows.push([r.nr, r.datum, r.naam, r.plaats, r.aanwezig, r.vertrek, r.terug, r.opmerkingen, bezettingStr]);
+    rows.push([r.nr, r.datum, r.naam, r.plaats, r.aanwezig, r.vertrek, r.terug, r.opmerking, bezettingStr]);
   });
 
   const wb = XLSX.utils.book_new();
