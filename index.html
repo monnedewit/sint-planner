@@ -116,6 +116,7 @@
   select.slot-select:focus { outline: 2px solid var(--fc-green); }
   select.slot-select.unassigned { border-color: #fca5a5; background: #fff5f5; color: #991b1b; font-weight: 700; }
 
+  /* Tijd dropdown menu */
   select.slot-time-select {
     width: 72px; height: 26px; padding: 2px 4px; font-size: 0.78rem; font-weight: 700;
     text-align: center; border: 1px solid var(--border); border-radius: 4px; background: #f8fafc;
@@ -423,7 +424,6 @@ async function initApp() {
   await checkAuthSession();
   await loadDatabaseData();
 
-  // Luister direct naar inlog/uitlog statusveranderingen
   supabaseClient.auth.onAuthStateChange(async (event, session) => {
     if (session && session.user) {
       state.user = session.user;
@@ -815,14 +815,18 @@ async function updateRoleTime(routeId, roleChar, newTime) {
     if (roleChar === 'S') payload.aanwezig_s = clean;
     if (roleChar === 'C') payload.aanwezig_c = clean;
     if (roleChar === 'P') payload.aanwezig_p = clean;
+
     const { error } = await supabaseClient.from('routes').update(payload).eq('id', routeId);
     if (error) {
+      console.warn("Retrying routes update with only aanwezig column:", error.message);
       await supabaseClient.from('routes').update({ aanwezig: r.aanwezig }).eq('id', routeId);
     }
   } catch(e) {
     try {
       await supabaseClient.from('routes').update({ aanwezig: r.aanwezig }).eq('id', routeId);
-    } catch(err) { console.log("Time update error:", err); }
+    } catch(err) {
+      alert("Fout bij opslaan tijd: " + err.message);
+    }
   }
 }
 
@@ -844,9 +848,10 @@ async function saveRouteEdits(rId) {
   r.opmerkingen = document.getElementById('ed-notes-' + rId).value.trim();
 
   try {
-    await supabaseClient.from('routes').update({
+    const { error } = await supabaseClient.from('routes').update({
       locatie: r.naam, plaats: r.plaats, vertrek: r.vertrek, terug: r.terug, opmerkingen: r.opmerkingen
     }).eq('id', rId);
+    if (error) alert("Fout bij bewerken route: " + error.message);
   } catch(e) { console.log(e); }
 
   renderRoutes();
@@ -879,8 +884,29 @@ async function assignSlot(rId, pId, val) {
   }
 
   try {
-    await supabaseClient.from('plekken').update(updatePayload).eq('id', pId);
-  } catch(e) { console.log(e); }
+    const { data, error } = await supabaseClient
+      .from('plekken')
+      .update(updatePayload)
+      .eq('id', pId)
+      .select();
+
+    if (error) {
+      alert("Fout bij opslaan in database: " + error.message);
+      console.error("Supabase update error:", error);
+    } else if (!data || data.length === 0) {
+      const { error: insErr } = await supabaseClient
+        .from('plekken')
+        .insert({
+          route_id: rId,
+          rol: p.rol,
+          status: updatePayload.status,
+          persoon_id: updatePayload.persoon_id
+        });
+      if (insErr) alert("Kon nieuwe plek niet toevoegen: " + insErr.message);
+    }
+  } catch (err) {
+    alert("Netwerkfout bij opslaan: " + err.message);
+  }
 
   renderRoutes();
 }
