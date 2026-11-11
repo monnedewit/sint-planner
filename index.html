@@ -116,6 +116,7 @@
   select.slot-select:focus { outline: 2px solid var(--fc-green); }
   select.slot-select.unassigned { border-color: #fca5a5; background: #fff5f5; color: #991b1b; font-weight: 700; }
 
+  /* Tijd dropdown menu */
   select.slot-time-select {
     width: 72px; height: 26px; padding: 2px 4px; font-size: 0.78rem; font-weight: 700;
     text-align: center; border: 1px solid var(--border); border-radius: 4px; background: #f8fafc;
@@ -868,18 +869,18 @@ async function assignSlot(rId, pId, val) {
     p.status = val;
     p.naam = val;
     p.persoon_id = null;
-    updatePayload = { status: val, persoon_id: null };
+    updatePayload = { status: val, naam: val, persoon_id: null };
   } else if (val) {
     const pers = state.personen.find(person => String(person.id) === String(val) || person.naam === val);
     p.status = null;
-    p.persoon_id = pers ? pers.id : null;
+    p.persoon_id = pers ? String(pers.id) : String(val);
     p.naam = pers ? pers.naam : val;
-    updatePayload = { status: null, persoon_id: p.persoon_id };
+    updatePayload = { status: null, naam: p.naam, persoon_id: p.persoon_id };
   } else {
     p.status = 'open';
     p.naam = "";
     p.persoon_id = null;
-    updatePayload = { status: 'open', persoon_id: null };
+    updatePayload = { status: 'open', naam: null, persoon_id: null };
   }
 
   try {
@@ -890,7 +891,7 @@ async function assignSlot(rId, pId, val) {
       .select();
 
     if (error) {
-      alert("Fout bij opslaan in database: " + error.message);
+      alert("Fout bij opslaan persoon in database: " + error.message);
       console.error("Supabase update error:", error);
     } else if (!data || data.length === 0) {
       const { error: insErr } = await supabaseClient
@@ -899,12 +900,13 @@ async function assignSlot(rId, pId, val) {
           route_id: rId,
           rol: p.rol,
           status: updatePayload.status,
+          naam: updatePayload.naam,
           persoon_id: updatePayload.persoon_id
         });
       if (insErr) alert("Kon nieuwe plek niet toevoegen: " + insErr.message);
     }
   } catch (err) {
-    alert("Netwerkfout bij opslaan: " + err.message);
+    alert("Netwerkfout bij opslaan persoon: " + err.message);
   }
 
   renderRoutes();
@@ -1340,30 +1342,51 @@ async function saveNewRoute() {
   const aanwezig = cleanTime(document.getElementById("newRouteAanwezig").value.trim());
   const opmerkingen = document.getElementById("newRouteNotes").value.trim();
 
-  const newR = {
-    id: 'local_' + Date.now(),
-    nr, datum, naam, plaats, vertrek, terug, aanwezig, opmerkingen,
-    plekken: [
-      { id: 'p_' + Date.now() + '_s', rol: 'S', rol_label: 'S', naam: '', status: 'open' },
-      { id: 'p_' + Date.now() + '_c', rol: 'C', rol_label: 'C1', naam: '', status: 'open' },
-      { id: 'p_' + Date.now() + '_p1', rol: 'P', rol_label: 'P1', naam: '', status: 'open' }
-    ]
-  };
-
-  state.routes.push(newR);
-  closeNewRouteModal();
-  populateDayFilter();
-  renderRoutes();
-  renderChauffeurs();
-  renderSinten();
-  renderPieten();
-
   try {
-    const { data } = await supabaseClient.from('routes').insert({
-      locatie: naam, plaats: plaats, vertrek: vertrek, terug: terug, opmerkingen: opmerkingen
-    }).select().single();
-    if (data) newR.id = data.id;
-  } catch(e) { console.log(e); }
+    // 1. Sla de route zelf op in Supabase
+    const { data: routeData, error: routeErr } = await supabaseClient
+      .from('routes')
+      .insert({
+        nr: nr,
+        datum: datum,
+        locatie: naam,
+        plaats: plaats,
+        vertrek: vertrek,
+        terug: terug,
+        aanwezig: aanwezig,
+        opmerkingen: opmerkingen
+      })
+      .select()
+      .single();
+
+    if (routeErr) {
+      alert("Fout bij aanmaken route in database: " + routeErr.message);
+      return;
+    }
+
+    const newRouteId = routeData.id;
+
+    // 2. Maak direct standaardplekken (S, C, P) aan in de database
+    const standardPlekken = [
+      { route_id: newRouteId, rol: 'S', rol_label: 'S', status: 'open' },
+      { route_id: newRouteId, rol: 'C', rol_label: 'C1', status: 'open' },
+      { route_id: newRouteId, rol: 'P', rol_label: 'P1', status: 'open' }
+    ];
+
+    const { error: plekkenErr } = await supabaseClient
+      .from('plekken')
+      .insert(standardPlekken);
+
+    if (plekkenErr) {
+      console.warn("Kon standaardplekken niet aanmaken:", plekkenErr.message);
+    }
+
+    closeNewRouteModal();
+    await loadDatabaseData();
+    alert("Route succesvol opgeslagen in de database!");
+  } catch (err) {
+    alert("Netwerkfout bij aanmaken route: " + err.message);
+  }
 }
 
 function exportRouteExcel() {
