@@ -88,19 +88,33 @@
   .filter-pill.active { background: var(--fc-green); color: white; border-color: var(--fc-green); }
 
   .day-header {
-    font-size: 1rem; font-weight: 800; color: var(--fc-green-dark); margin: 18px 0 8px 0;
-    display: flex; align-items: center; gap: 8px; border-bottom: 2px solid #bbf7d0; padding-bottom: 4px;
+    font-size: 1rem; font-weight: 800; color: var(--fc-green-dark); margin: 20px 0 10px 0;
+    display: flex; align-items: center; gap: 8px; border-bottom: 2px solid #bbf7d0; padding-bottom: 5px;
   }
   .day-header.is-past-day {
     color: #64748b;
     border-bottom-color: #cbd5e1;
   }
 
-  .routes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(500px, 1fr)); gap: 10px; margin-bottom: 16px; }
+  .routes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(520px, 1fr));
+    gap: 12px;
+    margin-bottom: 18px;
+    align-items: stretch;
+  }
   
   .route-card {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
-    padding: 9px 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.03); border-left: 4px solid var(--fc-green); position: relative;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 11px 14px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    border-left: 5px solid var(--fc-green);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     transition: opacity 0.2s, filter 0.2s, background-color 0.2s;
   }
   .route-card.is-open { border-left-color: #ef4444; }
@@ -120,27 +134,37 @@
 
   .route-header {
     display: flex; justify-content: space-between; align-items: flex-start;
-    gap: 6px; margin-bottom: 6px;
+    gap: 6px; margin-bottom: 8px;
   }
   .route-main-line { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
   
-  .route-nr-badge { background: var(--fc-green); color: white; font-weight: 800; font-size: 0.76rem; padding: 2px 7px; border-radius: 4px; letter-spacing: 0.3px; }
-  .route-name { font-weight: 800; font-size: 0.94rem; color: #0f172a; }
+  .route-nr-badge {
+    background: var(--fc-green);
+    color: white;
+    font-weight: 800;
+    font-size: 0.78rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.3px;
+    min-width: 34px;
+    text-align: center;
+  }
+  .route-name { font-weight: 800; font-size: 0.96rem; color: #0f172a; }
   .route-place { color: #475569; font-weight: 600; font-size: 0.8rem; }
   .route-times-chip { font-size: 0.76rem; color: var(--fc-green-dark); font-weight: 700; background: #ecfdf5; border: 1px solid #a7f3d0; padding: 1px 6px; border-radius: 4px; }
 
-  .status-badge { font-size: 0.7rem; font-weight: 700; padding: 2px 6px; border-radius: 8px; }
+  .status-badge { font-size: 0.7rem; font-weight: 700; padding: 2px 7px; border-radius: 8px; white-space: nowrap; }
   .badge-complete { border: 1px solid #10b981; color: #065f46; background: #ecfdf5; }
   .badge-past-complete { border: 1px solid #94a3b8; color: #475569; background: #e2e8f0; }
   .badge-open { border: 1px solid #ef4444; color: #991b1b; background: #fef2f2; font-weight: 800; }
 
-  .route-notes { font-size: 0.73rem; color: #92400e; background: #fffbeb; border: 1px solid #fde68a; padding: 2px 6px; border-radius: 3px; margin-bottom: 6px; display: inline-block; }
+  .route-notes { font-size: 0.73rem; color: #92400e; background: #fffbeb; border: 1px solid #fde68a; padding: 2px 7px; border-radius: 4px; margin-bottom: 7px; display: inline-block; }
 
-  .slots-list { display: flex; flex-direction: column; gap: 4px; margin-bottom: 5px; }
+  .slots-list { display: flex; flex-direction: column; gap: 5px; margin-bottom: 6px; }
   .slot-row { display: flex; align-items: center; gap: 5px; }
   .slot-label {
-    width: 26px; font-weight: 800; font-size: 0.74rem; text-align: center;
-    padding: 3px 0; border-radius: 3px; background: #f1f5f9; color: #475569; flex-shrink: 0;
+    width: 28px; font-weight: 800; font-size: 0.74rem; text-align: center;
+    padding: 3px 0; border-radius: 4px; background: #f1f5f9; color: #475569; flex-shrink: 0;
   }
   .slot-label.role-s { background: #fee2e2; color: var(--sint-red); border: 1px solid #fca5a5; }
   .slot-label.role-c { background: #dcfce7; color: var(--fc-green-dark); border: 1px solid #86efac; }
@@ -148,7 +172,7 @@
 
   select.slot-select {
     flex: 1; min-width: 140px; padding: 3px 6px; font-size: 0.79rem; font-weight: 600;
-    border: 1px solid var(--border); border-radius: 4px; background: white; color: #1e293b; height: 26px;
+    border: 1px solid var(--border); border-radius: 4px; background: white; color: #1e293b; height: 27px;
   }
   select.slot-select:focus { outline: 2px solid var(--fc-green); }
   select.slot-select.unassigned { border-color: #fca5a5; background: #fff5f5; color: #991b1b; font-weight: 700; }
@@ -157,7 +181,7 @@
   }
 
   select.slot-time-select {
-    width: 72px; height: 26px; padding: 2px 4px; font-size: 0.78rem; font-weight: 700;
+    width: 72px; height: 27px; padding: 2px 4px; font-size: 0.78rem; font-weight: 700;
     text-align: center; border: 1px solid var(--border); border-radius: 4px; background: #f8fafc;
     color: #1e293b; flex-shrink: 0; cursor: pointer;
   }
@@ -166,7 +190,7 @@
   .btn-del-slot { background: transparent; border: none; color: #94a3b8; font-size: 0.9rem; cursor: pointer; padding: 0 4px; }
   .btn-del-slot:hover { color: #dc2626; }
 
-  .card-footer-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 5px; padding-top: 5px; border-top: 1px dashed var(--border); }
+  .card-footer-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--border); }
   .add-btns { display: flex; gap: 4px; }
   .edit-link { font-size: 0.74rem; color: var(--fc-green); cursor: pointer; font-weight: 700; }
   .edit-link:hover { text-decoration: underline; }
@@ -347,9 +371,9 @@
   <div class="modal-box">
     <h3 style="color:var(--fc-green-dark); margin-bottom:10px; font-size:1.05rem;">+ Nieuwe Route Toevoegen</h3>
     <div class="form-row">
-      <div class="form-col" style="flex:0 0 80px;">
+      <div class="form-col" style="flex:0 0 95px;">
         <label>Volgorde (#):</label>
-        <input type="number" id="newRouteNr" placeholder="1">
+        <input type="text" id="newRouteNr" placeholder="bijv. 12a">
       </div>
       <div class="form-col">
         <label>Datum (YYYY-MM-DD):</label>
@@ -453,10 +477,23 @@ let state = {
   activeMainTab: 'routes',
   personRoleFilter: 'all',
   user: null,
-  userRole: null // 'admin', 'coordinator_chauffeurs', 'coordinator_sinten', 'coordinator_pieten', 'planner_routes'
+  userRole: null
 };
 
 const SPECIAL_OPTIONS = ["eigen", "zelf", "n.v.t."];
+
+// Slimme sortering: eerst op datum, daarna oplopend op volgordenummer (inclusief 12, 12a, 13, 14, 15)
+function compareRouteOrder(a, b) {
+  const dayCompare = (a.raw_datum || '').localeCompare(b.raw_datum || '');
+  if (dayCompare !== 0) return dayCompare;
+
+  const nrA = String(a.nr || '').trim();
+  const nrB = String(b.nr || '').trim();
+  const numCompare = nrA.localeCompare(nrB, 'nl', { numeric: true, sensitivity: 'base' });
+  if (numCompare !== 0) return numCompare;
+
+  return (a.vertrek || '').localeCompare(b.vertrek || '');
+}
 
 // Controleer of een datumstring (YYYY-MM-DD) in het verleden ligt t.o.v. vandaag
 function isRoutePast(rawDateStr) {
@@ -626,7 +663,7 @@ async function resolveUserRole() {
     return;
   }
   try {
-    const { data, error } = await supabaseClient
+    const { data } = await supabaseClient
       .from('planners')
       .select('rol')
       .eq('user_id', state.user.id)
@@ -837,7 +874,7 @@ async function loadDatabaseData() {
     const { data: pers } = await supabaseClient.from('personen').select('*').order('naam');
     if (pers && pers.length > 0) state.personen = pers;
 
-    const { data: rts, error } = await supabaseClient.from('routes').select('*, plekken(*)').order('datum', { ascending: true });
+    const { data: rts } = await supabaseClient.from('routes').select('*, plekken(*)').order('datum', { ascending: true });
     
     if (rts && rts.length > 0) {
       const persMap = {};
@@ -845,7 +882,10 @@ async function loadDatabaseData() {
 
       let autoNr = 1;
       state.routes = rts.map((r, idx) => {
-        const nrVal = r.volgorde || r.nr || String(autoNr++);
+        const nrVal = r.volgorde !== null && r.volgorde !== undefined && String(r.volgorde).trim() !== ''
+          ? String(r.volgorde).trim()
+          : (r.nr ? String(r.nr).trim() : String(autoNr++));
+
         const routeName = r.locatie || r.naam || (r.plaats ? `Bezoek ${r.plaats}` : `Rit ${idx+1}`);
         const dayLabel = formatDutchDate(r.datum);
 
@@ -913,6 +953,9 @@ async function loadDatabaseData() {
           plekken: plekken
         };
       });
+
+      // Sorteer alles direct op datum + volgordenummer (#1, #2, ..., #12, #12a, #13, #14, #15)
+      state.routes.sort(compareRouteOrder);
     }
   } catch(e) { console.error("Database load error:", e); }
 
@@ -927,13 +970,14 @@ async function loadDatabaseData() {
 function populateDayFilter() {
   const sel = document.getElementById("selectDayFilter");
   if (!sel) return;
+  const currentVal = sel.value;
   const days = [];
   state.routes.forEach(r => {
     if (r.datum && !days.includes(r.datum)) days.push(r.datum);
   });
   sel.innerHTML = '<option value="all">Alle dagen tonen</option>';
   days.forEach(d => {
-    sel.innerHTML += `<option value="${d}">${d}</option>`;
+    sel.innerHTML += `<option value="${d}" ${d === currentVal ? 'selected' : ''}>${d}</option>`;
   });
 }
 
@@ -971,7 +1015,8 @@ function renderRoutes() {
   const filterDay = document.getElementById("selectDayFilter") ? document.getElementById("selectDayFilter").value : "all";
   const search = (document.getElementById("routeSearchInput") ? document.getElementById("routeSearchInput").value : "").toLowerCase();
 
-  let filtered = state.routes;
+  let filtered = [...state.routes].sort(compareRouteOrder);
+
   if (filterDay !== "all") {
     filtered = filtered.filter(r => r.datum === filterDay);
   }
@@ -995,6 +1040,8 @@ function renderRoutes() {
   let html = "";
   Object.keys(byDay).forEach(day => {
     const list = byDay[day];
+    list.sort(compareRouteOrder);
+
     const isDayPastAndComplete = list.length > 0 && list.every(r => !isRouteOpen(r) && isRoutePast(r.raw_datum));
 
     html += `<div class="day-header ${isDayPastAndComplete ? 'is-past-day' : ''}">📅 ${day} <span style="font-size:0.75rem; font-weight:bold; color:#64748b;">(${list.length} ritten)</span></div>`;
@@ -1015,75 +1062,79 @@ function renderRoutes() {
 
       html += `
         <div class="${cardClasses}" id="rcard-${r.id}">
-          <div class="route-header">
-            <div class="route-main-line">
-              <span class="route-nr-badge">#${r.nr}</span>
-              <span class="route-name">${r.naam}</span>
-              <span class="route-place">${r.plaats ? `(${r.plaats})` : ''}</span>
-              ${timesText ? `<span class="route-times-chip">${timesText}</span>` : ''}
+          <div>
+            <div class="route-header">
+              <div class="route-main-line">
+                <span class="route-nr-badge">#${r.nr}</span>
+                <span class="route-name">${r.naam}</span>
+                <span class="route-place">${r.plaats ? `(${r.plaats})` : ''}</span>
+                ${timesText ? `<span class="route-times-chip">${timesText}</span>` : ''}
+              </div>
+              <div>
+                <span class="status-badge ${badgeClass}">
+                  ${badgeText}
+                </span>
+              </div>
             </div>
-            <div>
-              <span class="status-badge ${badgeClass}">
-                ${badgeText}
-              </span>
+
+            ${r.opmerking ? `<div class="route-notes">ℹ️ ${r.opmerking}</div>` : ''}
+
+            <div class="slots-list">
+              ${renderSlotsHTML(r)}
             </div>
-          </div>
-
-          ${r.opmerking ? `<div class="route-notes">ℹ️ ${r.opmerking}</div>` : ''}
-
-          <div class="slots-list">
-            ${renderSlotsHTML(r)}
           </div>
 
           ${canManageRoutes() ? `
-          <div class="card-footer-actions no-print">
-            <div class="add-btns">
-              <button class="btn btn-sm" onclick="addSlot('${r.id}', 'S')">+ S</button>
-              <button class="btn btn-sm" onclick="addSlot('${r.id}', 'C')">+ C</button>
-              <button class="btn btn-sm" onclick="addSlot('${r.id}', 'P')">+ P</button>
+          <div>
+            <div class="card-footer-actions no-print">
+              <div class="add-btns">
+                <button class="btn btn-sm" onclick="addSlot('${r.id}', 'S')">+ S</button>
+                <button class="btn btn-sm" onclick="addSlot('${r.id}', 'C')">+ C</button>
+                <button class="btn btn-sm" onclick="addSlot('${r.id}', 'P')">+ P</button>
+              </div>
+              <span class="edit-link" onclick="toggleEditPanel('${r.id}')">✏️ Nummer, Naam & Tijden bewerken ▾</span>
             </div>
-            <span class="edit-link" onclick="toggleEditPanel('${r.id}')">✏️ Nummer, Naam & Tijden bewerken ▾</span>
-          </div>
 
-          <!-- Inline Edit Panel -->
-          <div class="edit-panel no-print" id="editpanel-${r.id}">
-            <div class="form-row">
-              <div class="form-col" style="flex:0 0 75px;">
-                <label>Volgorde (#):</label>
-                <input type="number" id="ed-nr-${r.id}" value="${r.nr || ''}">
+            <!-- Inline Edit Panel -->
+            <div class="edit-panel no-print" id="editpanel-${r.id}">
+              <div class="form-row">
+                <div class="form-col" style="flex:0 0 85px;">
+                  <label>Volgorde (#):</label>
+                  <input type="text" id="ed-nr-${r.id}" value="${r.nr || ''}">
+                </div>
+                <div class="form-col">
+                  <label>Locatie / Bestemming:</label>
+                  <input type="text" id="ed-name-${r.id}" value="${r.naam || ''}">
+                </div>
               </div>
-              <div class="form-col">
-                <label>Locatie / Bestemming:</label>
-                <input type="text" id="ed-name-${r.id}" value="${r.naam || ''}">
+              <div class="form-row">
+                <div class="form-col">
+                  <label>Plaats / Wijk:</label>
+                  <input type="text" id="ed-plaats-${r.id}" value="${r.plaats || ''}">
+                </div>
+                <div class="form-col">
+                  <label>Vertrektijd:</label>
+                  <input type="text" id="ed-vertrek-${r.id}" value="${r.vertrek || ''}">
+                </div>
               </div>
-            </div>
-            <div class="form-row">
-              <div class="form-col">
-                <label>Plaats / Wijk:</label>
-                <input type="text" id="ed-plaats-${r.id}" value="${r.plaats || ''}">
+              <div class="form-row">
+                <div class="form-col">
+                  <label>Terugkomsttijd:</label>
+                  <input type="text" id="ed-terug-${r.id}" value="${r.terug || ''}">
+                </div>
+                <div class="form-col">
+                  <label>Aanwezig (P · S · C):</label>
+                  <input type="text" id="ed-aanw-${r.id}" value="${r.aanwezig || ''}">
+                </div>
               </div>
-              <div class="form-col">
-                <label>Vertrektijd:</label>
-                <input type="text" id="ed-vertrek-${r.id}" value="${r.vertrek || ''}">
+              <div style="margin-bottom:5px;">
+                <label style="font-size:0.7rem; font-weight:700; color:#475569;">Opmerking:</label>
+                <input type="text" id="ed-notes-${r.id}" value="${r.opmerking || ''}" style="width:100%; padding:3px 6px; font-size:0.76rem; border:1px solid var(--border); border-radius:3px;">
               </div>
-            </div>
-            <div class="form-row">
-              <div class="form-col">
-                <label>Terugkomsttijd:</label>
-                <input type="text" id="ed-terug-${r.id}" value="${r.terug || ''}">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-top:6px;">
+                <button class="btn btn-sm" style="color:var(--sint-red);" onclick="deleteRoute('${r.id}')">🗑️ Verwijder</button>
+                <button class="btn btn-fc btn-sm" onclick="saveRouteEdits('${r.id}')">💾 Wijzigingen Opslaan</button>
               </div>
-              <div class="form-col">
-                <label>Aanwezig (P · S · C):</label>
-                <input type="text" id="ed-aanw-${r.id}" value="${r.aanwezig || ''}">
-              </div>
-            </div>
-            <div style="margin-bottom:5px;">
-              <label style="font-size:0.7rem; font-weight:700; color:#475569;">Opmerking:</label>
-              <input type="text" id="ed-notes-${r.id}" value="${r.opmerking || ''}" style="width:100%; padding:3px 6px; font-size:0.76rem; border:1px solid var(--border); border-radius:3px;">
-            </div>
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:6px;">
-              <button class="btn btn-sm" style="color:var(--sint-red);" onclick="deleteRoute('${r.id}')">🗑️ Verwijder</button>
-              <button class="btn btn-fc btn-sm" onclick="saveRouteEdits('${r.id}')">💾 Wijzigingen Opslaan</button>
             </div>
           </div>
           ` : ''}
@@ -1226,7 +1277,7 @@ async function saveRouteEdits(rId) {
   const r = state.routes.find(item => String(item.id) === String(rId));
   if (!r) return;
 
-  r.nr = parseInt(document.getElementById('ed-nr-' + rId).value) || 1;
+  r.nr = document.getElementById('ed-nr-' + rId).value.trim() || "1";
   r.naam = document.getElementById('ed-name-' + rId).value.trim();
   r.plaats = document.getElementById('ed-plaats-' + rId).value.trim();
   r.vertrek = cleanTime(document.getElementById('ed-vertrek-' + rId).value.trim());
@@ -1246,6 +1297,7 @@ async function saveRouteEdits(rId) {
     if (error) alert("Fout bij bewerken route: " + error.message);
   } catch(e) { console.log(e); }
 
+  state.routes.sort(compareRouteOrder);
   renderRoutes();
 }
 
@@ -1743,7 +1795,7 @@ async function saveNewPerson() {
     } catch(e) { console.log(e); }
   } else {
     try {
-      const { data, error } = await supabaseClient.from('personen').insert({
+      const { data } = await supabaseClient.from('personen').insert({
         naam: naam,
         rollen: selectedRoles,
         telefoon: telefoon,
@@ -1788,7 +1840,7 @@ function closeNewRouteModal() { document.getElementById("newRouteModal").style.d
 async function saveNewRoute() {
   if (!canManageRoutes()) return;
 
-  const volgorde = parseInt(document.getElementById("newRouteNr").value) || (state.routes.length + 1);
+  const volgorde = document.getElementById("newRouteNr").value.trim() || String(state.routes.length + 1);
   const datum = document.getElementById("newRouteDay").value || "2026-11-21";
   const naam = document.getElementById("newRouteName").value.trim() || "Nieuwe Route";
   const plaats = document.getElementById("newRoutePlaats").value.trim() || "Oldenzaal";
@@ -1843,7 +1895,8 @@ function exportRouteExcel() {
     ["Route Nr", "Dag", "Locatie / Bestemming", "Plaats", "Aanwezig", "Vertrek", "Terug", "Opmerking", "Bezetting (Sint / Chauffeur / Piet)"]
   ];
 
-  state.routes.forEach(r => {
+  const sortedRoutes = [...state.routes].sort(compareRouteOrder);
+  sortedRoutes.forEach(r => {
     const bezettingStr = (r.plekken || []).map(p => `${p.rol_label}: ${p.naam || p.status || 'open'}`).join(' | ');
     rows.push([r.nr, r.datum, r.naam, r.plaats, r.aanwezig, r.vertrek, r.terug, r.opmerking, bezettingStr]);
   });
