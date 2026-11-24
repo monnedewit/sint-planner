@@ -16,7 +16,7 @@
     --bg: #f8fafc;
     --surface: #ffffff;
     --border: #cbd5e1;
-    --text: #0f172a;
+    --text: #0f172a;f
     --whatsapp: #25d366;
     --whatsapp-dark: #128c7e;
   }
@@ -473,6 +473,7 @@ const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 let state = {
   routes: [],
   personen: [],
+  actieId: null,
   filterOpenOnly: false,
   activeMainTab: 'routes',
   personRoleFilter: 'all',
@@ -877,6 +878,7 @@ async function loadDatabaseData() {
     const { data: rts } = await supabaseClient.from('routes').select('*, plekken(*)').order('datum', { ascending: true });
     
     if (rts && rts.length > 0) {
+      if (rts[0].actie_id) state.actieId = rts[0].actie_id;
       const persMap = {};
       state.personen.forEach(p => { persMap[String(p.id)] = p.naam; });
 
@@ -1850,18 +1852,40 @@ async function saveNewRoute() {
   const opmerking = document.getElementById("newRouteNotes").value.trim();
 
   try {
+    // Haal automatisch het geldige actie_id op uit een bestaande route
+    let huidigeActieId = state.actieId || null;
+    if (!huidigeActieId) {
+      const { data: existingRoute } = await supabaseClient
+        .from('routes')
+        .select('actie_id')
+        .not('actie_id', 'is', null)
+        .limit(1)
+        .maybeSingle();
+
+      if (existingRoute && existingRoute.actie_id) {
+        huidigeActieId = existingRoute.actie_id;
+        state.actieId = huidigeActieId;
+      }
+    }
+
+    const insertPayload = {
+      volgorde: volgorde,
+      datum: datum,
+      locatie: naam,
+      plaats: plaats,
+      vertrek: vertrek || null,
+      terug: terug || null,
+      aanwezig: aanwezig || null,
+      opmerking: opmerking
+    };
+
+    if (huidigeActieId) {
+      insertPayload.actie_id = huidigeActieId;
+    }
+
     const { data: routeData, error: routeErr } = await supabaseClient
       .from('routes')
-      .insert({
-        volgorde: volgorde,
-        datum: datum,
-        locatie: naam,
-        plaats: plaats,
-        vertrek: vertrek,
-        terug: terug,
-        aanwezig: aanwezig,
-        opmerking: opmerking
-      })
+      .insert(insertPayload)
       .select()
       .single();
 
