@@ -91,14 +91,32 @@
     font-size: 1rem; font-weight: 800; color: var(--fc-green-dark); margin: 18px 0 8px 0;
     display: flex; align-items: center; gap: 8px; border-bottom: 2px solid #bbf7d0; padding-bottom: 4px;
   }
+  .day-header.is-past-day {
+    color: #64748b;
+    border-bottom-color: #cbd5e1;
+  }
 
   .routes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(500px, 1fr)); gap: 10px; margin-bottom: 16px; }
   
   .route-card {
     background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
     padding: 9px 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.03); border-left: 4px solid var(--fc-green); position: relative;
+    transition: opacity 0.2s, filter 0.2s, background-color 0.2s;
   }
   .route-card.is-open { border-left-color: #ef4444; }
+
+  /* Grijze styling voor afgeronde routes waarvan de datum geweest is */
+  .route-card.is-past-complete {
+    background-color: #f1f5f9;
+    border-color: #cbd5e1;
+    border-left-color: #94a3b8;
+    opacity: 0.65;
+    filter: grayscale(85%);
+  }
+  .route-card.is-past-complete:hover {
+    opacity: 0.96;
+    filter: grayscale(15%);
+  }
 
   .route-header {
     display: flex; justify-content: space-between; align-items: flex-start;
@@ -113,6 +131,7 @@
 
   .status-badge { font-size: 0.7rem; font-weight: 700; padding: 2px 6px; border-radius: 8px; }
   .badge-complete { border: 1px solid #10b981; color: #065f46; background: #ecfdf5; }
+  .badge-past-complete { border: 1px solid #94a3b8; color: #475569; background: #e2e8f0; }
   .badge-open { border: 1px solid #ef4444; color: #991b1b; background: #fef2f2; font-weight: 800; }
 
   .route-notes { font-size: 0.73rem; color: #92400e; background: #fffbeb; border: 1px solid #fde68a; padding: 2px 6px; border-radius: 3px; margin-bottom: 6px; display: inline-block; }
@@ -439,6 +458,21 @@ let state = {
 
 const SPECIAL_OPTIONS = ["eigen", "zelf", "n.v.t."];
 
+// Controleer of een datumstring (YYYY-MM-DD) in het verleden ligt t.o.v. vandaag
+function isRoutePast(rawDateStr) {
+  if (!rawDateStr) return false;
+  const parts = String(rawDateStr).split('T')[0].split('-');
+  if (parts.length !== 3) return false;
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const routeDate = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+  routeDate.setHours(0, 0, 0, 0);
+
+  return routeDate < today;
+}
+
 // ROLE PERMISSION CHECKS
 function canEditRoleSlot(roleType) {
   if (!state.user || !state.userRole) return false;
@@ -474,20 +508,6 @@ function canEditPerson(p) {
 
 function canDeletePerson(p) {
   return canEditPerson(p);
-}
-
-function canManageRoutes() {
-  if (!state.user || !state.userRole) return false;
-  return state.userRole === 'admin' || state.userRole === 'planner_routes';
-}
-
-function canAddPersonsFor(role) {
-  if (!state.user || !state.userRole) return false;
-  if (state.userRole === 'admin') return true;
-  if (state.userRole === 'coordinator_chauffeurs' && role === 'Chauffeur') return true;
-  if (state.userRole === 'coordinator_sinten' && role === 'Sint') return true;
-  if (state.userRole === 'coordinator_pieten' && role === 'Piet') return true;
-  return false;
 }
 
 function cleanTime(t) {
@@ -655,7 +675,6 @@ function updateRoleUI() {
     banner.style.display = 'flex';
     bannerText.innerHTML = `Welkom <strong>${state.user.email}</strong>. Ingelogd als: <strong>${friendlyRole}</strong>.`;
 
-    // Toon tab Personenbeheer voor iedereen die is ingelogd
     if (tabVrijwilligers) {
       tabVrijwilligers.style.display = 'inline-flex';
       if (state.userRole === 'coordinator_chauffeurs') tabVrijwilligers.innerHTML = '🚗 5. Chauffeursbeheer';
@@ -976,15 +995,26 @@ function renderRoutes() {
   let html = "";
   Object.keys(byDay).forEach(day => {
     const list = byDay[day];
-    html += `<div class="day-header">📅 ${day} <span style="font-size:0.75rem; font-weight:bold; color:#64748b;">(${list.length} ritten)</span></div>`;
+    const isDayPastAndComplete = list.length > 0 && list.every(r => !isRouteOpen(r) && isRoutePast(r.raw_datum));
+
+    html += `<div class="day-header ${isDayPastAndComplete ? 'is-past-day' : ''}">📅 ${day} <span style="font-size:0.75rem; font-weight:bold; color:#64748b;">(${list.length} ritten)</span></div>`;
     html += `<div class="routes-grid">`;
 
     list.forEach(r => {
       const open = isRouteOpen(r);
+      const past = isRoutePast(r.raw_datum);
+      const isPastComplete = !open && past;
       const timesText = (r.vertrek || r.terug) ? `vertrek: ${r.vertrek || '?'} · terug: ${r.terug || '?'}` : '';
 
+      let cardClasses = 'route-card';
+      if (open) cardClasses += ' is-open';
+      if (isPastComplete) cardClasses += ' is-past-complete';
+
+      let badgeClass = open ? 'badge-open' : (isPastComplete ? 'badge-past-complete' : 'badge-complete');
+      let badgeText = open ? 'open plekken' : (isPastComplete ? 'afgerond' : 'compleet');
+
       html += `
-        <div class="route-card ${open ? 'is-open' : ''}" id="rcard-${r.id}">
+        <div class="${cardClasses}" id="rcard-${r.id}">
           <div class="route-header">
             <div class="route-main-line">
               <span class="route-nr-badge">#${r.nr}</span>
@@ -993,8 +1023,8 @@ function renderRoutes() {
               ${timesText ? `<span class="route-times-chip">${timesText}</span>` : ''}
             </div>
             <div>
-              <span class="status-badge ${open ? 'badge-open' : 'badge-complete'}">
-                ${open ? 'open plekken' : 'compleet'}
+              <span class="status-badge ${badgeClass}">
+                ${badgeText}
               </span>
             </div>
           </div>
@@ -1157,7 +1187,7 @@ async function updateRoleTime(routeId, roleChar, newTime) {
   if (!r) return;
 
   const clean = cleanTime(newTime);
-  const dbTime = clean ? clean : null; // In Postgres time columns vereisen NULL i.p.v. lege string
+  const dbTime = clean ? clean : null;
 
   if (roleChar === 'S') r.aanwezig_s = clean;
   if (roleChar === 'C') r.aanwezig_c = clean;
@@ -1694,7 +1724,6 @@ async function saveNewPerson() {
     const p = state.personen.find(item => String(item.id) === String(pId));
     if (!p || !canEditPerson(p)) return alert("Geen rechten om deze persoon te bewerken.");
 
-    // Behoud eventuele andere rollen als een specifieke coördinator bewerkt
     if (state.userRole !== 'admin' && Array.isArray(p.rollen)) {
       selectedRoles = p.rollen;
     }
